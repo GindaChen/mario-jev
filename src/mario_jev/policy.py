@@ -15,9 +15,13 @@ ACTIONS = {
 
 
 class JevPolicy:
-    def __init__(self, model="jev-latest"):
-        self.client = TypeSafeClient(
-            model=model, timeout=15, retry=RetryPolicy(max_retries=0)
+    def __init__(self, model="jev-latest", *, client=None):
+        self.client = (
+            client
+            if client is not None
+            else TypeSafeClient(
+                model=model, timeout=15, retry=RetryPolicy(max_retries=0)
+            )
         )
         self.questions = {
             "movement": Choice(

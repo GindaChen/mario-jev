@@ -6,6 +6,7 @@ readme = "README.md"
 authors = [{ name = "Shantanu Goel" }]
 requires-python = ">=3.13"
 dependencies = [
+    "httpx2>=2.13.0",
     "gym-super-mario-bros>=9.1.0",
     "python-dotenv>=1.2.3",
     "typesafe-sdk>=0.6.0",
@@ -27,3 +28,6 @@ dev = [
     "pytest>=9.1.1",
     "ruff>=0.16.8",
 ]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

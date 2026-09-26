@@ -77,6 +77,52 @@ Every Jev decision is a paid API request. `--decisions` limits calls per episode
 `--episodes` multiplies that limit. No API key is needed for the scripted policy
 or state dump.
 
+## Self-hosted DJev
+
+This checkout also supports `--policy djev`. It sends the original four questions
+and RAM observations to DJev's `/v1/request`, using the same button composition
+and 0.5 jump thresholds. Questions are evaluated independently by default, using
+four model reads per decision. Use `--djev-isolation joint` to reproduce the
+original one-read configuration. The selected mode is recorded in each run's
+configuration, and backend diagnostics record physical reads.
+
+No TypeSafe API key is used or forwarded. Start a
+[DJev server](https://github.com/Davipar/djev-dev) first. For a remote server
+listening on port 18341, replace `YOUR_GPU_HOST` with your SSH host:
+
+```bash
+ssh -N -L 127.0.0.1:18341:127.0.0.1:18341 YOUR_GPU_HOST
+```
+
+In another terminal, run a bounded game:
+
+```bash
+uv run mario-jev --policy djev --decisions 50
+```
+
+Add `--log-every 10` to print terminal progress every 10 decisions, starting at
+decision 0. The default is 25; use `--log-every 1` to print every decision.
+JSONL trace files always retain every decision.
+
+Use `--djev-url http://127.0.0.1:PORT` for another API root. Requests use one
+diffusion sample, seed 0, a 60-second timeout, and no retries. Logs retain DJev
+diagnostics, including its unvalidated probability calibration. A failed request
+stops the game; it never falls back to the hosted Jev API.
+
+In a September 26, 2026 comparison on world 1-1, seed 123, with a 500-decision
+limit and the original prompts and button rules:
+
+| Backend | Decisions | Furthest x | Outcome |
+| --- | ---: | ---: | --- |
+| DJev, joint questions | 27 | 315 | Died at the first Goomba |
+| DJev, independent questions | 362 | 3161 | Completed |
+| Jev reference run | 351 | 3161 | Completed |
+
+DJev used the BF16 B200 runtime at `Davipar/djev-dev` revision `3ce907e`.
+These are individual runs, not measured success rates. Independent mode uses
+four physical model reads per decision instead of one. DJev's request adapter
+does not make its model judgments or probability calibration equivalent to Jev's.
+
 ## Replay
 
 Replay a recorded gameplay log with no API calls or API key:

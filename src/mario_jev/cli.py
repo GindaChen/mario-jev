@@ -23,8 +23,19 @@ def positive(value):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--policy", choices=["jev", "scripted"], default="jev")
+    parser.add_argument("--policy", choices=["jev", "djev", "scripted"], default="jev")
+    parser.add_argument(
+        "--djev-url",
+        default="http://127.0.0.1:18341",
+        help="DJev API root (normally an SSH tunnel)",
+    )
     parser.add_argument("--model", default="jev-latest")
+    parser.add_argument(
+        "--djev-isolation",
+        choices=["independent", "joint"],
+        default="independent",
+        help="DJev question evaluation (default: independent; four model reads per decision)",
+    )
     parser.add_argument(
         "--world", type=int, choices=range(1, 9), default=1, help="World (default: 1)"
     )
@@ -52,6 +63,12 @@ def main():
     parser.add_argument("--headless", action="store_true")
     parser.add_argument("--seed", type=int, default=123)
     parser.add_argument("--log-dir", type=Path, default=Path("runs"))
+    parser.add_argument(
+        "--log-every",
+        type=positive,
+        default=25,
+        help="Print progress every N decisions, starting at 0 (default: 25); traces retain every decision",
+    )
     parser.add_argument(
         "--dump-state",
         action="store_true",
@@ -109,7 +126,12 @@ def main():
                 )
             )
             return
-        policy = JevPolicy(args.model) if args.policy == "jev" else ScriptedPolicy()
+        if args.policy == "djev":
+            from .djev import DjevPolicy
+
+            policy = DjevPolicy(args.djev_url, isolation=args.djev_isolation)
+        else:
+            policy = JevPolicy(args.model) if args.policy == "jev" else ScriptedPolicy()
         args.log_dir.mkdir(parents=True, exist_ok=True)
         path = args.log_dir / (
             datetime.now(UTC).strftime("%Y%m%dT%H%M%S%fZ") + ".jsonl"
@@ -125,7 +147,11 @@ def main():
                 {
                     "type": "config",
                     "policy": args.policy,
-                    "model": args.model,
+                    "model": "djev" if args.policy == "djev" else args.model,
+                    "djev_url": args.djev_url if args.policy == "djev" else None,
+                    "djev_isolation": args.djev_isolation
+                    if args.policy == "djev"
+                    else None,
                     "frames": args.frames,
                     "decisions": args.decisions,
                     "episodes": args.episodes,
@@ -191,7 +217,7 @@ def main():
                             **diagnostics,
                         }
                     )
-                    if decision % 25 == 0:
+                    if decision % args.log_every == 0:
                         print(
                             f"Episode {episode + 1}, decision {decision}: x={info['x_pos']} action={action} latency={latency:.0f}ms"
                         )
