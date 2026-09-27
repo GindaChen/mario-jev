@@ -238,3 +238,47 @@ References: [TypeSafe SDK quick start](https://docs.typesafe.ai/introduction/qui
 [SMB1 memory definitions](https://github.com/threecreepio/smb-disassembly/blob/master/src/smb.asm).
 The installed emulator package supplies its game assets; this repository does
 not copy or distribute ROM files.
+
+## Other decision models
+
+The `scorer` policy supports `laya`, `kev`, `nimble`, `openjev4`, and
+`openjev35` through the decision-model HTTP scorer gateway. It sends the same
+RAM observation and four question instructions as Jev, evaluates each question
+independently, and reuses the original button logic. Movement options retain
+both their IDs and descriptions. Jump questions use binary `false`/`true`
+candidates; the score for `true` uses the existing 0.5 threshold. These scores
+are **not assumed to have Jev's Noul calibration**. No TypeSafe key is needed
+or sent to the scorer.
+
+```sh
+# Terminal 1: tunnel to your scorer gateway
+ssh -N -L 18797:127.0.0.1:8797 YOUR_GPU_HOST
+
+# Terminal 2: choose a model
+uv run mario-jev --policy scorer --model kev --headless \
+  --decisions 500 --log-every 25 --log-dir runs/kev
+```
+
+Use `--scorer-url URL` to change the gateway. A standalone worker serving
+`POST /score` instead of `POST /score/{model}` also needs `--scorer-direct`.
+Every trace contains all four exact request payloads, returned candidate
+probabilities, token counts, controller decisions, and RAM observations.
+Replay any trace with `--replay PATH`; no inference is needed.
+
+The first comparison uses the existing B200 checkpoints: Laya 421M
+(`convaiinnovations/laya`), Kev **0.5B**, Bespoke-Nimble-9B, and OpenJev
+Qwen3.5 4B v5 / 35B-A3B NLI. This does not test Kev-9B,
+Laya-typed-decisions, or full-generation DiffusionGemma. Model revisions are in
+`reports/scorer-provenance.json`.
+
+Laya's short default question budget would truncate these instructions. The
+Laya requires `--scorer-direct --scorer-url http://127.0.0.1:18821`
+with a tunnel to its separate worker on container port 8821. The
+isolated `serving/reference_worker.py` runs within the existing
+`decision-models-b200` runtime, expands the context to 8192 and question budget
+to 2048 tokens, and rejects truncation. It does not change the existing Laya
+service. Context extension is an experimental setting, not a claim about
+long-context accuracy. The other reference workers reject oversized inputs.
+All of these are candidate scorers, not autoregressive text generators.
+
+See [the five-model Mario comparison](reports/other-models.md) for results, limits, and replay paths.

@@ -23,13 +23,29 @@ def positive(value):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--policy", choices=["jev", "djev", "scripted"], default="jev")
+    parser.add_argument(
+        "--policy", choices=["jev", "djev", "scorer", "scripted"], default="jev"
+    )
     parser.add_argument(
         "--djev-url",
         default="http://127.0.0.1:18341",
         help="DJev API root (normally an SSH tunnel)",
     )
-    parser.add_argument("--model", default="jev-latest")
+    parser.add_argument(
+        "--model",
+        default="jev-latest",
+        help="Jev model name, or scorer key: laya, kev, nimble, openjev4, openjev35",
+    )
+    parser.add_argument(
+        "--scorer-url",
+        default="http://127.0.0.1:18797",
+        help="Scorer gateway or direct worker root URL",
+    )
+    parser.add_argument(
+        "--scorer-direct",
+        action="store_true",
+        help="Use a single worker /score endpoint",
+    )
     parser.add_argument(
         "--djev-isolation",
         choices=["independent", "joint"],
@@ -130,6 +146,12 @@ def main():
             from .djev import DjevPolicy
 
             policy = DjevPolicy(args.djev_url, isolation=args.djev_isolation)
+        elif args.policy == "scorer":
+            from .scorer import ScorerPolicy
+
+            policy = ScorerPolicy(
+                args.scorer_url, args.model, direct=args.scorer_direct
+            )
         else:
             policy = JevPolicy(args.model) if args.policy == "jev" else ScriptedPolicy()
         args.log_dir.mkdir(parents=True, exist_ok=True)
@@ -151,6 +173,10 @@ def main():
                     "djev_url": args.djev_url if args.policy == "djev" else None,
                     "djev_isolation": args.djev_isolation
                     if args.policy == "djev"
+                    else None,
+                    "scorer_url": args.scorer_url if args.policy == "scorer" else None,
+                    "scorer_direct": args.scorer_direct
+                    if args.policy == "scorer"
                     else None,
                     "frames": args.frames,
                     "decisions": args.decisions,

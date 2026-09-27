@@ -1,0 +1,130 @@
+[
+  {
+    "trace": "runs/other-models/kev/20260927T023409552753Z.jsonl",
+    "model": "kev",
+    "policy": "scorer",
+    "episodes": [
+      {
+        "type": "summary",
+        "episode": 0,
+        "decisions": 500,
+        "max_x": 596,
+        "completed": false,
+        "reward": 479.0,
+        "stop_reason": "decision_limit"
+      }
+    ],
+    "decisions_recorded": 500,
+    "complete_trace": true,
+    "max_x": 596,
+    "median_decision_ms": 204.795,
+    "max_input_row_tokens": 3650,
+    "last_50_actions": {
+      "right_run": 42,
+      "right_run_jump": 8
+    }
+  },
+  {
+    "trace": "runs/other-models/laya/20260927T024648078998Z.jsonl",
+    "model": "laya",
+    "policy": "scorer",
+    "episodes": [
+      {
+        "type": "summary",
+        "episode": 0,
+        "decisions": 168,
+        "max_x": 1795,
+        "completed": false,
+        "reward": 1714.0,
+        "stop_reason": "terminated"
+      }
+    ],
+    "decisions_recorded": 168,
+    "complete_trace": true,
+    "max_x": 1795,
+    "median_decision_ms": 428.52,
+    "max_input_row_tokens": 4089,
+    "last_50_actions": {
+      "right_run_jump": 45,
+      "right_run": 5
+    }
+  },
+  {
+    "trace": "runs/other-models/nimble/20260927T023603333316Z.jsonl",
+    "model": "nimble",
+    "policy": "scorer",
+    "episodes": [
+      {
+        "type": "summary",
+        "episode": 0,
+        "decisions": 252,
+        "max_x": 1123,
+        "completed": false,
+        "reward": 1027.0,
+        "stop_reason": "terminated"
+      }
+    ],
+    "decisions_recorded": 252,
+    "complete_trace": true,
+    "max_x": 1123,
+    "median_decision_ms": 511.745,
+    "max_input_row_tokens": 4050,
+    "last_50_actions": {
+      "jump": 3,
+      "wait": 6,
+      "right_jump": 16,
+      "right": 18,
+      "right_run": 4,
+      "left": 3
+    }
+  },
+  {
+    "trace": "runs/other-models/openjev35/20260927T023850246543Z.jsonl",
+    "model": "openjev35",
+    "policy": "scorer",
+    "episodes": [
+      {
+        "type": "summary",
+        "episode": 0,
+        "decisions": 500,
+        "max_x": 435,
+        "completed": false,
+        "reward": 297.0,
+        "stop_reason": "decision_limit"
+      }
+    ],
+    "decisions_recorded": 500,
+    "complete_trace": true,
+    "max_x": 435,
+    "median_decision_ms": 912.01,
+    "max_input_row_tokens": 3652,
+    "last_50_actions": {
+      "right": 50
+    }
+  },
+  {
+    "trace": "runs/other-models/openjev4/20260927T023812514102Z.jsonl",
+    "model": "openjev4",
+    "policy": "scorer",
+    "episodes": [
+      {
+        "type": "summary",
+        "episode": 0,
+        "decisions": 32,
+        "max_x": 299,
+        "completed": false,
+        "reward": 236.0,
+        "stop_reason": "terminated"
+      }
+    ],
+    "decisions_recorded": 32,
+    "complete_trace": true,
+    "max_x": 299,
+    "median_decision_ms": 552.31,
+    "max_input_row_tokens": 3618,
+    "last_50_actions": {
+      "right_run": 14,
+      "right_run_jump": 18
+    }
+  }
+]

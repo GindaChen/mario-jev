@@ -1,0 +1,22 @@
+{
+  "models": {
+    "convaiinnovations/laya": {
+      "revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851"
+    },
+    "jaredpalmer/kev-0.5b": {
+      "revision": "9ce2fd39db3a397c89733f94af948e3d1fdfffcd"
+    },
+    "bespokelabs/Bespoke-Nimble-9B": {
+      "revision": "bd792f44ec8e265be861bfcdf4e05967ffe0e858"
+    },
+    "AlexWortega/openjev": {
+      "revision": "058a6c24911b46d908fbe23541390f8af3df3e4d"
+    }
+  },
+  "sources": {
+    "laya": "4066d5d5fbf08b66c6757ddeedbd797bd7655bc0",
+    "kev": "5920c5fe4ca8e0970ed4209ac2c9b8e18bea5109",
+    "nimble": "62076b4f2d365b5879dafcf7f6dd072a1fe76df7"
+  },
+  "runtime": "../runs/other-models/runtime.json"
+}
