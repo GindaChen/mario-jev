@@ -1,0 +1,60 @@
+{
+  "name": "v7-modular-neutral",
+  "mode": "modular",
+  "questions": {
+    "movement": {
+      "type": "choice",
+      "instructions": "Choose horizontal movement to reach the flag on the right while surviving. Run to clear gaps. Walk for precise jumps under ceilings. Brake left if approaching an enemy too closely or overshooting a landing. Jump is a separate button.",
+      "criteria": {
+        "run_right": "Run right quickly; cover distance and cross gaps.",
+        "walk_right": "Walk right slowly; precise approach and landing.",
+        "brake_left": "Brake or retreat left to avoid contact or overshooting.",
+        "wait": "Stop horizontal movement."
+      }
+    },
+    "enemy": {
+      "type": "choice",
+      "instructions": "Classify the enemy spacing.",
+      "criteria": {
+        "A": "No enemy is present.",
+        "B": "Enemy still far away, more than 60 pixels ahead.",
+        "C": "Enemy nearby, at most 60 pixels ahead."
+      }
+    },
+    "enemy_low": {
+      "type": "choice",
+      "instructions": "Classify the enemy spacing.",
+      "criteria": {
+        "A": "No enemy is present.",
+        "B": "Enemy still far away, more than 40 pixels ahead.",
+        "C": "Enemy nearby, at most 40 pixels ahead."
+      }
+    },
+    "wall": {
+      "type": "choice",
+      "instructions": "Classify the wall spacing.",
+      "criteria": {
+        "A": "No wall is present.",
+        "B": "Wall still far away, more than 48 pixels ahead.",
+        "C": "Wall nearby, at most 48 pixels ahead."
+      }
+    },
+    "pit": {
+      "type": "choice",
+      "instructions": "Classify the pit spacing.",
+      "criteria": {
+        "A": "No pit is present.",
+        "B": "Pit still far away, more than 48 pixels ahead.",
+        "C": "Pit nearby, at most 48 pixels ahead."
+      }
+    },
+    "air": {
+      "type": "choice",
+      "instructions": "Which direction is Mario moving vertically?",
+      "criteria": {
+        "A": "Rising upward.",
+        "B": "Falling downward."
+      }
+    }
+  }
+}

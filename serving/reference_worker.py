@@ -70,4 +70,36 @@ def score(payload: dict):
         raise HTTPException(400, f"{type(exc).__name__}: {exc}")
 
 
+@app.post("/decide")
+def decide(payload: dict):
+    try:
+        from laya.common import render_options
+
+        state = payload["state"]
+        questions = payload["questions"]
+        tok = scorer.tok
+        length = lambda text: len(tok.encode(text, add_special_tokens=False))
+        state_len = length(state)
+        for q in questions.values():
+            internal = scorer.agent._to_internal(q)
+            options = render_options(internal)
+            if any(length(" " + o) > 48 for o in options):
+                raise ValueError("Option exceeds 48 tokens")
+            head = length(internal["t"] + " question: " + internal["ins"]) + sum(
+                1 + length(" " + o) for o in options
+            )
+            if head > 2048 or state_len + head + 4 > 8192:
+                raise ValueError("Input exceeds native budget; truncation rejected")
+        result = scorer.agent.system_one(
+            state, questions, max_len=8192, head_max_len=2048
+        )
+        return {
+            **result,
+            "checkpoint": "convaiinnovations/laya@55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+            "truncation": False,
+        }
+    except Exception as exc:  # noqa: BLE001 -- HTTP boundary
+        raise HTTPException(400, f"{type(exc).__name__}: {exc}")
+
+
 uvicorn.run(app, host="0.0.0.0", port=8821, log_level="warning", limit_concurrency=2)

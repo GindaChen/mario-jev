@@ -1,0 +1,61 @@
+{
+  "name": "v8-body-lengths",
+  "mode": "modular",
+  "questions": {
+    "movement": {
+      "type": "choice",
+      "instructions": "Choose horizontal movement to reach the flag on the right while surviving. Run to clear gaps. Walk for precise jumps under ceilings. Brake left if approaching an enemy too closely or overshooting a landing. Jump is a separate button.",
+      "criteria": {
+        "run_right": "Run right quickly; cover distance and cross gaps.",
+        "walk_right": "Walk right slowly; precise approach and landing.",
+        "brake_left": "Brake or retreat left to avoid contact or overshooting.",
+        "wait": "Stop horizontal movement."
+      }
+    },
+    "enemy": {
+      "type": "choice",
+      "instructions": "Classify the enemy spacing.",
+      "criteria": {
+        "A": "No enemy is present.",
+        "B": "The enemy is far away: more than three body lengths ahead.",
+        "C": "The enemy is close: within three body lengths."
+      }
+    },
+    "enemy_low": {
+      "type": "choice",
+      "instructions": "Classify the enemy spacing.",
+      "criteria": {
+        "A": "No enemy is present.",
+        "B": "The enemy is far away: more than two body lengths ahead.",
+        "C": "The enemy is close: within two body lengths."
+      }
+    },
+    "wall": {
+      "type": "choice",
+      "instructions": "Classify the wall spacing.",
+      "criteria": {
+        "A": "No wall is present.",
+        "B": "The wall is far away: more than three body lengths ahead.",
+        "C": "The wall is close: within three body lengths."
+      }
+    },
+    "pit": {
+      "type": "choice",
+      "instructions": "Classify the pit spacing.",
+      "criteria": {
+        "A": "No pit is present.",
+        "B": "The pit is far away: more than three body lengths ahead.",
+        "C": "The pit is close: within three body lengths."
+      }
+    },
+    "air": {
+      "type": "choice",
+      "instructions": "Which direction is Mario moving vertically?",
+      "criteria": {
+        "A": "Rising upward.",
+        "B": "Falling downward."
+      }
+    }
+  },
+  "units": "body_lengths"
+}

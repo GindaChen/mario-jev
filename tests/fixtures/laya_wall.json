@@ -1,0 +1,86 @@
+{
+  "mario": {
+    "x": 722,
+    "y": 176,
+    "grounded": true,
+    "motion_state_raw": 0,
+    "vx_raw": 1,
+    "vy_raw": 0,
+    "status": "small",
+    "body_top_y": 192,
+    "feet_y": 208,
+    "width_px": 16,
+    "vx_px_per_frame": 0.0,
+    "vy_px_per_frame": 0.0,
+    "motion": "grounded"
+  },
+  "jump_already_held": false,
+  "terrain": {
+    "summary": {
+      "nearest_obstacle": {
+        "distance_px": 0,
+        "top_y": 144,
+        "height_above_feet_px": 64
+      },
+      "nearest_empty_column_below_feet": null,
+      "overhead_clearance_px": null,
+      "note": "Empty columns below feet can be pits OR a drop to lower terrain outside the view. Distances use approximate body edges. Unknown/offscreen terrain is not safe ground."
+    }
+  },
+  "nearest_threat": {
+    "slot": 2,
+    "kind": "goomba",
+    "dx": 91,
+    "dy": 8,
+    "state_raw": 0,
+    "horizontal_gap_px": 75,
+    "vx_px_per_frame": -0.5,
+    "estimated_contact_in_frames": 150.0,
+    "same_height": true,
+    "defeated": false
+  },
+  "jump_corridor": {
+    "ceiling_spans": [
+      {
+        "start_dx": 14,
+        "end_dx": 46,
+        "bottom_y": 192,
+        "headroom_px": 0
+      }
+    ],
+    "low_ceiling_now": true,
+    "low_ceiling_before_nearest_threat": true,
+    "minimum_headroom_before_threat_px": 0,
+    "unknown_overhead_tiles": [],
+    "possible_recent_head_bump": false,
+    "visible_ahead_px": 126,
+    "note": "Spans are relative to Mario; headroom is maximum upward body travel before hitting that ceiling at the current height. A ceiling hit truncates ascent and can make Mario land BEFORE an enemy. This is geometry, not an exact jump simulation. No span outside the visible map means unknown, not clear sky."
+  },
+  "nearby_objects": [
+    {
+      "slot": 1,
+      "kind": "goomba",
+      "dx": 115,
+      "dy": 8,
+      "state_raw": 0,
+      "horizontal_gap_px": 99,
+      "vx_px_per_frame": -0.5,
+      "estimated_contact_in_frames": 198.0,
+      "same_height": true,
+      "defeated": false
+    },
+    {
+      "slot": 2,
+      "kind": "goomba",
+      "dx": 91,
+      "dy": 8,
+      "state_raw": 0,
+      "horizontal_gap_px": 75,
+      "vx_px_per_frame": -0.5,
+      "estimated_contact_in_frames": 150.0,
+      "same_height": true,
+      "defeated": false
+    }
+  ],
+  "blocked_forward": true
+}

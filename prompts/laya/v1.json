@@ -1,0 +1,23 @@
+{
+  "name": "v1-native-buttons",
+  "questions": {
+    "movement": {
+      "type": "choice",
+      "instructions": "Choose horizontal movement to reach the flag on the right while surviving. Run to clear gaps. Walk for precise jumps under ceilings. Brake left if approaching an enemy too closely or overshooting a landing. Jump is a separate button.",
+      "criteria": {
+        "run_right": "Run right quickly; cover distance and cross gaps.",
+        "walk_right": "Walk right slowly; precise approach and landing.",
+        "brake_left": "Brake or retreat left to avoid contact or overshooting.",
+        "wait": "Stop horizontal movement."
+      }
+    },
+    "jump": {
+      "type": "choice",
+      "instructions": "Choose the jump button. Jump before enemies, obstacles or pits, while still grounded. Holding jump while rising gives more height. Release jump while falling to prepare the next jump. Low ceilings shorten jumps: get close to the enemy before a short hop. Do not jump too early into bricks and land on the enemy.",
+      "criteria": {
+        "press": "Press A: start a jump now, or hold A to keep rising higher.",
+        "release": "Release A: walk on clear ground, stop gaining height, or prepare the next jump."
+      }
+    }
+  }
+}

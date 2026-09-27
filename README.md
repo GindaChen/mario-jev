@@ -282,3 +282,32 @@ long-context accuracy. The other reference workers reject oversized inputs.
 All of these are candidate scorers, not autoregressive text generators.
 
 See [the five-model Mario comparison](reports/other-models.md) for results, limits, and replay paths.
+
+## Winning Laya controller and failure retries
+
+Laya now has a native policy with a frozen prompt profile that completed World
+1-1 in three fresh runs (308 decisions each). See the
+[experiment and integrity report](reports/laya-success.md) for the exact division
+between model decisions, human-written physics guidance, and button mechanics.
+The base checkpoint weights and game are unchanged.
+
+With the native Laya worker/tunnel available on port 18821:
+
+```sh
+uv run mario-jev --policy laya --headless
+```
+
+Use `--laya-profile prompts/laya/v9.json` to select the winning profile explicitly,
+or pass another profile to test a prompt change. Every failed/stalled run writes
+an adjacent `.failure.json`. Retry before a failure with:
+
+```sh
+uv run mario-jev --policy laya --headless --resume runs/FAILED_TRACE.jsonl \
+  --rewind-frames 300 --laya-profile prompts/laya/v9.json
+```
+
+The prefix is reconstructed from recorded actions and verified before new model
+calls. Resumed completions are marked separately from fresh passes. The default
+stall limit is 100 new decisions without increasing furthest x; change it with
+`--stall-decisions`. A replay can also be exported to video with
+`python scripts/export_replay.py TRACE.jsonl OUTPUT.mp4` (requires ffmpeg).

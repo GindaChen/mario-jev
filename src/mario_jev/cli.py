@@ -24,7 +24,7 @@ def positive(value):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "--policy", choices=["jev", "djev", "scorer", "scripted"], default="jev"
+        "--policy", choices=["jev", "djev", "scorer", "laya", "scripted"], default="jev"
     )
     parser.add_argument(
         "--djev-url",
@@ -96,6 +96,27 @@ def main():
     parser.add_argument(
         "--speed", type=positive, default=1, help="Replay speed multiplier (default: 1)"
     )
+    parser.add_argument("--laya-url", default="http://127.0.0.1:18821")
+    parser.add_argument(
+        "--laya-profile", type=Path, default=Path("prompts/laya/v9.json")
+    )
+    parser.add_argument(
+        "--resume",
+        type=Path,
+        help="Reconstruct a state before this trace ended using recorded actions",
+    )
+    parser.add_argument(
+        "--rewind-frames",
+        type=positive,
+        default=300,
+        help="Rewind emulator frames from trace end; 300 is five game seconds",
+    )
+    parser.add_argument(
+        "--stall-decisions",
+        type=positive,
+        default=100,
+        help="Stop after this many new decisions without increasing furthest x",
+    )
     args = parser.parse_args()
     env_id = f"SuperMarioBros-{args.world}-{args.stage}-v0"
     if args.replay:
@@ -108,6 +129,22 @@ def main():
         except Exception as exc:  # noqa: BLE001 -- CLI error boundary
             parser.exit(1, f"Replay failed ({type(exc).__name__}): {exc}\n")
         return
+    prefix = []
+    if args.resume:
+        from .checkpoint import resume_prefix
+
+        source_config, prefix = resume_prefix(args.resume, args.rewind_frames)
+        expected = {
+            "env": env_id,
+            "seed": args.seed,
+            "frames": args.frames,
+            "history": args.history,
+            "episodes": args.episodes,
+        }
+        if any(source_config[k] != value for k, value in expected.items()):
+            parser.error(
+                "Resume must use the source env, seed, frames, history and one episode"
+            )
     load_dotenv()
     if (
         args.policy == "jev"
@@ -146,6 +183,15 @@ def main():
             from .djev import DjevPolicy
 
             policy = DjevPolicy(args.djev_url, isolation=args.djev_isolation)
+        elif args.policy == "laya":
+            from .laya import LayaPolicy, ModularLayaPolicy
+
+            policy_class = (
+                ModularLayaPolicy
+                if json.loads(args.laya_profile.read_text()).get("mode") == "modular"
+                else LayaPolicy
+            )
+            policy = policy_class(args.laya_url, args.laya_profile)
         elif args.policy == "scorer":
             from .scorer import ScorerPolicy
 
@@ -169,7 +215,9 @@ def main():
                 {
                     "type": "config",
                     "policy": args.policy,
-                    "model": "djev" if args.policy == "djev" else args.model,
+                    "model": args.policy
+                    if args.policy in ("djev", "laya")
+                    else args.model,
                     "djev_url": args.djev_url if args.policy == "djev" else None,
                     "djev_isolation": args.djev_isolation
                     if args.policy == "djev"
@@ -177,6 +225,14 @@ def main():
                     "scorer_url": args.scorer_url if args.policy == "scorer" else None,
                     "scorer_direct": args.scorer_direct
                     if args.policy == "scorer"
+                    else None,
+                    "resume_from": str(args.resume) if args.resume else None,
+                    "replayed_prefix_decisions": len(prefix),
+                    "fresh_start": not bool(args.resume),
+                    "stall_decisions": args.stall_decisions,
+                    "laya_profile_sha256": getattr(policy, "digest", None),
+                    "laya_profile": str(args.laya_profile)
+                    if args.policy == "laya"
                     else None,
                     "frames": args.frames,
                     "decisions": args.decisions,
@@ -200,16 +256,46 @@ def main():
                 total_reward = 0.0
                 completed = False
                 terminated = truncated = False
-                for decision in range(args.decisions):
+                no_progress = 0
+                stalled = False
+                for decision in range(len(prefix) + args.decisions):
                     state = memory.observe(env.unwrapped.ram, info, args.frames)
                     started = perf_counter()
-                    action, diagnostics = policy.choose(state)
+                    recorded = prefix[decision] if decision < len(prefix) else None
+                    if recorded:
+                        if state != recorded["state"]:
+                            raise ValueError(
+                                f"Resume observation diverged at decision {decision}"
+                            )
+                        action = recorded["action"]
+                        diagnostics = {
+                            k: recorded[k]
+                            for k in ("model", "decisions", "backend_diagnostics")
+                            if k in recorded
+                        }
+                        diagnostics.update(replayed=True, source_trace=str(args.resume))
+                    else:
+                        action, diagnostics = policy.choose(state)
+                        diagnostics["replayed"] = False
                     latency = (perf_counter() - started) * 1000
                     info, reward, terminated, truncated, samples = execute_action(
-                        env, action, args.frames, args.headless
+                        env,
+                        action,
+                        recorded["frames_executed"] if recorded else args.frames,
+                        args.headless,
                     )
                     executed = len(samples)
-                    max_x = max(max_x, *(sample["x"] for sample in samples))
+                    if recorded and (
+                        int(info["x_pos"]) != recorded["result"]["x"]
+                        or int(env.unwrapped.ram[0xCE]) != recorded["result"]["y"]
+                    ):
+                        raise ValueError(
+                            f"Resume position diverged at decision {decision}"
+                        )
+                    new_max = max(max_x, *(sample["x"] for sample in samples))
+                    no_progress = 0 if recorded or new_max > max_x else no_progress + 1
+                    max_x = new_max
+                    stalled = no_progress >= args.stall_decisions
                     completed |= bool(info.get("flag_get"))
                     transition = memory.finish(
                         state,
@@ -247,7 +333,7 @@ def main():
                         print(
                             f"Episode {episode + 1}, decision {decision}: x={info['x_pos']} action={action} latency={latency:.0f}ms"
                         )
-                    if terminated or truncated:
+                    if terminated or truncated or stalled:
                         break
                 summary = {
                     "type": "summary",
@@ -256,16 +342,33 @@ def main():
                     "max_x": max_x,
                     "completed": completed,
                     "reward": total_reward,
+                    "fresh_start": not bool(args.resume),
+                    "new_decisions": decision + 1 - len(prefix),
                     "stop_reason": "completed"
                     if completed
                     else "terminated"
                     if terminated
                     else "truncated"
                     if truncated
+                    else "stalled"
+                    if stalled
                     else "decision_limit",
                 }
                 write(summary)
                 print(json.dumps(summary))
+                if not completed:
+                    failure = {
+                        "trace": str(path.resolve()),
+                        "summary": summary,
+                        "last_state": state,
+                        "retry": {
+                            "resume": str(path.resolve()),
+                            "rewind_frames": args.rewind_frames,
+                        },
+                    }
+                    path.with_suffix(".failure.json").write_text(
+                        json.dumps(failure, indent=2) + "\n"
+                    )
     except KeyboardInterrupt:
         print("Stopped.")
     except Exception as exc:  # noqa: BLE001 -- CLI boundary provides a concise error

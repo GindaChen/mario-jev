@@ -1,0 +1,24 @@
+{
+  "name": "v2-short",
+  "questions": {
+    "movement": {
+      "type": "choice",
+      "instructions": "Choose horizontal movement to reach the flag on the right while surviving. Run to clear gaps. Walk for precise jumps under ceilings. Brake left if approaching an enemy too closely or overshooting a landing. Jump is a separate button.",
+      "criteria": {
+        "run_right": "Run right quickly; cover distance and cross gaps.",
+        "walk_right": "Walk right slowly; precise approach and landing.",
+        "brake_left": "Brake or retreat left to avoid contact or overshooting.",
+        "wait": "Stop horizontal movement."
+      }
+    },
+    "jump": {
+      "type": "choice",
+      "instructions": "Which description best matches what Mario needs right now?",
+      "criteria": {
+        "press": "Jump upward to get over an approaching enemy, wall, pipe, or gap; keep gaining height during ascent.",
+        "release": "Stop holding the jump button during descent or while standing on clear ground."
+      }
+    }
+  },
+  "observation": "short"
+}
