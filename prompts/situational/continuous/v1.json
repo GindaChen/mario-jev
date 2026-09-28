@@ -1,0 +1,11 @@
+{
+  "name": "continuous-single-prompt-v1",
+  "mode": "situational",
+  "one_frame_rearm": true,
+  "instructions": "Choose the controller action that makes safe progress toward the goal on the right. Infer the current situation from relative geometry and motion. Plan a landing, not just a takeoff: the feet must reach the top of a supported surface before descending below it. Running builds horizontal momentum; left can brake it. Holding jump while rising can increase height; pressing jump after falling cannot rescue a missed takeoff. Release jump before starting another jump. Compare current velocity, remaining platform length, target height, headroom and nearby enemies. Candidate surfaces are observations, not guarantees of reachability or safety. Empty floor underneath a platform does not mean the platform is absent. Unknown offscreen terrain is not confirmed support. Choose from the same action menu in every situation. Account for low ceilings shortening a jump and for enemies occupying a landing. Approach pipes with enough room to clear their tops. Choose supported intermediate landings on stairs or elevated platforms when one jump would be unsafe. Use the ordinary route toward the end of each stage; do not seek shortcuts that skip stages.",
+  "extra_solid_tiles": [
+    22,
+    23,
+    24
+  ]
+}

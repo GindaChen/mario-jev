@@ -88,22 +88,28 @@ class SituationalDjevPolicy(DjevPolicy):
             raise ValueError(
                 "Situational profiles cannot configure routing, criteria or coordinate triggers"
             )
-        for key in ("name", "stage", "instructions", "stage_guidance"):
+        for key in ("name", "instructions"):
             if not isinstance(config.get(key), str) or not config[key]:
                 raise ValueError(f"Missing text field: {key}")
         if config.get("extra_solid_tiles", []) not in ([], [22, 23, 24]):
-            raise ValueError("Only the measured 1-3 platform tile extension is supported")
+            raise ValueError(
+                "Only the measured 1-3 platform tile extension is supported"
+            )
         super().__init__(base_url, **kwargs)
         self.profile = config
         self.profile_digest = hashlib.sha256(data).hexdigest()
 
     def choose(self, state):
         measured = observation(state)
-        measured["stage"] = self.profile["stage"]
+        if "stage" in self.profile:
+            measured["stage"] = self.profile["stage"]
         question = {
             "instructions": self.profile["instructions"]
-            + "\nStage guidance: "
-            + self.profile["stage_guidance"],
+            + (
+                "\nStage guidance: " + self.profile["stage_guidance"]
+                if "stage_guidance" in self.profile
+                else ""
+            ),
             "criteria": dict(CRITERIA),
         }
         result = self.client.system_one(

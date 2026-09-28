@@ -1,5 +1,7 @@
 # World 1 situational-policy experiment — code review
 
+**Current direction:** see [SINGLE_PROMPT_REVIEW.md](SINGLE_PROMPT_REVIEW.md) for the continuous run with one prompt. The independent-stage setup below is retained as earlier development work.
+
 This checkout is isolated from the previous campaign and 1-3 experiments. Its branch is `situational-world1`, based on the controller in draft PR #2. The new scope is independent evaluations of 1-1, 1-2 and 1-3, not a continuous three-stage run. New live trials have not started; the code and policies are ready for review.
 
 ## Read the code in this order

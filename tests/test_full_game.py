@@ -134,3 +134,34 @@ def test_runner_death_restarts_and_replay_checks_ram(tmp_path, monkeypatch):
     trace.write_text("\n".join(json.dumps(row) for row in rows) + "\n")
     with pytest.raises(AssertionError, match="Replay mismatch"):
         runner.replay(trace)
+
+
+def test_partial_run_only_finishes_at_next_playable_stage():
+    progress = RunProgress(through="1-3")
+    before = info()
+    for stage in ("1-2", "1-3"):
+        after = info(stage)
+        assert progress.observe(before, after) is None
+        before = after
+    cutscene = info("1-4")
+    cutscene["player_state"] = 7
+    assert progress.observe(before, cutscene) is None
+    assert not progress.finished
+    assert progress.observe(cutscene, info("1-4")) == "completed"
+    assert progress.cleared == ["1-1", "1-2", "1-3"]
+
+
+def test_single_profile_freezes_one_file_for_all_stages(tmp_path, monkeypatch):
+    import importlib
+    from pathlib import Path
+
+    repo = Path(__file__).parents[1]
+    monkeypatch.syspath_prepend(str(repo / "scripts"))
+    runner = importlib.import_module("run_full_game")
+    profiles = runner.freeze_single_profile(
+        tmp_path, repo / "prompts/situational/continuous/v1.json", "1-3", 4
+    )
+    assert list(profiles) == ["1-1", "1-2", "1-3"]
+    assert len({row["sha256"] for row in profiles.values()}) == 1
+    assert {row["path"] for row in profiles.values()} == {"profiles/single.json"}
+    assert len(list((tmp_path / "profiles").iterdir())) == 1

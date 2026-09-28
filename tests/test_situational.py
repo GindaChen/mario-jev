@@ -23,7 +23,10 @@ def test_relative_observation_ignores_absolute_position_and_room():
     assert observation(state) == observation(shifted)
 
 
-def test_fixed_menu_follows_model_except_approved_jump_release():
+@pytest.mark.parametrize(
+    "profile_path", [PROFILE, ROOT / "prompts/situational/continuous/v1.json"]
+)
+def test_fixed_menu_follows_model_except_approved_jump_release(profile_path):
     calls = []
     selected = ["left"]
 
@@ -47,7 +50,7 @@ def test_fixed_menu_follows_model_except_approved_jump_release():
         )
 
     policy = SituationalDjevPolicy(
-        "http://localhost", PROFILE, transport=httpx2.MockTransport(handle)
+        "http://localhost", profile_path, transport=httpx2.MockTransport(handle)
     )
     state = json.loads((ROOT / "tests/fixtures/laya_wall.json").read_text())
     state["action_frames"] = 4

@@ -16,6 +16,7 @@ from mario_jev.history import ObservationMemory
 from mario_jev.policy import ACTIONS
 from mario_jev.reflection import ReflectionDjevPolicy
 from mario_jev.runner import frame_position
+from mario_jev.situational import SituationalDjevPolicy
 
 REPO = Path(__file__).resolve().parents[1]
 
@@ -59,11 +60,39 @@ def freeze_profiles(root, overrides):
     return manifest
 
 
+def freeze_single_profile(root, source, through, frames):
+    content = source.read_bytes()
+    profile = json.loads(content)
+    if (
+        profile.get("mode") != "situational"
+        or "stage" in profile
+        or "stage_guidance" in profile
+    ):
+        raise ValueError(
+            "Single-prompt mode requires a situational profile without stage-specific instructions"
+        )
+    # Validate the controller schema before beginning any emulator or model call.
+    probe = SituationalDjevPolicy("http://localhost", source)
+    probe.close()
+    folder = root / "profiles"
+    folder.mkdir()
+    (folder / "single.json").write_bytes(content)
+    (folder / "single.json").chmod(0o444)
+    row = {
+        "path": "profiles/single.json",
+        "sha256": hashlib.sha256(content).hexdigest(),
+        "frames": frames,
+        "source": str(source),
+    }
+    return {stage: dict(row) for stage in STAGES[: STAGES.index(through) + 1]}
+
+
 def attempt(root, number, args, profiles):
     folder = root / f"attempt-{number:03d}"
     folder.mkdir()
     started = time.perf_counter()
-    progress = RunProgress()
+    progress = RunProgress(getattr(args, "through", "8-4"))
+    active_digest = None
     env = policy = None
     frames = decisions = 0
     reason = "frame_limit"
@@ -80,6 +109,7 @@ def attempt(root, number, args, profiles):
                 {
                     "type": "reset",
                     "seed": args.seed,
+                    "through": progress.through,
                     "boot_actions": env.unwrapped.boot_actions,
                     "result": evidence(env, info),
                 }
@@ -89,20 +119,23 @@ def attempt(root, number, args, profiles):
                     reason = "stopped"
                     break
                 if playable(info) and active_stage != progress.stage:
-                    if policy:
-                        policy.close()
                     active_stage = progress.stage
                     row = profiles[active_stage]
                     path = root / row["path"]
                     if hashlib.sha256(path.read_bytes()).hexdigest() != row["sha256"]:
                         raise ValueError("Frozen profile changed")
                     profile = json.loads(path.read_text())
-                    cls = (
-                        ReflectionDjevPolicy
-                        if profile.get("mode") == "reflection"
-                        else DjevPolicy
-                    )
-                    policy = cls(args.endpoint, profile=path, api_path="/v1/systemone")
+                    if policy is None or active_digest != row["sha256"]:
+                        if policy:
+                            policy.close()
+                        cls = {
+                            "reflection": ReflectionDjevPolicy,
+                            "situational": SituationalDjevPolicy,
+                        }.get(profile.get("mode"), DjevPolicy)
+                        policy = cls(
+                            args.endpoint, profile=path, api_path="/v1/systemone"
+                        )
+                        active_digest = row["sha256"]
                     memory = ObservationMemory(
                         12,
                         extra_solid_tiles=profile.get("extra_solid_tiles", []),
@@ -275,6 +308,7 @@ def replay(path):
             if row["type"] == "reset":
                 if env:
                     raise ValueError("Multiple resets inside one full-game attempt")
+                progress = RunProgress(row.get("through", "8-4"))
                 env, info = make_full_game(row["seed"])
                 assert env.unwrapped.boot_actions == row["boot_actions"]
                 assert evidence(env, info) == row["result"]
@@ -325,6 +359,18 @@ def main():
     parser.add_argument("--root", type=Path)
     parser.add_argument("--endpoint", default="http://127.0.0.1:18515")
     parser.add_argument("--overrides", type=Path)
+    parser.add_argument(
+        "--single-profile",
+        type=Path,
+        help="One frozen situational prompt for the entire run",
+    )
+    parser.add_argument(
+        "--through",
+        choices=STAGES,
+        default="8-4",
+        help="Last stage to clear; partial runs stop at the next playable stage",
+    )
+    parser.add_argument("--frames", type=int, default=4)
     parser.add_argument("--attempts", type=int, default=1)
     parser.add_argument("--max-decisions", type=int, default=30000)
     parser.add_argument("--max-frames", type=int, default=300000)
@@ -334,15 +380,26 @@ def main():
     if args.replay:
         print(json.dumps(replay(args.replay), indent=2))
         return
-    if not args.root or min(args.attempts, args.max_frames, args.max_decisions) < 1:
+    if (
+        not args.root
+        or min(args.attempts, args.max_frames, args.max_decisions, args.frames) < 1
+    ):
         parser.error("Supply a new --root and positive evaluation limits")
+    if args.single_profile and args.overrides:
+        parser.error("--single-profile cannot be combined with stage overrides")
     args.root.mkdir(parents=True, exist_ok=False)
-    profiles = freeze_profiles(args.root, args.overrides)
+    profiles = (
+        freeze_single_profile(args.root, args.single_profile, args.through, args.frames)
+        if args.single_profile
+        else freeze_profiles(args.root, args.overrides)
+    )
     source_sha, source_archive = source_snapshot(REPO, args.root)
     atomic(
         args.root / "config.json",
         {
             "mode": "native_full_game_deathless",
+            "through": args.through,
+            "single_prompt": bool(args.single_profile),
             "created_at": now(),
             "profiles": profiles,
             "source_sha256": source_sha,

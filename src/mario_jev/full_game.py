@@ -66,7 +66,10 @@ def died(before, after):
 class RunProgress:
     """Credit only ordered native transitions within this single attempt."""
 
-    def __init__(self):
+    def __init__(self, through="8-4"):
+        if through not in STAGES:
+            raise ValueError("Unknown final stage")
+        self.through = through
         self.stage = "1-1"
         self.cleared = []
         self.finished = False
@@ -83,6 +86,9 @@ class RunProgress:
                 return "unexpected_stage_transition"
             self.cleared.append(self.stage)
             self.stage = destination
+            if self.cleared[-1] == self.through:
+                self.finished = True
+                return "completed"
         # Wait for the game's end-of-world mode, not a transient axe/enemy flag.
         if self.stage == "8-4" and destination == "8-4" and after["is_world_over"]:
             if self.cleared != STAGES[:-1]:
