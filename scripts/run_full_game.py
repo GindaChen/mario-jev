@@ -7,6 +7,7 @@ import json
 import time
 from pathlib import Path
 
+from PIL import Image
 from run_campaign import atomic, now
 from run_reflection_batch import source_snapshot
 
@@ -259,6 +260,7 @@ def attempt(root, number, args, profiles):
                     reason = outcome
                     break
                 if decisions % 25 == 0 or progress.stage != initial_stage:
+                    Image.fromarray(env.render()).save(root / "latest-frame.jpg")
                     atomic(
                         root / "status.json",
                         {
@@ -279,6 +281,7 @@ def attempt(root, number, args, profiles):
             if policy:
                 policy.close()
             if env:
+                Image.fromarray(env.render()).save(root / "latest-frame.jpg")
                 env.close()
         result = {
             "type": "attempt_end",
