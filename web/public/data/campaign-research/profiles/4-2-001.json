@@ -1,0 +1,145 @@
+{
+  "name": "4-2-r11-endgame",
+  "mode": "reflection",
+  "questions": {
+    "movement": {
+      "type": "choice",
+      "instructions": "Apply the first matching rule: (1) enemy_dy < 0 AND enemy_dx <= 64: dodge_left. (2) grounded is true AND lowest_floor_drop_px == 0: run_right. (3) retreating is true AND drop_px < 32 AND lowest_floor_drop_px > 0: brake_left. (4) blocked is true AND wall_height > headroom: brake_left. Otherwise run_right. Null means absent; a comparison to null does not match.",
+      "criteria": {
+        "run_right": "Move right.",
+        "brake_left": "Move left.",
+        "dodge_left": "Step left to avoid a nearby enemy falling from above."
+      }
+    },
+    "enemy": {
+      "type": "choice",
+      "instructions": "Choose C if distance_px <= 48 and vertical_offset_px >= 0. Choose A if distance_px is null. Otherwise choose B.",
+      "criteria": {
+        "A": "No enemy.",
+        "B": "Do not jump yet.",
+        "C": "Jump now."
+      }
+    },
+    "enemy_low": {
+      "type": "choice",
+      "instructions": "Choose C if distance_px <= 40 and vertical_offset_px >= 0. Choose A if distance_px is null. Otherwise choose B.",
+      "criteria": {
+        "A": "No enemy.",
+        "B": "Do not jump yet.",
+        "C": "Jump now."
+      }
+    },
+    "wall": {
+      "type": "choice",
+      "instructions": "Choose A if distance_px is null. Choose C if distance_px <= 48 and (headroom_px is null OR height_px <= headroom_px). Otherwise choose B.",
+      "criteria": {
+        "A": "No wall.",
+        "B": "Do not jump at this wall.",
+        "C": "Jump over the nearby wall."
+      }
+    },
+    "pit": {
+      "type": "choice",
+      "instructions": "Choose A if distance_px is null. Choose C if distance_px <= 48 and floor_gaps is not empty. Otherwise choose B.",
+      "criteria": {
+        "A": "No missing floor.",
+        "B": "Not time to jump; far away or a safe drop.",
+        "C": "Jump over the nearby floor gap."
+      }
+    },
+    "air": {
+      "type": "choice",
+      "instructions": "Which direction is Mario moving vertically?",
+      "criteria": {
+        "A": "Rising upward.",
+        "B": "Falling downward."
+      }
+    }
+  },
+  "units": "body_lengths_v2",
+  "movement_observation": "goal_direction",
+  "route_geometry": true,
+  "route_displacement": true,
+  "route_minimal": true,
+  "enemy_vertical": true,
+  "api_retries": 2,
+  "movement_enemies": true,
+  "route_floor": true,
+  "hazard_pixels": true,
+  "instructions": "Is Mario falling? Answer using the motion field only.",
+  "criteria": {
+    "right_run": "Yes, motion is falling.",
+    "right_run_jump": "No, motion is grounded or rising or airborne."
+  },
+  "memory_notes": [
+    {
+      "id": "approach-island",
+      "min_x": 0,
+      "max_x": 150,
+      "instructions": "OVERRIDE: Is x less than151?",
+      "criteria": {
+        "right_run": "Yes, x is less than151.",
+        "right_run_jump": "No, x is151orhigher."
+      },
+      "replace_instructions": true
+    },
+    {
+      "id": "short-first-hop",
+      "min_x": 151,
+      "max_x": 225,
+      "instructions": "OVERRIDE: Is Mario grounded?",
+      "criteria": {
+        "right_run_jump": "Yes, grounded is true.",
+        "right_run": "No, grounded is false."
+      },
+      "replace_instructions": true
+    },
+    {
+      "id": "land-on-pipe-step",
+      "min_x": 2770,
+      "max_x": 2910,
+      "replace_instructions": true,
+      "instructions": "Have at least 24 frames elapsed in land-on-pipe-step?",
+      "criteria": {
+        "left_jump": "No, fewer than 24 frames elapsed: brake left while holding jump.",
+        "right_run_jump": "Yes, at least 24 frames elapsed: move right holding jump."
+      }
+    },
+    {
+      "id": "step-acceleration",
+      "min_x": 2810,
+      "max_x": 2830,
+      "replace_instructions": true,
+      "instructions": "Is grounded true AND x less than 2822?",
+      "criteria": {
+        "right_run": "Yes, grounded is true and x is less than 2822: build speed on the step.",
+        "right_run_jump": "No, Mario is airborne or x is at least 2822: jump right."
+      }
+    },
+    {
+      "id": "walk-into-normal-exit",
+      "min_x": 2930,
+      "max_x": 3100,
+      "replace_instructions": true,
+      "instructions": "Have at least 120 frames elapsed in walk-into-normal-exit?",
+      "criteria": {
+        "right_run": "No, fewer than 120 frames elapsed: release jump and walk into the exit pipe.",
+        "right_run_jump": "Yes, at least 120 frames elapsed: climb the outside stairs."
+      }
+    }
+  ],
+  "inference": {
+    "samples": 1,
+    "seed": 0,
+    "steps": 1
+  },
+  "reflection_start_x": 0,
+  "compact_state": true,
+  "one_frame_rearm": true,
+  "observation_style": "facts",
+  "thresholds": {
+    "enemy": 40,
+    "pit": 24,
+    "above": 64
+  }
+}

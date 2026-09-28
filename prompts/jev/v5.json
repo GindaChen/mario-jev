@@ -1,0 +1,25 @@
+{
+  "name": "v5-retreat-from-low-tunnels",
+  "observation": "compact",
+  "ceiling_routing": "unified",
+  "questions": {
+    "movement": {
+      "instructions": "Choose movement toward the goal on the right. Normally run right. If blocked_forward and the obstacle is taller than available overhead clearance, jumping cannot clear it: retreat left off the platform to drop to a lower passage, then move right underneath. Use walk_right for a nearby enemy under low ceiling to time a small hop. Do not repeatedly run into an impassable wall. No obstacle means continue right.",
+      "criteria": {
+        "run_right": "Run right with momentum.",
+        "walk_right": "Walk right slowly for precision.",
+        "brake_left": "Retreat left to create space for a new jump.",
+        "wait": "Stay in place."
+      }
+    },
+    "start_jump": {
+      "instructions": "Is a jump needed RIGHT NOW? Only when Mario is grounded and jump_already_held is false. Enemy: use nearest_threat.dx (not horizontal_gap_px). Jump when dx is at most 40 pixels; wait when dx is greater than 40. Wall: jump when terrain.nearest_obstacle.distance_px is at most48 pixels. Pit: jump when terrain.nearest_empty_column_below_feet.edge_distance_px is at most48 pixels. Return false when no such nearby hazard exists. Being under a ceiling is not itself a reason to jump. Do not jump merely because an enemy is visible. Do NOT jump into a wall when its height_above_feet_px exceeds overhead_clearance_px: retreat and drop to the lower passage instead. Missing floor on a raised platform can be a safe drop if landing_surfaces shows continuous floor beneath; walk off rather than jumping into the ceiling."
+    },
+    "ceiling_hop": {
+      "instructions": "Should Mario hop over a nearby enemy? True if grounded, jump button released, and an enemy is within 32 pixels. False otherwise."
+    },
+    "sustain_jump": {
+      "instructions": "Is Mario rising? Hold jump while rising to gain height. Release jump while falling, grounded, or after hitting a ceiling."
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "frames": 2,
+  "decisions": 2000,
+  "stall_decisions": 600,
+  "seed": 123,
+  "history": 12,
+  "djev_url": "http://127.0.0.1:18516"
+}

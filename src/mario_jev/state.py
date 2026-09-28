@@ -5,6 +5,18 @@ Only visible columns are reported to avoid stale offscreen buffer contents.
 """
 
 
+def extract_room(ram):
+    """Current room identity; AreaPointer is a pending destination and is excluded.
+
+    SMB disassembly: AreaDataLow=$e7, AreaDataHigh=$e8, AreaType=$074e.
+    This is observation only, with no writes to emulator memory.
+    """
+    return {
+        "area_data_address": int(ram[0xE7]) | (int(ram[0xE8]) << 8),
+        "area_type": int(ram[0x74E]),
+    }
+
+
 def extract_state(ram, info, previous_action="wait", frames=6):
     read = lambda addr: int(ram[addr])
     x = read(0x6D) * 256 + read(0x86)
@@ -95,12 +107,15 @@ SOLID_TILES = {
 }
 
 
-def add_context(state, previous=None, elapsed_frames=6, history=()):
+def add_context(
+    state, previous=None, elapsed_frames=6, history=(), *, extra_solid_tiles=()
+):
     """Add interpretable geometry and measured motion to a RAM observation.
 
     Estimates describe the past interval, not a simulated future trajectory.
     No observation from another episode should be passed as previous.
     """
+    solid_tiles = SOLID_TILES | set(extra_solid_tiles)
     mario = state["mario"]
     x, y = mario["x"], mario["y"]
     top = y + (16 if mario["status"] == "small" else 0)
@@ -129,7 +144,7 @@ def add_context(state, previous=None, elapsed_frames=6, history=()):
     for column in state["terrain"]["columns"]:
         dx, tiles = column["dx"], column["tiles"]
         solids = [
-            32 + row * 16 for row, tile in enumerate(tiles) if tile in SOLID_TILES
+            32 + row * 16 for row, tile in enumerate(tiles) if tile in solid_tiles
         ]
         if dx >= 0:
             walls = [sy for sy in solids if sy < feet and sy + 16 > top]
@@ -236,15 +251,19 @@ def add_context(state, previous=None, elapsed_frames=6, history=()):
         "control": "A starts a jump only when grounded and previously released. Holding A during ascent increases height. Releasing A shortens the jump. B accelerates running; left brakes rightward motion. No new jump can start in midair.",
         "timing": "At running speed Mario moves about 3 pixels/frame. Jump before contact: allow roughly 8-16 frames to gain clearance. A same-height enemy 25 pixels ahead is urgent; 50-70 pixels ahead is a reasonable jump approach. These are approximate guidance, not guaranteed safe trajectories.",
     }
-    return summarize_landings(summarize_jump_corridor(state))
+    return summarize_landings(
+        summarize_jump_corridor(state, extra_solid_tiles=extra_solid_tiles),
+        extra_solid_tiles=extra_solid_tiles,
+    )
 
 
-def summarize_jump_corridor(state):
+def summarize_jump_corridor(state, *, extra_solid_tiles=()):
     """Report ceiling geometry over the approach, without claiming a safe arc.
 
     Headroom is measured from the CURRENT body top. Contiguous columns with
     the same ceiling bottom are merged into spans for easier model decisions.
     """
+    solid_tiles = SOLID_TILES | set(extra_solid_tiles)
     mario = state["mario"]
     spans = []
     unknown = []
@@ -256,7 +275,7 @@ def summarize_jump_corridor(state):
         for row, tile in enumerate(col["tiles"]):
             bottom = 32 + row * 16 + 16
             if bottom <= mario["body_top_y"]:
-                if tile in SOLID_TILES:
+                if tile in solid_tiles:
                     bottoms.append(bottom)
                 elif tile:
                     unknown.append({"dx": dx, "bottom_y": bottom, "tile": tile})
@@ -320,15 +339,16 @@ def summarize_jump_corridor(state):
     return state
 
 
-def summarize_landings(state):
+def summarize_landings(state, *, extra_solid_tiles=()):
     """Merge exposed solid tile tops into candidate landing surfaces."""
+    solid_tiles = SOLID_TILES | set(extra_solid_tiles)
     surfaces = []
     columns = state["terrain"]["columns"]
     for row in range(13):
         for col in columns:
             tiles = col["tiles"]
-            if tiles[row] not in SOLID_TILES or (
-                row > 0 and tiles[row - 1] in SOLID_TILES
+            if tiles[row] not in solid_tiles or (
+                row > 0 and tiles[row - 1] in solid_tiles
             ):
                 continue
             top = 32 + row * 16

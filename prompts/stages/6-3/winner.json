@@ -1,0 +1,162 @@
+{
+  "name": "6-3-r29",
+  "mode": "reflection",
+  "questions": {
+    "movement": {
+      "type": "choice",
+      "instructions": "Apply the first matching rule: (1) enemy_dy < 0 AND enemy_dx <= 64: dodge_left. (2) grounded is true AND lowest_floor_drop_px == 0: run_right. (3) retreating is true AND drop_px < 32 AND lowest_floor_drop_px > 0: brake_left. (4) blocked is true AND wall_height > headroom: brake_left. Otherwise run_right. Null means absent; a comparison to null does not match.",
+      "criteria": {
+        "run_right": "Move right.",
+        "brake_left": "Move left.",
+        "dodge_left": "Step left to avoid a nearby enemy falling from above."
+      }
+    },
+    "enemy": {
+      "type": "choice",
+      "instructions": "Choose C if distance_px <= 48 and vertical_offset_px >= 0. Choose A if distance_px is null. Otherwise choose B.",
+      "criteria": {
+        "A": "No enemy.",
+        "B": "Do not jump yet.",
+        "C": "Jump now."
+      }
+    },
+    "enemy_low": {
+      "type": "choice",
+      "instructions": "Choose C if distance_px <= 40 and vertical_offset_px >= 0. Choose A if distance_px is null. Otherwise choose B.",
+      "criteria": {
+        "A": "No enemy.",
+        "B": "Do not jump yet.",
+        "C": "Jump now."
+      }
+    },
+    "wall": {
+      "type": "choice",
+      "instructions": "Choose A if distance_px is null. Choose C if distance_px <= 48 and (headroom_px is null OR height_px <= headroom_px). Otherwise choose B.",
+      "criteria": {
+        "A": "No wall.",
+        "B": "Do not jump at this wall.",
+        "C": "Jump over the nearby wall."
+      }
+    },
+    "pit": {
+      "type": "choice",
+      "instructions": "Choose A if distance_px is null. Choose C if distance_px <= 48 and floor_gaps is not empty. Otherwise choose B.",
+      "criteria": {
+        "A": "No missing floor.",
+        "B": "Not time to jump; far away or a safe drop.",
+        "C": "Jump over the nearby floor gap."
+      }
+    },
+    "air": {
+      "type": "choice",
+      "instructions": "Which direction is Mario moving vertically?",
+      "criteria": {
+        "A": "Rising upward.",
+        "B": "Falling downward."
+      }
+    }
+  },
+  "units": "body_lengths_v2",
+  "movement_observation": "goal_direction",
+  "route_geometry": true,
+  "route_displacement": true,
+  "route_minimal": true,
+  "enemy_vertical": true,
+  "api_retries": 2,
+  "movement_enemies": true,
+  "route_floor": true,
+  "hazard_pixels": true,
+  "instructions": "Is Mario falling? Answer using the motion field only.",
+  "criteria": {
+    "right_run": "Yes, motion is falling.",
+    "right_run_jump": "No, motion is grounded or rising or airborne."
+  },
+  "memory_notes": [
+    {
+      "id": "later-platform-launch",
+      "min_x": 490,
+      "max_x": 529,
+      "replace_instructions": true,
+      "instructions": "Approach the edge before jumping to the moving platform. Sustain only existing rising jumps.",
+      "criteria": {
+        "right_run": "Grounded or falling.",
+        "right_run_jump": "Already rising."
+      }
+    },
+    {
+      "id": "later-second-launch",
+      "min_x": 960,
+      "max_x": 990,
+      "replace_instructions": true,
+      "instructions": "Approach the edge before jumping to the next platform. Sustain existing rising jumps only.",
+      "criteria": {
+        "right_run": "Grounded or falling.",
+        "right_run_jump": "Already rising."
+      }
+    },
+    {
+      "id": "spring-brake",
+      "min_x": 1820,
+      "max_x": 1859,
+      "replace_instructions": true,
+      "instructions": "Is Mario airborne? Brake left on approach to the spring.",
+      "criteria": {
+        "left_jump": "Mario is rising or falling.",
+        "left": "Mario is grounded."
+      }
+    },
+    {
+      "id": "spring-launch",
+      "min_x": 1860,
+      "max_x": 1910,
+      "replace_instructions": true,
+      "instructions": "Use the first matching rule. If feet_y is less than 100, jump right. Otherwise, if note_elapsed_frames.spring-launch is less than 4, wait with jump released. Otherwise hold jump without horizontal movement.",
+      "criteria": {
+        "right_run_jump": "feet_y is less than 100.",
+        "wait": "feet_y is at least 100 and spring-launch elapsed is less than 4.",
+        "jump": "feet_y is at least 100 and spring-launch elapsed is at least 4."
+      }
+    },
+    {
+      "id": "screen-top-jump",
+      "min_x": 1910,
+      "max_x": 2070,
+      "replace_instructions": true,
+      "instructions": "Is motion falling AND feet_y at least 32 AND feet_y below 240? Values above 240 here mean Mario is above the screen, so keep holding jump.",
+      "criteria": {
+        "right_run": "Motion is falling and feet_y is from 32 through 239.",
+        "right_run_jump": "Motion is not falling, or feet_y is less than 32, or feet_y is at least 240."
+      }
+    },
+    {
+      "id": "stepping-platforms",
+      "min_x": 2270,
+      "max_x": 2460,
+      "replace_instructions": true,
+      "instructions": "Use short hops between the closely spaced falling platforms. Jump if grounded or rising with jump_elapsed_frames below 8. Otherwise release jump.",
+      "criteria": {
+        "right_run_jump": "Grounded, or rising with jump_elapsed_frames below 8.",
+        "right_run": "Falling, or jump_elapsed_frames at least 8."
+      }
+    }
+  ],
+  "inference": {
+    "samples": 1,
+    "seed": 0,
+    "steps": 1
+  },
+  "reflection_start_x": 0,
+  "compact_state": true,
+  "one_frame_rearm": false,
+  "observation_style": "facts",
+  "thresholds": {
+    "enemy": 40,
+    "pit": 24,
+    "above": 64
+  },
+  "extra_solid_tiles": [
+    22,
+    23,
+    24
+  ]
+}

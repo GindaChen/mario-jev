@@ -1,0 +1,26 @@
+{
+  "name": "v8-minimal-facts",
+  "observation": "minimal",
+  "ceiling_routing": "unified",
+  "questions": {
+    "movement": {
+      "instructions": "Move right normally. If blocked_forward and wall_height_px is greater than ceiling_clearance_px, retreat left off the platform. If the previous movement was left and Mario is still grounded, continue left. Once falling, return right.",
+      "criteria": {
+        "run_right": "Move right through a clear path.",
+        "walk_right": "Walk right.",
+        "brake_left": "Move left to escape a blocked passage.",
+        "wait": "Wait."
+      }
+    },
+    "start_jump": {
+      "instructions": "Should Mario start jumping? If grounded and jump_held is false, jump for an enemy within40 pixels, a wall within48 pixels, or a pit within48 pixels. Exception: if wall_height_px is greater than ceiling_clearance_px, do not jump into that wall. Do not jump when retreating left off a ledge. Null means the hazard is absent. No hazard means no jump."
+    },
+    "ceiling_hop": {
+      "instructions": "Is an enemy within32 pixels? Null means absent."
+    },
+    "sustain_jump": {
+      "instructions": "Is motion rising? True only while rising. False when falling or grounded."
+    }
+  },
+  "remember_last_decision": true
+}

@@ -311,3 +311,57 @@ calls. Resumed completions are marked separately from fresh passes. The default
 stall limit is 100 new decisions without increasing furthest x; change it with
 `--stall-decisions`. A replay can also be exported to video with
 `python scripts/export_replay.py TRACE.jsonl OUTPUT.mp4` (requires ffmpeg).
+
+### AMD model comparison
+
+The Mario 1-1 experiment now runs on AMD physical GPU 7. Laya, Nimble, and
+OpenJev-4B have verified fresh wins; Kev remains unsuccessful. See
+[AMD results and commands](reports/amd-migration.md) for profiles, GPU mapping,
+service ports, run logs, and integrity limits.
+
+### AMD-local Mario and DJev
+
+Run the emulator on AMD and call its GPU7 DJev API over loopback:
+
+```sh
+ssh amd 'cd /home/juc049/projects/mario-amd/harness && scripts/run_amd_djev.sh'
+```
+
+No hosted API key is needed. See [deployment and tuning details](reports/amd-djev-mario.md)
+for the endpoint, profile overrides, trace replay, and measured latency.
+
+### System 2 reflection: world 1-2 passed
+
+The 100-attempt AMD DJev reflection experiment is complete. Both frozen winning
+profiles passed 10/10 additional fresh validation runs. Removing the waiting
+lesson passed 0/10; removing all stage memory also passed 0/10. The default AMD
+wrapper now uses the winning r35 profile. See [protocol and results](reports/reflection/README.md)
+and [downloaded replay index](deliverables/djev-reflection-100/index.md).
+
+### Independent stage campaign
+
+Four AMD DJev replicas run independent stages with offline reflection. Open the
+[stage index](reports/stages/progress.md) for verified clears, replay videos,
+frozen prompts and audit notes. The [method](reports/stages/METHOD.md) explains
+stage-specific coaching, source changes, historical evidence and limits.
+
+Play a recorded winner locally without an inference service:
+
+```sh
+.venv/bin/mario-jev --replay deliverables/stages/8-1/winning-trace.jsonl
+```
+
+Start a new game on AMD with a saved winner profile and its original runtime:
+
+```sh
+ssh amd 'cd /home/juc049/projects/mario-amd/harness && scripts/run_amd_stage.sh 8 1'
+```
+
+A new run is another trial, not guaranteed by the prior recorded clear. The old
+1-1 B200 baseline supports playback only because its immutable prompt snapshot
+was not retained. Independent stage clears do not establish a continuous
+full-game completion.
+
+### Sequential campaign and public research page
+
+See [CAMPAIGN.md](CAMPAIGN.md) for the stage-linked result, replay/audit commands, website source, and proposed strict full-reset evaluation. This is an intermediate milestone, not an uninterrupted speedrun.

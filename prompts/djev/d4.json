@@ -1,0 +1,78 @@
+{
+  "name": "d4-see-all-overhead-enemies",
+  "mode": "modular",
+  "questions": {
+    "movement": {
+      "type": "choice",
+      "instructions": "Apply the first matching rule: (1) above_enemy_dx <= 64: dodge_left. (2) grounded is true AND lowest_floor_drop_px == 0: run_right. (3) retreating is true AND drop_px < 32 AND lowest_floor_drop_px > 0: brake_left. (4) blocked is true AND wall_height > headroom: brake_left. Otherwise run_right. Null means absent; a comparison to null does not match.",
+      "criteria": {
+        "run_right": "Move right.",
+        "brake_left": "Move left.",
+        "dodge_left": "Step left to avoid a nearby enemy falling from above."
+      }
+    },
+    "enemy": {
+      "type": "choice",
+      "instructions": "If above_enemy_dx is not null and <= 64, choose B to avoid jumping into an overhead enemy. Otherwise: Choose C if distance_px <= 48 and vertical_offset_px >= 0. Choose A if distance_px is null. Otherwise choose B.",
+      "criteria": {
+        "A": "No enemy.",
+        "B": "Do not jump yet.",
+        "C": "Jump now."
+      }
+    },
+    "enemy_low": {
+      "type": "choice",
+      "instructions": "If above_enemy_dx is not null and <= 64, choose B to avoid jumping into an overhead enemy. Otherwise: Choose C if distance_px <= 40 and vertical_offset_px >= 0. Choose A if distance_px is null. Otherwise choose B.",
+      "criteria": {
+        "A": "No enemy.",
+        "B": "Do not jump yet.",
+        "C": "Jump now."
+      }
+    },
+    "wall": {
+      "type": "choice",
+      "instructions": "If above_enemy_dx is not null and <= 64, choose B to avoid jumping into an overhead enemy. Otherwise: Choose A if distance_px is null. Choose C if distance_px <= 48 and (headroom_px is null OR height_px <= headroom_px). Otherwise choose B.",
+      "criteria": {
+        "A": "No wall.",
+        "B": "Do not jump at this wall.",
+        "C": "Jump over the nearby wall."
+      }
+    },
+    "pit": {
+      "type": "choice",
+      "instructions": "If above_enemy_dx is not null and <= 64, choose B to avoid jumping into an overhead enemy. Otherwise: Choose A if distance_px is null. Choose C if distance_px <= 16 and floor_gaps is not empty. Otherwise choose B.",
+      "criteria": {
+        "A": "No missing floor.",
+        "B": "Not time to jump; far away or a safe drop.",
+        "C": "Jump over the nearby floor gap."
+      }
+    },
+    "air": {
+      "type": "choice",
+      "instructions": "Choose A if motion is rising and (above_enemy_dx is null OR above_enemy_dx >64). Otherwise choose B.",
+      "criteria": {
+        "A": "Hold jump to continue rising.",
+        "B": "Release jump to descend or avoid an overhead enemy."
+      }
+    }
+  },
+  "units": "body_lengths_v2",
+  "movement_observation": "goal_direction",
+  "route_geometry": true,
+  "route_displacement": true,
+  "route_minimal": true,
+  "enemy_vertical": true,
+  "api_retries": 2,
+  "movement_enemies": true,
+  "route_floor": true,
+  "hazard_pixels": true,
+  "retreat_question": {
+    "type": "choice",
+    "instructions": "Has Mario reached the lower floor? Resume right only if he is grounded and the floor is zero pixels below his feet. Otherwise keep retreating left.",
+    "criteria": {
+      "run_right": "Yes, he reached the lower floor.",
+      "brake_left": "No, keep moving left toward the lower floor."
+    }
+  },
+  "overhead_enemies": true
+}

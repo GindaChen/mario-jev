@@ -1,0 +1,10 @@
+{
+  "frames": 4,
+  "decisions": 500,
+  "seed": 123,
+  "history": 12,
+  "djev_isolation": "independent",
+  "playback_only": true,
+  "fresh_inference_reconstructable": false,
+  "reason": "Historical default DJev policy has no immutable profile/source snapshot; original endpoint18341 was a B200 runtime, not AMD."
+}

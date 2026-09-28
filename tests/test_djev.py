@@ -80,3 +80,61 @@ def test_djev_failure_is_not_retried():
         assert len(calls) == 1
     finally:
         policy.close()
+
+
+def test_modular_djev_systemone_path_without_hosted_credentials(monkeypatch):
+    from pathlib import Path
+
+    from mario_jev.djev import ModularDjevPolicy
+
+    monkeypatch.delenv("TYPESAFE_API_KEY", raising=False)
+
+    def handle(request):
+        assert request.url.path == "/v1/systemone"
+        assert "authorization" not in request.headers
+        body = json.loads(request.content)
+        assert "options" not in body
+        assert body["samples"] == 1
+        assert body["seed"] == 0
+        assert body["questions"]["movement"]["alone"] is True
+        return httpx2.Response(
+            200,
+            json={
+                "model": "dgemma",
+                "answers": {
+                    "movement": {
+                        "type": "choice",
+                        "choice": "run_right",
+                        "confidence": 0.9,
+                        "probabilities": {"run_right": 0.9, "brake_left": 0.1},
+                    }
+                },
+                "usage": {"input_tokens": 30, "output_tokens": 5},
+                "diagnostics": {"test": True},
+            },
+        )
+
+    policy = ModularDjevPolicy(
+        "http://localhost:18515",
+        Path(__file__).parents[1] / "prompts/jev/v4.json",
+        api_path="/v1/systemone",
+        transport=httpx2.MockTransport(handle),
+    )
+    calls = []
+    try:
+        result = policy.query(
+            "Clear path",
+            {
+                "movement": {
+                    "type": "choice",
+                    "instructions": "Move right",
+                    "criteria": {"run_right": "Right", "brake_left": "Left"},
+                }
+            },
+            calls,
+        )
+        assert result["movement"]["choice"] == "run_right"
+        assert calls[0]["response"]["checkpoint"] == "dgemma"
+        assert calls[0]["response"]["backend_diagnostics"] == {"test": True}
+    finally:
+        policy.close()

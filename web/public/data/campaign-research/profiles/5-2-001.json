@@ -1,0 +1,142 @@
+{
+  "name": "5-2-r07-reflection",
+  "mode": "reflection",
+  "questions": {
+    "movement": {
+      "type": "choice",
+      "instructions": "Apply the first matching rule: (1) enemy_dy < 0 AND enemy_dx <= 64: dodge_left. (2) grounded is true AND lowest_floor_drop_px == 0: run_right. (3) retreating is true AND drop_px < 32 AND lowest_floor_drop_px > 0: brake_left. (4) blocked is true AND wall_height > headroom: brake_left. Otherwise run_right. Null means absent; a comparison to null does not match.",
+      "criteria": {
+        "run_right": "Move right.",
+        "brake_left": "Move left.",
+        "dodge_left": "Step left to avoid a nearby enemy falling from above."
+      }
+    },
+    "enemy": {
+      "type": "choice",
+      "instructions": "Choose C if distance_px <= 48 and vertical_offset_px >= 0. Choose A if distance_px is null. Otherwise choose B.",
+      "criteria": {
+        "A": "No enemy.",
+        "B": "Do not jump yet.",
+        "C": "Jump now."
+      }
+    },
+    "enemy_low": {
+      "type": "choice",
+      "instructions": "Choose C if distance_px <= 40 and vertical_offset_px >= 0. Choose A if distance_px is null. Otherwise choose B.",
+      "criteria": {
+        "A": "No enemy.",
+        "B": "Do not jump yet.",
+        "C": "Jump now."
+      }
+    },
+    "wall": {
+      "type": "choice",
+      "instructions": "Choose A if distance_px is null. Choose C if distance_px <= 48 and (headroom_px is null OR height_px <= headroom_px). Otherwise choose B.",
+      "criteria": {
+        "A": "No wall.",
+        "B": "Do not jump at this wall.",
+        "C": "Jump over the nearby wall."
+      }
+    },
+    "pit": {
+      "type": "choice",
+      "instructions": "Choose A if distance_px is null. Choose C if distance_px <= 48 and floor_gaps is not empty. Otherwise choose B.",
+      "criteria": {
+        "A": "No missing floor.",
+        "B": "Not time to jump; far away or a safe drop.",
+        "C": "Jump over the nearby floor gap."
+      }
+    },
+    "air": {
+      "type": "choice",
+      "instructions": "Which direction is Mario moving vertically?",
+      "criteria": {
+        "A": "Rising upward.",
+        "B": "Falling downward."
+      }
+    }
+  },
+  "units": "body_lengths_v2",
+  "movement_observation": "goal_direction",
+  "route_geometry": true,
+  "route_displacement": true,
+  "route_minimal": true,
+  "enemy_vertical": true,
+  "api_retries": 2,
+  "movement_enemies": true,
+  "route_floor": true,
+  "hazard_pixels": true,
+  "instructions": "Choose one action. PRIORITY: if grounded and floor_gap_within_takeoff_distance is true, jump right. Otherwise if grounded and enemy_within_jump_distance is true, jump right. If grounded and wall_within_40px and wall_fits_headroom are both true, jump right. If rising, hold jump and run right. If falling, run right without jump. Otherwise run right without jump. Do not retreat from flying enemies: keep moving to the next platform. Follow active stage lessons.",
+  "criteria": {
+    "right_run": "Continue right without jump when falling or when no jump hazard is present.",
+    "right_run_jump": "Jump right when grounded with a nearby hazard, or sustain a rising jump."
+  },
+  "memory_notes": [
+    {
+      "id": "lesson-870",
+      "min_x": 870,
+      "max_x": 940,
+      "instructions": "Is Mario rising? Brake while rising to land before the next goombas. Otherwise move right.",
+      "criteria": {
+        "left_jump": "Yes, rising.",
+        "right_run": "No, grounded or falling."
+      }
+    },
+    {
+      "id": "lesson-990",
+      "min_x": 990,
+      "max_x": 1050,
+      "instructions": "Is Mario rising? Brake ascent to land before the gap between stairs.",
+      "criteria": {
+        "left_jump": "Yes, rising.",
+        "right_run": "No, falling or grounded."
+      }
+    },
+    {
+      "id": "early-enemy",
+      "min_x": 1630,
+      "max_x": 1780,
+      "instructions": "OVERRIDE: jump early over the approaching enemy. Jump when grounded or rising, release when falling.",
+      "criteria": {
+        "right_run_jump": "Grounded or rising.",
+        "right_run": "Falling."
+      }
+    },
+    {
+      "id": "lesson-2300",
+      "min_x": 2300,
+      "max_x": 2370,
+      "replace_instructions": true,
+      "instructions": "Is Mario rising? Brake ascent to land before the next pair of goombas.",
+      "criteria": {
+        "left_jump": "Mario is rising.",
+        "right_run": "Mario is grounded or falling."
+      }
+    },
+    {
+      "id": "under-flyer",
+      "min_x": 2850,
+      "max_x": 2900,
+      "replace_instructions": true,
+      "instructions": "Stay below the flying koopa. Sustain only already rising jumps; otherwise run right without jumping.",
+      "criteria": {
+        "right_run": "Grounded or falling.",
+        "right_run_jump": "Already rising."
+      }
+    }
+  ],
+  "inference": {
+    "samples": 1,
+    "seed": 0,
+    "steps": 1
+  },
+  "reflection_start_x": 0,
+  "compact_state": true,
+  "one_frame_rearm": true,
+  "observation_style": "facts",
+  "thresholds": {
+    "enemy": 40,
+    "pit": 24,
+    "above": 64
+  }
+}

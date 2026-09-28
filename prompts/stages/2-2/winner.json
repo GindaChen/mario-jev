@@ -1,0 +1,130 @@
+{
+  "name": "2-2-r14-exit-transition",
+  "mode": "reflection",
+  "questions": {
+    "movement": {
+      "type": "choice",
+      "instructions": "Apply the first matching rule: (1) enemy_dy < 0 AND enemy_dx <= 64: dodge_left. (2) grounded is true AND lowest_floor_drop_px == 0: run_right. (3) retreating is true AND drop_px < 32 AND lowest_floor_drop_px > 0: brake_left. (4) blocked is true AND wall_height > headroom: brake_left. Otherwise run_right. Null means absent; a comparison to null does not match.",
+      "criteria": {
+        "run_right": "Move right.",
+        "brake_left": "Move left.",
+        "dodge_left": "Step left to avoid a nearby enemy falling from above."
+      }
+    },
+    "enemy": {
+      "type": "choice",
+      "instructions": "Choose C if distance_px <= 48 and vertical_offset_px >= 0. Choose A if distance_px is null. Otherwise choose B.",
+      "criteria": {
+        "A": "No enemy.",
+        "B": "Do not jump yet.",
+        "C": "Jump now."
+      }
+    },
+    "enemy_low": {
+      "type": "choice",
+      "instructions": "Choose C if distance_px <= 40 and vertical_offset_px >= 0. Choose A if distance_px is null. Otherwise choose B.",
+      "criteria": {
+        "A": "No enemy.",
+        "B": "Do not jump yet.",
+        "C": "Jump now."
+      }
+    },
+    "wall": {
+      "type": "choice",
+      "instructions": "Choose A if distance_px is null. Choose C if distance_px <= 48 and (headroom_px is null OR height_px <= headroom_px). Otherwise choose B.",
+      "criteria": {
+        "A": "No wall.",
+        "B": "Do not jump at this wall.",
+        "C": "Jump over the nearby wall."
+      }
+    },
+    "pit": {
+      "type": "choice",
+      "instructions": "Choose A if distance_px is null. Choose C if distance_px <= 48 and floor_gaps is not empty. Otherwise choose B.",
+      "criteria": {
+        "A": "No missing floor.",
+        "B": "Not time to jump; far away or a safe drop.",
+        "C": "Jump over the nearby floor gap."
+      }
+    },
+    "air": {
+      "type": "choice",
+      "instructions": "Which direction is Mario moving vertically?",
+      "criteria": {
+        "A": "Rising upward.",
+        "B": "Falling downward."
+      }
+    }
+  },
+  "units": "body_lengths_v2",
+  "movement_observation": "goal_direction",
+  "route_geometry": true,
+  "route_displacement": true,
+  "route_minimal": true,
+  "enemy_vertical": true,
+  "api_retries": 2,
+  "movement_enemies": true,
+  "route_floor": true,
+  "hazard_pixels": true,
+  "instructions": "This stage is UNDERWATER. Swim toward the exit on the right. If jump_held is true, choose right_run to release A. Otherwise, if feet_y is greater than80 choose right_run_jump to stroke upward. Otherwise choose right_run to swim right without ascending. Repeat strokes to stay near the top of the water.",
+  "criteria": {
+    "right_run_jump": "jump_held is false AND feet_y >80: swim upward and right.",
+    "right_run": "jump_held is true OR feet_y <=80: release A and move right."
+  },
+  "memory_notes": [
+    {
+      "id": "middle-passage",
+      "min_x": 1100,
+      "max_x": 1520,
+      "instructions": "OVERRIDE: swim through the middle opening below the ceiling and above the floor. If jump_held is true release A by choosing right_run. Otherwise if feet_y >140 choose right_run_jump. Otherwise choose right_run.",
+      "criteria": {
+        "right_run_jump": "jump_held is false AND feet_y >140.",
+        "right_run": "jump_held is true OR feet_y <=140."
+      }
+    },
+    {
+      "id": "second-middle-passage",
+      "min_x": 1980,
+      "max_x": 2400,
+      "instructions": "OVERRIDE: swim through the opening. If jump_held is true choose right_run. Otherwise if feet_y >120 choose right_run_jump. Otherwise choose right_run.",
+      "criteria": {
+        "right_run_jump": "jump_held is false AND feet_y >120.",
+        "right_run": "jump_held is true OR feet_y <=120."
+      }
+    },
+    {
+      "id": "above-fish",
+      "min_x": 2520,
+      "max_x": 2900,
+      "instructions": "OVERRIDE: swim high above the fish and tall coral. If jump_held is true choose right_run. Otherwise if feet_y >48 choose right_run_jump. Otherwise choose right_run.",
+      "criteria": {
+        "right_run_jump": "jump_held is false AND feet_y >48.",
+        "right_run": "jump_held is true OR feet_y <=48."
+      }
+    },
+    {
+      "id": "exit-depth",
+      "min_x": 2900,
+      "max_x": 4000,
+      "instructions": "OVERRIDE: First descend into the exit pipe; then jump up the overworld stairs. If note_elapsed_frames.exit-depth >100: choose right_run_jump when grounded or rising, otherwise right_run. If note_elapsed_frames.exit-depth <=100: choose right_run_jump only when jump_held is false AND feet_y >208, otherwise right_run.",
+      "criteria": {
+        "right_run_jump": "After100frames: grounded or rising. Before100frames: jump_held false and feet_y>208.",
+        "right_run": "Otherwise release A and move right."
+      }
+    }
+  ],
+  "inference": {
+    "samples": 1,
+    "seed": 0,
+    "steps": 1
+  },
+  "reflection_start_x": 0,
+  "compact_state": true,
+  "one_frame_rearm": true,
+  "observation_style": "facts",
+  "thresholds": {
+    "enemy": 40,
+    "pit": 24,
+    "above": 64
+  }
+}

@@ -140,3 +140,33 @@ def test_gap_reports_a_raised_far_bank():
         s for s in landings["surfaces"] if s["start_dx"] == 88 and s["top_y"] == 112
     )
     assert bank["height_above_current_feet_px"] == 96
+
+
+def test_extra_solid_tiles_are_opt_in_for_castle_and_cannons():
+    from mario_jev.state import SOLID_TILES, add_context
+
+    ram = bytearray(2048)
+    ram[0x86], ram[0xCE] = 40, 176
+    # Castle floor and low ceiling; adjacent cannon begins at x64, top160.
+    for col in range(16):
+        ram[0x500 + 11 * 16 + col] = 98
+    ram[0x500 + 8 * 16 + 3] = 98
+    for row, tile in [(8, 100), (9, 101), (10, 100)]:
+        ram[0x500 + row * 16 + 4] = tile
+    default = add_context(extract_state(ram, {}))
+    extended = add_context(extract_state(ram, {}), extra_solid_tiles=[98, 100, 101])
+    assert default["terrain"]["summary"]["nearest_obstacle"] is None
+    assert default["terrain"]["summary"]["overhead_clearance_px"] is None
+    assert default["landing_surfaces"]["surfaces"] == []
+    assert extended["terrain"]["summary"]["nearest_obstacle"] == {
+        "distance_px": 8,
+        "top_y": 160,
+        "height_above_feet_px": 48,
+    }
+    assert extended["terrain"]["summary"]["overhead_clearance_px"] == 16
+    assert extended["jump_corridor"]["low_ceiling_now"]
+    assert any(s["top_y"] == 160 for s in extended["landing_surfaces"]["surfaces"])
+    assert any(s["top_y"] == 208 for s in extended["landing_surfaces"]["surfaces"])
+    assert not {98, 100, 101} & SOLID_TILES
+    assert "action" not in extended
+    assert add_context(extract_state(ram, {})) == default

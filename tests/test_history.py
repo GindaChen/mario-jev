@@ -88,3 +88,32 @@ def test_frame_stack_and_precise_landing_event():
     state = memory.observe(ram, {})
     assert len(state["recent_frames"]) == 2
     assert state["recent_frames"][-1]["grounded"]
+
+
+def test_extra_tiles_persist_across_observe_and_finish_without_action_override():
+    ram = initial_ram()
+    for col in range(16):
+        ram[0x500 + 11 * 16 + col] = 98
+    memory = ObservationMemory(extra_solid_tiles=[98])
+    before = memory.observe(ram, {})
+    assert before["landing_surfaces"]["surfaces"]
+    transition = memory.finish(before, ram, {}, "wait", 4, 0)
+    assert transition["action"] == "wait"
+    assert memory.previous_state["landing_surfaces"]["surfaces"]
+    assert memory.observe(ram, {})["landing_surfaces"]["surfaces"]
+    assert not ObservationMemory().observe(ram, {})["landing_surfaces"]["surfaces"]
+
+
+def test_current_room_metadata_is_opt_in_and_ignores_destination_pointer():
+    from mario_jev.history import ObservationMemory
+    ram = bytearray(2048)
+    ram[0xE7], ram[0xE8], ram[0x74E] = 0x34, 0xAB, 3
+    ram[0x750] = 0x65
+    assert "room" not in ObservationMemory().observe(ram, {})
+    memory = ObservationMemory(include_room_metadata=True)
+    observed = memory.observe(ram, {})
+    assert observed["room"] == {"area_data_address": 0xAB34, "area_type": 3}
+    ram[0x750] = 0x22  # A parsed destination must not masquerade as a room change.
+    assert memory.observe(ram, {})["room"] == observed["room"]
+    ram[0xE7] = 0x50
+    assert memory.observe(ram, {})["room"]["area_data_address"] == 0xAB50

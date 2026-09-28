@@ -1,0 +1,234 @@
+{
+  "name": "5-3-r16",
+  "mode": "reflection",
+  "questions": {
+    "movement": {
+      "type": "choice",
+      "instructions": "Apply the first matching rule: (1) enemy_dy < 0 AND enemy_dx <= 64: dodge_left. (2) grounded is true AND lowest_floor_drop_px == 0: run_right. (3) retreating is true AND drop_px < 32 AND lowest_floor_drop_px > 0: brake_left. (4) blocked is true AND wall_height > headroom: brake_left. Otherwise run_right. Null means absent; a comparison to null does not match.",
+      "criteria": {
+        "run_right": "Move right.",
+        "brake_left": "Move left.",
+        "dodge_left": "Step left to avoid a nearby enemy falling from above."
+      }
+    },
+    "enemy": {
+      "type": "choice",
+      "instructions": "Choose C if distance_px <= 48 and vertical_offset_px >= 0. Choose A if distance_px is null. Otherwise choose B.",
+      "criteria": {
+        "A": "No enemy.",
+        "B": "Do not jump yet.",
+        "C": "Jump now."
+      }
+    },
+    "enemy_low": {
+      "type": "choice",
+      "instructions": "Choose C if distance_px <= 40 and vertical_offset_px >= 0. Choose A if distance_px is null. Otherwise choose B.",
+      "criteria": {
+        "A": "No enemy.",
+        "B": "Do not jump yet.",
+        "C": "Jump now."
+      }
+    },
+    "wall": {
+      "type": "choice",
+      "instructions": "Choose A if distance_px is null. Choose C if distance_px <= 48 and (headroom_px is null OR height_px <= headroom_px). Otherwise choose B.",
+      "criteria": {
+        "A": "No wall.",
+        "B": "Do not jump at this wall.",
+        "C": "Jump over the nearby wall."
+      }
+    },
+    "pit": {
+      "type": "choice",
+      "instructions": "Choose A if distance_px is null. Choose C if distance_px <= 48 and floor_gaps is not empty. Otherwise choose B.",
+      "criteria": {
+        "A": "No missing floor.",
+        "B": "Not time to jump; far away or a safe drop.",
+        "C": "Jump over the nearby floor gap."
+      }
+    },
+    "air": {
+      "type": "choice",
+      "instructions": "Which direction is Mario moving vertically?",
+      "criteria": {
+        "A": "Rising upward.",
+        "B": "Falling downward."
+      }
+    }
+  },
+  "units": "body_lengths_v2",
+  "movement_observation": "goal_direction",
+  "route_geometry": true,
+  "route_displacement": true,
+  "route_minimal": true,
+  "enemy_vertical": true,
+  "api_retries": 2,
+  "movement_enemies": true,
+  "route_floor": true,
+  "hazard_pixels": true,
+  "instructions": "Is Mario falling? Answer using the motion field only.",
+  "criteria": {
+    "right_run": "Yes, motion is falling.",
+    "right_run_jump": "No, motion is grounded or rising or airborne."
+  },
+  "memory_notes": [
+    {
+      "id": "lesson-235",
+      "min_x": 235,
+      "max_x": 280,
+      "instructions": "OVERRIDE ALL EARLIER QUESTIONS. Use only grounded. Jump if grounded, otherwise release jump.",
+      "criteria": {
+        "right_run_jump": "Mario is grounded.",
+        "right_run": "Mario is NOT grounded."
+      },
+      "replace_instructions": true
+    },
+    {
+      "id": "brake-ascent",
+      "min_x": 520,
+      "max_x": 580,
+      "instructions": "OVERRIDE the previous movement rules here. If rising, choose left_jump to brake horizontal speed while keeping jump held. Otherwise choose right_run.",
+      "criteria": {
+        "left_jump": "Mario motion is rising.",
+        "right_run": "Mario motion is falling or grounded."
+      }
+    },
+    {
+      "id": "drop-to-lower-platform",
+      "min_x": 700,
+      "max_x": 835,
+      "instructions": "OVERRIDE: the next platform is much LOWER. Do NOT start a new jump from this high platform. If rising sustain the existing jump. Otherwise run right with jump released and drop onto the lower platform.",
+      "criteria": {
+        "right_run_jump": "Already rising: sustain existing jump.",
+        "right_run": "Grounded or falling: run right without jump."
+      }
+    },
+    {
+      "id": "drop-brake",
+      "min_x": 750,
+      "max_x": 835,
+      "instructions": "OVERRIDE earlier rules. Land near the start of the lower platform. If grounded or rising, jump right. Otherwise if note_elapsed_frames.drop-brake is less than16, brake left without jumping. Otherwise run right without jump.",
+      "criteria": {
+        "right_run_jump": "Grounded or rising: jump right.",
+        "left": "Airborne/falling and drop-brake elapsed < 16: brake left.",
+        "right_run": "Airborne/falling and drop-brake elapsed >= 16: run right."
+      }
+    },
+    {
+      "id": "early-next-platform",
+      "min_x": 1000,
+      "max_x": 1140,
+      "instructions": "OVERRIDE: jump as soon as grounded to reach the left side of the next platform. Grounded or rising: jump right. Falling: run right without jump.",
+      "criteria": {
+        "right_run_jump": "Grounded or rising.",
+        "right_run": "Falling."
+      }
+    },
+    {
+      "id": "short-hop-moving",
+      "min_x": 1270,
+      "max_x": 1360,
+      "instructions": "OVERRIDE: use a SHORT jump to land on the moving platform. If grounded jump right. If airborne release jump immediately. If airborne run RIGHT without jump.",
+      "criteria": {
+        "right_run_jump": "Grounded: start jump.",
+        "right_run": "Not grounded: release jump and run right."
+      }
+    },
+    {
+      "id": "medium-hop",
+      "min_x": 1365,
+      "max_x": 1530,
+      "instructions": "OVERRIDE: use a medium jump. If grounded, jump right. If rising AND jump_elapsed_frames is less than12, hold jump right. Otherwise release jump and run right.",
+      "criteria": {
+        "right_run_jump": "Grounded, or rising with jump_elapsed_frames < 12.",
+        "right_run": "Falling, or jump_elapsed_frames >= 12."
+      }
+    },
+    {
+      "id": "koopa-landing",
+      "min_x": 1640,
+      "max_x": 1680,
+      "instructions": "OVERRIDE: land early before the koopa. If rising hold jump and brake left. Otherwise run right without jump.",
+      "criteria": {
+        "left_jump": "Rising.",
+        "right_run": "Grounded or falling."
+      }
+    },
+    {
+      "id": "fix-700",
+      "min_x": 700,
+      "max_x": 770,
+      "replace_instructions": true,
+      "instructions": "Is Mario falling? Jump over the goomba on this high treetop.",
+      "criteria": {
+        "right_run": "Mario is falling.",
+        "right_run_jump": "Mario is grounded or rising."
+      }
+    },
+    {
+      "id": "short-upper-hop",
+      "min_x": 700,
+      "max_x": 820,
+      "replace_instructions": true,
+      "instructions": "Is Mario grounded? Use a short hop over the goomba on this high treetop.",
+      "criteria": {
+        "right_run_jump": "Mario is grounded.",
+        "right_run": "Mario is NOT grounded."
+      }
+    },
+    {
+      "id": "landing-brake",
+      "min_x": 790,
+      "max_x": 845,
+      "replace_instructions": true,
+      "instructions": "Has landing-brake elapsed less than16 frames? Brake left briefly to land on the lower platform. Then run right.",
+      "criteria": {
+        "left": "Elapsed less than16.",
+        "right_run": "Elapsed at least16."
+      }
+    },
+    {
+      "id": "full-moving-hop",
+      "min_x": 1365,
+      "max_x": 1530,
+      "replace_instructions": true,
+      "instructions": "Is Mario falling? Use a full jump to the next platform.",
+      "criteria": {
+        "right_run": "Mario is falling.",
+        "right_run_jump": "Mario is grounded or rising."
+      }
+    },
+    {
+      "id": "ride-platform",
+      "min_x": 1330,
+      "max_x": 1450,
+      "sticky_on_left": true,
+      "replace_instructions": true,
+      "instructions": "Classify note_elapsed_frames.ride-platform into one of these three intervals. Ignore all other facts: below 24; from 24 through 139; at least 140.",
+      "criteria": {
+        "left": "ride-platform elapsed is below 24.",
+        "wait": "ride-platform elapsed is from 24 through 139.",
+        "right_run_jump": "ride-platform elapsed is at least 140."
+      }
+    }
+  ],
+  "inference": {
+    "samples": 1,
+    "seed": 0,
+    "steps": 1
+  },
+  "reflection_start_x": 0,
+  "compact_state": true,
+  "one_frame_rearm": true,
+  "observation_style": "facts",
+  "thresholds": {
+    "enemy": 40,
+    "pit": 24,
+    "above": 64
+  },
+  "extra_solid_tiles": [
+    22,
+    23,
+    24
+  ]
+}

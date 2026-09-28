@@ -1,0 +1,67 @@
+{
+  "name": "v15-look-above",
+  "mode": "modular",
+  "questions": {
+    "movement": {
+      "type": "choice",
+      "instructions": "If enemy_dy is negative (enemy above Mario) and enemy_dx is within64 pixels, choose dodge_left to avoid walking underneath a falling enemy. Otherwise choose brake_left when retreating and drop_px is below32. Also choose brake_left when blocked and wall_height exceeds headroom. Otherwise choose run_right. Null means absent.",
+      "criteria": {
+        "run_right": "Move right.",
+        "brake_left": "Move left.",
+        "dodge_left": "Step left to avoid a nearby enemy falling from above."
+      }
+    },
+    "enemy": {
+      "type": "choice",
+      "instructions": "Classify the enemy spacing and height. Do not jump into an enemy above Mario; stay below it.",
+      "criteria": {
+        "A": "No enemy is present.",
+        "B": "The enemy is more than three body lengths away, OR it is above Mario (negative vertical offset).",
+        "C": "The enemy is within three body lengths and is at the same height as Mario or below (nonnegative vertical offset)."
+      }
+    },
+    "enemy_low": {
+      "type": "choice",
+      "instructions": "Classify the enemy spacing and height. Do not jump into an enemy above Mario; stay below it.",
+      "criteria": {
+        "A": "No enemy is present.",
+        "B": "The enemy is more than two body lengths away, OR it is above Mario (negative vertical offset).",
+        "C": "The enemy is within two body lengths and is at the same height as Mario or below (nonnegative vertical offset)."
+      }
+    },
+    "wall": {
+      "type": "choice",
+      "instructions": "Classify whether the wall requires a jump now. A wall taller than ceiling_clearance_px cannot be jumped over from here.",
+      "criteria": {
+        "A": "No wall is present.",
+        "B": "The wall is more than three body lengths away, or cannot be cleared because its height exceeds ceiling clearance.",
+        "C": "The wall is within three body lengths and there is enough clearance to jump over it."
+      }
+    },
+    "pit": {
+      "type": "choice",
+      "instructions": "Classify the pit spacing.",
+      "criteria": {
+        "A": "No pit is present.",
+        "B": "The pit is far away: more than three body lengths ahead.",
+        "C": "The pit is close: within three body lengths."
+      }
+    },
+    "air": {
+      "type": "choice",
+      "instructions": "Which direction is Mario moving vertically?",
+      "criteria": {
+        "A": "Rising upward.",
+        "B": "Falling downward."
+      }
+    }
+  },
+  "units": "body_lengths_v2",
+  "movement_observation": "goal_direction",
+  "route_geometry": true,
+  "route_displacement": true,
+  "route_minimal": true,
+  "enemy_vertical": true,
+  "api_retries": 2,
+  "movement_enemies": true
+}

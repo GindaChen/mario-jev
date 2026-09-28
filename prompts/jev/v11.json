@@ -1,0 +1,64 @@
+{
+  "name": "v11-displacement-memory",
+  "mode": "modular",
+  "questions": {
+    "movement": {
+      "type": "choice",
+      "instructions": "If previous_movement is brake_left and vertical_drop_since_direction_change_px is less than32, continue brake_left. Otherwise if blocked_forward is true, choose brake_left. Otherwise choose run_right. A positive vertical drop means Mario moved downward.",
+      "criteria": {
+        "run_right": "Move right.",
+        "walk_right": "Walk right.",
+        "brake_left": "Move left.",
+        "wait": "Wait."
+      }
+    },
+    "enemy": {
+      "type": "choice",
+      "instructions": "Classify the enemy spacing.",
+      "criteria": {
+        "A": "No enemy is present.",
+        "B": "The enemy is far away: more than three body lengths ahead.",
+        "C": "The enemy is close: within three body lengths."
+      }
+    },
+    "enemy_low": {
+      "type": "choice",
+      "instructions": "Classify the enemy spacing.",
+      "criteria": {
+        "A": "No enemy is present.",
+        "B": "The enemy is far away: more than two body lengths ahead.",
+        "C": "The enemy is close: within two body lengths."
+      }
+    },
+    "wall": {
+      "type": "choice",
+      "instructions": "Classify whether the wall requires a jump now. A wall taller than ceiling_clearance_px cannot be jumped over from here.",
+      "criteria": {
+        "A": "No wall is present.",
+        "B": "The wall is more than three body lengths away, or cannot be cleared because its height exceeds ceiling clearance.",
+        "C": "The wall is within three body lengths and there is enough clearance to jump over it."
+      }
+    },
+    "pit": {
+      "type": "choice",
+      "instructions": "Classify the pit spacing.",
+      "criteria": {
+        "A": "No pit is present.",
+        "B": "The pit is far away: more than three body lengths ahead.",
+        "C": "The pit is close: within three body lengths."
+      }
+    },
+    "air": {
+      "type": "choice",
+      "instructions": "Which direction is Mario moving vertically?",
+      "criteria": {
+        "A": "Rising upward.",
+        "B": "Falling downward."
+      }
+    }
+  },
+  "units": "body_lengths_v2",
+  "movement_observation": "goal_direction",
+  "route_geometry": true,
+  "route_displacement": true
+}
