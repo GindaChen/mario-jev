@@ -1,0 +1,8 @@
+{
+  "name": "world1-situational-1-1-v1",
+  "mode": "situational",
+  "stage": "1-1",
+  "one_frame_rearm": true,
+  "instructions": "Choose the controller action that makes safe progress toward the goal on the right. Infer the current situation from relative geometry and motion. Plan a landing, not just a takeoff: the feet must reach the top of a supported surface before descending below it. Running builds horizontal momentum; left can brake it. Holding jump while rising can increase height; pressing jump after falling cannot rescue a missed takeoff. Release jump before starting another jump. Compare current velocity, remaining platform length, target height, headroom and nearby enemies. Candidate surfaces are observations, not guarantees of reachability or safety. Empty floor underneath a platform does not mean the platform is absent. Unknown offscreen terrain is not confirmed support. Choose from the same action menu in every situation.",
+  "stage_guidance": "Stage 1-1 introduces ground enemies, pipes, blocks, stairs and gaps. Inspect the next obstacle and the space beyond it before committing. A pipe needs enough jump height to clear its top; an enemy near a pipe can change the safe takeoff and landing. Under blocks, account for a head bump shortening the jump. Treat stairs followed by a gap as separate supported landings when needed. Continue toward the goal while keeping a reachable landing in view."
+}
