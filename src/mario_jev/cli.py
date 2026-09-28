@@ -198,7 +198,14 @@ def main():
         if args.policy == "djev":
             from .djev import DjevPolicy, ModularDjevPolicy
 
-            if (
+            if args.jev_profile and json.loads(args.jev_profile.read_text()).get("mode") == "situational":
+                from .situational import SituationalDjevPolicy
+
+                policy = SituationalDjevPolicy(
+                    args.djev_url, args.jev_profile,
+                    isolation=args.djev_isolation, api_path=args.djev_api_path,
+                )
+            elif (
                 args.jev_profile
                 and json.loads(args.jev_profile.read_text()).get("mode") == "reflection"
             ):
