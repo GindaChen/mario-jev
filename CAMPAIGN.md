@@ -26,8 +26,24 @@ The website source, read-only publishers and deployment documentation are in `we
 
 Published evidence: https://game.gindachen.com/mario-speedrun/ — includes complete attempts, the stitched compilation, prompt diffs and the audit archive. Earlier independent-stage work is separate: https://game.gindachen.com/mario/ .
 
-## Next evaluation: restart the whole game on death
+## Native full-game evaluation: restart at 1-1 on death
 
-The strict mode is **not implemented by this PR**. It should start one full-game environment at 1-1, preserve state at natural transitions, freeze the prompts before evaluation, and restart at 1-1 on any death. Record whole-run success rate, lives/deaths, furthest stage and frame/latency costs across independent runs. Full reset on death demonstrates a deathless run; a conventional game completion that permits losing lives is a different evaluation.
+A separate `NativeFullGameEnv` and `scripts/run_full_game.py` now implement this evaluation. The ordinary full-game ROM boots through START button input into 1-1 with its initial timer at 400. Each step advances exactly one NES frame. The environment disables the upstream post-step shortcuts that overwrite area timers, accelerate deaths and skip cutscenes. Natural stage transitions preserve lives, score, coins and power state; each next stage receives the ROM's normal timer. No stage loaders, save-state checkpoints or gameplay RAM writes are used. The initial controller-only boot sequence is recorded separately; repeated attempts restore that same 1-1 starting state.
 
-Keep stage/checkpoint retries as a development mode to diagnose late-stage failures cheaply. Use full resets for final evaluation so saved-state successes cannot be mistaken for full-game competence. Any prompt revision starts a new evaluation version rather than silently changing the policy mid-run.
+```sh
+# New directory required; all 32 profiles are frozen before any attempt.
+.venv/bin/python scripts/run_full_game.py --root runs/full-game/eval-001 \
+  --endpoint http://127.0.0.1:18515 --attempts 10
+# No model calls: replay and compare RAM hashes and game info after every action.
+.venv/bin/python scripts/run_full_game.py \
+  --replay runs/full-game/eval-001/attempt-001/trajectory.jsonl
+```
+
+- Any death ends the current attempt. The next attempt starts at 1-1; stage-clear credit never carries across attempts. Extra lives do not count as deaths.
+- All 32 stages must occur in order, within one attempt, ending in the native 8-4 end-of-world signal. Unexpected stage transitions invalidate the attempt; warps cannot stand in for missing stages.
+- Instructions change only by selecting the pre-frozen profile for the current stage. Defaults use the stage winners, the successful reduced-context 1-1 profile and the successful campaign revisions for 2-1, 6-2 and 7-2. `--overrides DIR` selects revised `W-S.json` files **before** evaluation. Start a new evaluation directory after reflection.
+- Only DJev chooses playable actions, with the existing generic jump-release helper. Nonplayable animations receive recorded no-button frames; all these frames count. No hand-coded jump sequence is added.
+- Logs include full request diagnostics, frozen profiles/source archive, per-frame stage/timer/life signals, RAM hashes, emulated frame counts and wall time. The ROM timer is not wall time: inference still pauses the simulation. Controller boot frames are separately recorded and excluded from gameplay frame totals.
+- `--max-decisions` and `--max-frames` bound an attempt. Limits, errors, warps and a `STOP` file stop the evaluation for inspection; only deaths automatically begin another attempt. Interrupted traces remain incomplete, never successful. There is no checkpoint resume.
+
+This is a **deathless** evaluation. Ordinary full-game play that permits losing lives is a different mode. Implementing the environment does not establish a full-game win; the existing published 32-stage campaign remains the earlier stage-linked result.
