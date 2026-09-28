@@ -1,0 +1,162 @@
+{
+  "name": "1-3-r24-koopa-landing",
+  "mode": "reflection",
+  "questions": {
+    "movement": {
+      "type": "choice",
+      "instructions": "Apply the first matching rule: (1) enemy_dy < 0 AND enemy_dx <= 64: dodge_left. (2) grounded is true AND lowest_floor_drop_px == 0: run_right. (3) retreating is true AND drop_px < 32 AND lowest_floor_drop_px > 0: brake_left. (4) blocked is true AND wall_height > headroom: brake_left. Otherwise run_right. Null means absent; a comparison to null does not match.",
+      "criteria": {
+        "run_right": "Move right.",
+        "brake_left": "Move left.",
+        "dodge_left": "Step left to avoid a nearby enemy falling from above."
+      }
+    },
+    "enemy": {
+      "type": "choice",
+      "instructions": "Choose C if distance_px <= 48 and vertical_offset_px >= 0. Choose A if distance_px is null. Otherwise choose B.",
+      "criteria": {
+        "A": "No enemy.",
+        "B": "Do not jump yet.",
+        "C": "Jump now."
+      }
+    },
+    "enemy_low": {
+      "type": "choice",
+      "instructions": "Choose C if distance_px <= 40 and vertical_offset_px >= 0. Choose A if distance_px is null. Otherwise choose B.",
+      "criteria": {
+        "A": "No enemy.",
+        "B": "Do not jump yet.",
+        "C": "Jump now."
+      }
+    },
+    "wall": {
+      "type": "choice",
+      "instructions": "Choose A if distance_px is null. Choose C if distance_px <= 48 and (headroom_px is null OR height_px <= headroom_px). Otherwise choose B.",
+      "criteria": {
+        "A": "No wall.",
+        "B": "Do not jump at this wall.",
+        "C": "Jump over the nearby wall."
+      }
+    },
+    "pit": {
+      "type": "choice",
+      "instructions": "Choose A if distance_px is null. Choose C if distance_px <= 48 and floor_gaps is not empty. Otherwise choose B.",
+      "criteria": {
+        "A": "No missing floor.",
+        "B": "Not time to jump; far away or a safe drop.",
+        "C": "Jump over the nearby floor gap."
+      }
+    },
+    "air": {
+      "type": "choice",
+      "instructions": "Which direction is Mario moving vertically?",
+      "criteria": {
+        "A": "Rising upward.",
+        "B": "Falling downward."
+      }
+    }
+  },
+  "units": "body_lengths_v2",
+  "movement_observation": "goal_direction",
+  "route_geometry": true,
+  "route_displacement": true,
+  "route_minimal": true,
+  "enemy_vertical": true,
+  "api_retries": 2,
+  "movement_enemies": true,
+  "route_floor": true,
+  "hazard_pixels": true,
+  "instructions": "Choose one action. PRIORITY: if grounded and floor_gap_within_takeoff_distance is true, jump right. Otherwise if grounded and enemy_within_jump_distance is true, jump right. If grounded and wall_within_40px and wall_fits_headroom are both true, jump right. If rising, hold jump and run right. If falling, run right without jump. Otherwise run right without jump. Do not retreat from flying enemies: keep moving to the next platform. Follow active stage lessons.",
+  "criteria": {
+    "right_run": "Continue right without jump when falling or when no jump hazard is present.",
+    "right_run_jump": "Jump right when grounded with a nearby hazard, or sustain a rising jump.",
+    "left": "Grounded with enemy_above_within_braking_distance true, or stage lesson requires retreat. Brake left without jumping."
+  },
+  "memory_notes": [
+    {
+      "id": "brake-ascent",
+      "min_x": 520,
+      "max_x": 580,
+      "instructions": "OVERRIDE the previous movement rules here. If rising, choose left_jump to brake horizontal speed while keeping jump held. Otherwise choose right_run.",
+      "criteria": {
+        "left_jump": "Mario motion is rising.",
+        "right_run": "Mario motion is falling or grounded."
+      }
+    },
+    {
+      "id": "drop-to-lower-platform",
+      "min_x": 700,
+      "max_x": 835,
+      "instructions": "OVERRIDE: the next platform is much LOWER. Do NOT start a new jump from this high platform. If rising sustain the existing jump. Otherwise run right with jump released and drop onto the lower platform.",
+      "criteria": {
+        "right_run_jump": "Already rising: sustain existing jump.",
+        "right_run": "Grounded or falling: run right without jump."
+      }
+    },
+    {
+      "id": "drop-brake",
+      "min_x": 750,
+      "max_x": 835,
+      "instructions": "OVERRIDE earlier rules. Land near the start of the lower platform. If grounded or rising, jump right. Otherwise if note_elapsed_frames.drop-brake is less than16, brake left without jumping. Otherwise run right without jump.",
+      "criteria": {
+        "right_run_jump": "Grounded or rising: jump right.",
+        "left": "Airborne/falling and drop-brake elapsed < 16: brake left.",
+        "right_run": "Airborne/falling and drop-brake elapsed >= 16: run right."
+      }
+    },
+    {
+      "id": "early-next-platform",
+      "min_x": 1000,
+      "max_x": 1140,
+      "instructions": "OVERRIDE: jump as soon as grounded to reach the left side of the next platform. Grounded or rising: jump right. Falling: run right without jump.",
+      "criteria": {
+        "right_run_jump": "Grounded or rising.",
+        "right_run": "Falling."
+      }
+    },
+    {
+      "id": "short-hop-moving",
+      "min_x": 1270,
+      "max_x": 1360,
+      "instructions": "OVERRIDE: use a SHORT jump to land on the moving platform. If grounded jump right. If airborne release jump immediately. If airborne run RIGHT without jump.",
+      "criteria": {
+        "right_run_jump": "Grounded: start jump.",
+        "right_run": "Not grounded: release jump and run right."
+      }
+    },
+    {
+      "id": "medium-hop",
+      "min_x": 1365,
+      "max_x": 1530,
+      "instructions": "OVERRIDE: use a medium jump. If grounded, jump right. If rising AND jump_elapsed_frames is less than12, hold jump right. Otherwise release jump and run right.",
+      "criteria": {
+        "right_run_jump": "Grounded, or rising with jump_elapsed_frames < 12.",
+        "right_run": "Falling, or jump_elapsed_frames >= 12."
+      }
+    },
+    {
+      "id": "koopa-landing",
+      "min_x": 1640,
+      "max_x": 1680,
+      "instructions": "OVERRIDE: land early before the koopa. If rising hold jump and brake left. Otherwise run right without jump.",
+      "criteria": {
+        "left_jump": "Rising.",
+        "right_run": "Grounded or falling."
+      }
+    }
+  ],
+  "inference": {
+    "samples": 1,
+    "seed": 0,
+    "steps": 1
+  },
+  "reflection_start_x": 0,
+  "compact_state": true,
+  "one_frame_rearm": true,
+  "observation_style": "facts",
+  "thresholds": {
+    "enemy": 40,
+    "pit": 64,
+    "above": 64
+  }
+}

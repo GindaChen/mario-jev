@@ -1,0 +1,14 @@
+[Unit]
+Description=Game Lab read-only overnight campaign feed
+After=network-online.target
+[Service]
+WorkingDirectory=/home/juc049/projects/game-lab
+ExecStart=/usr/bin/python3 /home/juc049/projects/game-lab/campaign_publisher.py
+Environment=MARIO_CAMPAIGN=/home/juc049/projects/mario-amd/harness/runs/overnight-campaign
+Restart=on-failure
+RestartSec=3
+Nice=10
+CPUQuota=10%
+NoNewPrivileges=true
+[Install]
+WantedBy=default.target

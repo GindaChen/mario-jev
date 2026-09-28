@@ -2,7 +2,7 @@
 
 from collections import deque
 
-from .state import add_context, extract_state
+from .state import add_context, extract_room, extract_state
 
 
 def snapshot(state):
@@ -22,7 +22,14 @@ def snapshot(state):
 
 
 class ObservationMemory:
-    def __init__(self, limit=12):
+    def __init__(self, limit=12, *, extra_solid_tiles=(), include_room_metadata=False):
+        self.include_room_metadata = include_room_metadata
+        self.extra_solid_tiles = frozenset(extra_solid_tiles)
+        if any(
+            type(tile) is not int or not 0 < tile <= 255
+            for tile in self.extra_solid_tiles
+        ):
+            raise ValueError("extra_solid_tiles must contain nonzero metatile bytes")
         self.transitions = deque(maxlen=limit)
         self.frame_history = deque(maxlen=4)
         self.previous_state = None
@@ -31,12 +38,19 @@ class ObservationMemory:
         self.jump = None
         self.last_jump = None
 
+    def _extract_state(self, ram, info, action, frames):
+        state = extract_state(ram, info, action, frames)
+        if self.include_room_metadata:
+            state["room"] = extract_room(ram)
+        return state
+
     def observe(self, ram, info, frames=4):
         state = add_context(
-            extract_state(ram, info, self.previous_action, frames),
+            self._extract_state(ram, info, self.previous_action, frames),
             self.previous_state,
             self.elapsed_frames,
             self.transitions,
+            extra_solid_tiles=self.extra_solid_tiles,
         )
         mario = state["mario"]
         state["current_jump"] = self._jump_summary(mario) if self.jump else None
@@ -57,7 +71,10 @@ class ObservationMemory:
         self, before, ram, info, action, frames, reward, terminated=False, samples=()
     ):
         after = add_context(
-            extract_state(ram, info, action, before["action_frames"]), before, frames
+            self._extract_state(ram, info, action, before["action_frames"]),
+            before,
+            frames,
+            extra_solid_tiles=self.extra_solid_tiles,
         )
         old, new = before["mario"], after["mario"]
         events = []

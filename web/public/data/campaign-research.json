@@ -1,0 +1,4266 @@
+{
+  "campaign_id": "overnight-campaign-2026-09-28T07:54:21.421555+00:00",
+  "trace_sha256": "4762a5871b7d7eda8c776afb41f660a4dae36f3a9b919052911b7cdc35d0db9b",
+  "started_at": "2026-09-28T07:54:21.421565+00:00",
+  "finished_at": "2026-09-28T08:24:25.143209+00:00",
+  "attempts": [
+    {
+      "stage": "1-1",
+      "attempt": 1,
+      "at": "2026-09-28T07:54:21.544473+00:00",
+      "profile": "campaign-1-1-current-default",
+      "profile_url": "/data/campaign-research/profiles/1-1-001.json",
+      "profile_sha256": "062d4fd9c7a901757ba231b187a1259c97cf2032d9b47785587a8a63e76265fa",
+      "source_sha256": "e6b20201cc8502c2887cb8cbdb76e2a1fe775b064b783e9e4841019803e4b6a3",
+      "seconds": 0.0,
+      "decisions": 11,
+      "result": "api_error",
+      "detail": "TypeSafeInternalServerError: POST http://127.0.0.1:18515/v1/systemone: 502 upstream 400: {\"error\":{\"message\":\"This model's maximum context length is 4096 tokens. However, you requested 10 output tokens and your prompt contains at least 4087 input tokens, for a total of at least 4097 tokens. Please reduce the length of the input prompt or the number of requested output tokens. (parameter",
+      "clear_count": 0,
+      "final_x": 129,
+      "end_at": "2026-09-28T07:54:25.718830+00:00"
+    },
+    {
+      "stage": "1-1",
+      "attempt": 2,
+      "at": "2026-09-28T07:54:56.125240+00:00",
+      "profile": "campaign-1-1-current-default",
+      "profile_url": "/data/campaign-research/profiles/1-1-002.json",
+      "profile_sha256": "062d4fd9c7a901757ba231b187a1259c97cf2032d9b47785587a8a63e76265fa",
+      "source_sha256": "e6b20201cc8502c2887cb8cbdb76e2a1fe775b064b783e9e4841019803e4b6a3",
+      "seconds": 1.7333333333333334,
+      "decisions": 11,
+      "result": "api_error",
+      "detail": "TypeSafeInternalServerError: POST http://127.0.0.1:18516/v1/systemone: 502 upstream 400: {\"error\":{\"message\":\"This model's maximum context length is 4096 tokens. However, you requested 10 output tokens and your prompt contains at least 4087 input tokens, for a total of at least 4097 tokens. Please reduce the length of the input prompt or the number of requested output tokens. (parameter",
+      "clear_count": 0,
+      "final_x": 129,
+      "end_at": "2026-09-28T07:55:00.515051+00:00"
+    },
+    {
+      "stage": "1-1",
+      "attempt": 3,
+      "at": "2026-09-28T07:55:25.531820+00:00",
+      "profile": "campaign-1-1-minimal-context",
+      "profile_url": "/data/campaign-research/profiles/1-1-003.json",
+      "profile_sha256": "90bc4f684b4e66212484fd42330f552806cb17e3ef8ce8a19f50ac085bfaf4fe",
+      "source_sha256": "e90ff5f8d2b36eb8b882e6089dc680b4cca96854756c37af767867ced6958e9e",
+      "seconds": 3.466666666666667,
+      "decisions": 187,
+      "result": "failed",
+      "detail": "death; restarting 1-1 from its beginning.",
+      "clear_count": 0,
+      "final_x": 1320,
+      "end_at": "2026-09-28T07:55:48.130123+00:00"
+    },
+    {
+      "stage": "1-1",
+      "attempt": 4,
+      "at": "2026-09-28T07:55:48.248499+00:00",
+      "profile": "campaign-1-1-minimal-context",
+      "profile_url": "/data/campaign-research/profiles/1-1-004.json",
+      "profile_sha256": "90bc4f684b4e66212484fd42330f552806cb17e3ef8ce8a19f50ac085bfaf4fe",
+      "source_sha256": "e90ff5f8d2b36eb8b882e6089dc680b4cca96854756c37af767867ced6958e9e",
+      "seconds": 16.533333333333335,
+      "decisions": 186,
+      "result": "failed",
+      "detail": "death; restarting 1-1 from its beginning.",
+      "clear_count": 0,
+      "final_x": 1820,
+      "end_at": "2026-09-28T07:56:10.082199+00:00"
+    },
+    {
+      "stage": "1-1",
+      "attempt": 5,
+      "at": "2026-09-28T07:56:10.224837+00:00",
+      "profile": "campaign-1-1-minimal-context",
+      "profile_url": "/data/campaign-research/profiles/1-1-005.json",
+      "profile_sha256": "90bc4f684b4e66212484fd42330f552806cb17e3ef8ce8a19f50ac085bfaf4fe",
+      "source_sha256": "e90ff5f8d2b36eb8b882e6089dc680b4cca96854756c37af767867ced6958e9e",
+      "seconds": 29.533333333333335,
+      "decisions": 362,
+      "result": "cleared",
+      "detail": "1-1 cleared: game completion flag.",
+      "clear_count": 1,
+      "final_x": 3161,
+      "end_at": "2026-09-28T07:56:54.217750+00:00"
+    },
+    {
+      "stage": "1-2",
+      "attempt": 1,
+      "at": "2026-09-28T07:56:54.338518+00:00",
+      "profile": "r35-plant-timing",
+      "profile_url": "/data/campaign-research/profiles/1-2-001.json",
+      "profile_sha256": "82ca0da964ff3940dede8d53c1a8c496ae0f23044fe23e848448b85f372a5c5e",
+      "source_sha256": "e90ff5f8d2b36eb8b882e6089dc680b4cca96854756c37af767867ced6958e9e",
+      "seconds": 53.8,
+      "decisions": 401,
+      "result": "cleared",
+      "detail": "1-2 cleared: game completion flag.",
+      "clear_count": 2,
+      "final_x": 3161,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 83,
+          "grounded": false,
+          "motion": "airborne",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "PRIORITY: if grounded and enemy_above_within_braking_distance is true, move left WITHOUT JUMPING until the enemy reaches the ground. Otherwise: Choose one action. Use the Boolean facts as already measured. If grounded and enemy_within_jump_distance is true, jump right. If grounded and wall_within_40px and wall_fits_headroom are both true, jump right. If grounded and floor_gap_within_takeoff_distance is true, jump right. If rising, hold jump and run right. If falling, run right without jump. Otherwise run right without jump. Follow any active stage lesson when it gives a specific maneuver.\n",
+            "criteria": {
+              "right_run": "Continue right without jump when falling or when no jump hazard is present.",
+              "right_run_jump": "Jump right when grounded with a nearby hazard, or sustain a rising jump.",
+              "left": "Grounded with enemy_above_within_braking_distance true, or stage lesson requires retreat. Brake left without jumping."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T07:57:24.657358+00:00"
+    },
+    {
+      "stage": "1-3",
+      "attempt": 1,
+      "at": "2026-09-28T07:57:24.801048+00:00",
+      "profile": "1-3-r24-koopa-landing",
+      "profile_url": "/data/campaign-research/profiles/1-3-001.json",
+      "profile_sha256": "22e663207d507d7646b7fb928a394d9e3307e49fb945440e784b147905ea4692",
+      "source_sha256": "e90ff5f8d2b36eb8b882e6089dc680b4cca96854756c37af767867ced6958e9e",
+      "seconds": 80.78333333333333,
+      "decisions": 165,
+      "result": "failed",
+      "detail": "death; restarting 1-3 from its beginning.",
+      "clear_count": 2,
+      "final_x": 1732,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Choose one action. PRIORITY: if grounded and floor_gap_within_takeoff_distance is true, jump right. Otherwise if grounded and enemy_within_jump_distance is true, jump right. If grounded and wall_within_40px and wall_fits_headroom are both true, jump right. If rising, hold jump and run right. If falling, run right without jump. Otherwise run right without jump. Do not retreat from flying enemies: keep moving to the next platform. Follow active stage lessons.\n",
+            "criteria": {
+              "right_run": "Continue right without jump when falling or when no jump hazard is present.",
+              "right_run_jump": "Jump right when grounded with a nearby hazard, or sustain a rising jump.",
+              "left": "Grounded with enemy_above_within_braking_distance true, or stage lesson requires retreat. Brake left without jumping."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T07:57:37.027266+00:00"
+    },
+    {
+      "stage": "1-3",
+      "attempt": 2,
+      "at": "2026-09-28T07:57:37.169939+00:00",
+      "profile": "1-3-r24-koopa-landing",
+      "profile_url": "/data/campaign-research/profiles/1-3-002.json",
+      "profile_sha256": "22e663207d507d7646b7fb928a394d9e3307e49fb945440e784b147905ea4692",
+      "source_sha256": "e90ff5f8d2b36eb8b882e6089dc680b4cca96854756c37af767867ced6958e9e",
+      "seconds": 92.55,
+      "decisions": 165,
+      "result": "failed",
+      "detail": "death; restarting 1-3 from its beginning.",
+      "clear_count": 2,
+      "final_x": 1732,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Choose one action. PRIORITY: if grounded and floor_gap_within_takeoff_distance is true, jump right. Otherwise if grounded and enemy_within_jump_distance is true, jump right. If grounded and wall_within_40px and wall_fits_headroom are both true, jump right. If rising, hold jump and run right. If falling, run right without jump. Otherwise run right without jump. Do not retreat from flying enemies: keep moving to the next platform. Follow active stage lessons.\n",
+            "criteria": {
+              "right_run": "Continue right without jump when falling or when no jump hazard is present.",
+              "right_run_jump": "Jump right when grounded with a nearby hazard, or sustain a rising jump.",
+              "left": "Grounded with enemy_above_within_braking_distance true, or stage lesson requires retreat. Brake left without jumping."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T07:57:49.167490+00:00"
+    },
+    {
+      "stage": "1-3",
+      "attempt": 3,
+      "at": "2026-09-28T07:57:49.309455+00:00",
+      "profile": "1-3-r24-koopa-landing",
+      "profile_url": "/data/campaign-research/profiles/1-3-003.json",
+      "profile_sha256": "22e663207d507d7646b7fb928a394d9e3307e49fb945440e784b147905ea4692",
+      "source_sha256": "e90ff5f8d2b36eb8b882e6089dc680b4cca96854756c37af767867ced6958e9e",
+      "seconds": 104.31666666666666,
+      "decisions": 165,
+      "result": "failed",
+      "detail": "death; restarting 1-3 from its beginning.",
+      "clear_count": 2,
+      "final_x": 1732,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Choose one action. PRIORITY: if grounded and floor_gap_within_takeoff_distance is true, jump right. Otherwise if grounded and enemy_within_jump_distance is true, jump right. If grounded and wall_within_40px and wall_fits_headroom are both true, jump right. If rising, hold jump and run right. If falling, run right without jump. Otherwise run right without jump. Do not retreat from flying enemies: keep moving to the next platform. Follow active stage lessons.\n",
+            "criteria": {
+              "right_run": "Continue right without jump when falling or when no jump hazard is present.",
+              "right_run_jump": "Jump right when grounded with a nearby hazard, or sustain a rising jump.",
+              "left": "Grounded with enemy_above_within_braking_distance true, or stage lesson requires retreat. Brake left without jumping."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T07:58:01.238080+00:00"
+    },
+    {
+      "stage": "1-3",
+      "attempt": 4,
+      "at": "2026-09-28T07:58:01.374270+00:00",
+      "profile": "1-3-r24-koopa-landing",
+      "profile_url": "/data/campaign-research/profiles/1-3-004.json",
+      "profile_sha256": "22e663207d507d7646b7fb928a394d9e3307e49fb945440e784b147905ea4692",
+      "source_sha256": "e90ff5f8d2b36eb8b882e6089dc680b4cca96854756c37af767867ced6958e9e",
+      "seconds": 116.08333333333333,
+      "decisions": 165,
+      "result": "failed",
+      "detail": "death; restarting 1-3 from its beginning.",
+      "clear_count": 2,
+      "final_x": 1732,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Choose one action. PRIORITY: if grounded and floor_gap_within_takeoff_distance is true, jump right. Otherwise if grounded and enemy_within_jump_distance is true, jump right. If grounded and wall_within_40px and wall_fits_headroom are both true, jump right. If rising, hold jump and run right. If falling, run right without jump. Otherwise run right without jump. Do not retreat from flying enemies: keep moving to the next platform. Follow active stage lessons.\n",
+            "criteria": {
+              "right_run": "Continue right without jump when falling or when no jump hazard is present.",
+              "right_run_jump": "Jump right when grounded with a nearby hazard, or sustain a rising jump.",
+              "left": "Grounded with enemy_above_within_braking_distance true, or stage lesson requires retreat. Brake left without jumping."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T07:58:13.174512+00:00"
+    },
+    {
+      "stage": "1-3",
+      "attempt": 5,
+      "at": "2026-09-28T07:58:13.315558+00:00",
+      "profile": "1-3-r24-koopa-landing",
+      "profile_url": "/data/campaign-research/profiles/1-3-005.json",
+      "profile_sha256": "22e663207d507d7646b7fb928a394d9e3307e49fb945440e784b147905ea4692",
+      "source_sha256": "e90ff5f8d2b36eb8b882e6089dc680b4cca96854756c37af767867ced6958e9e",
+      "seconds": 127.85,
+      "decisions": 252,
+      "result": "cleared",
+      "detail": "1-3 cleared: game completion flag.",
+      "clear_count": 3,
+      "final_x": 2425,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Choose one action. PRIORITY: if grounded and floor_gap_within_takeoff_distance is true, jump right. Otherwise if grounded and enemy_within_jump_distance is true, jump right. If grounded and wall_within_40px and wall_fits_headroom are both true, jump right. If rising, hold jump and run right. If falling, run right without jump. Otherwise run right without jump. Do not retreat from flying enemies: keep moving to the next platform. Follow active stage lessons.\n",
+            "criteria": {
+              "right_run": "Continue right without jump when falling or when no jump hazard is present.",
+              "right_run_jump": "Jump right when grounded with a nearby hazard, or sustain a rising jump.",
+              "left": "Grounded with enemy_above_within_braking_distance true, or stage lesson requires retreat. Brake left without jumping."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T07:58:31.773879+00:00"
+    },
+    {
+      "stage": "1-4",
+      "attempt": 1,
+      "at": "2026-09-28T07:58:31.914277+00:00",
+      "profile": "1-4-r08-bowser-approach",
+      "profile_url": "/data/campaign-research/profiles/1-4-001.json",
+      "profile_sha256": "280d198a85a787c3c22b55a8aba4f98ebea7fc20ea315192113c086cabbd5bb0",
+      "source_sha256": "e90ff5f8d2b36eb8b882e6089dc680b4cca96854756c37af767867ced6958e9e",
+      "seconds": 145.13333333333333,
+      "decisions": 225,
+      "result": "cleared",
+      "detail": "1-4 cleared: game completion flag.",
+      "clear_count": 4,
+      "final_x": 2260,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 112,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Choose one action. PRIORITY: if grounded and floor_gap_within_takeoff_distance is true, jump right. Otherwise if grounded and enemy_within_jump_distance is true, jump right. If grounded and wall_within_40px and wall_fits_headroom are both true, jump right. If rising, hold jump and run right. If falling, run right without jump. Otherwise run right without jump. Do not retreat from flying enemies: keep moving to the next platform. Follow active stage lessons.\n",
+            "criteria": {
+              "right_run": "Continue right without jump when falling or when no jump hazard is present.",
+              "right_run_jump": "Jump right when grounded with a nearby hazard, or sustain a rising jump."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T07:58:48.314977+00:00"
+    },
+    {
+      "stage": "2-1",
+      "attempt": 1,
+      "at": "2026-09-28T07:58:48.457484+00:00",
+      "profile": "2-1-r27-split-spring-notes",
+      "profile_url": "/data/campaign-research/profiles/2-1-001.json",
+      "profile_sha256": "fb34b747ca372b7eea6446635134a989461783eeaefde5060f30f3ae866cd2c3",
+      "source_sha256": "e90ff5f8d2b36eb8b882e6089dc680b4cca96854756c37af767867ced6958e9e",
+      "seconds": 160.71666666666667,
+      "decisions": 317,
+      "result": "failed",
+      "detail": "death; restarting 2-1 from its beginning.",
+      "clear_count": 4,
+      "final_x": 2816,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Choose one action. PRIORITY: if grounded and floor_gap_within_takeoff_distance is true, jump right. Otherwise if grounded and enemy_within_jump_distance is true, jump right. If grounded and wall_within_40px and wall_fits_headroom are both true, jump right. If rising, hold jump and run right. If falling, run right without jump. Otherwise run right without jump. Do not retreat from flying enemies: keep moving to the next platform. Follow active stage lessons.\n",
+            "criteria": {
+              "right_run": "Continue right without jump when falling or when no jump hazard is present.",
+              "right_run_jump": "Jump right when grounded with a nearby hazard, or sustain a rising jump."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T07:59:11.453923+00:00"
+    },
+    {
+      "stage": "2-1",
+      "attempt": 2,
+      "at": "2026-09-28T07:59:11.596619+00:00",
+      "profile": "2-1-r27-split-spring-notes",
+      "profile_url": "/data/campaign-research/profiles/2-1-002.json",
+      "profile_sha256": "fb34b747ca372b7eea6446635134a989461783eeaefde5060f30f3ae866cd2c3",
+      "source_sha256": "e90ff5f8d2b36eb8b882e6089dc680b4cca96854756c37af767867ced6958e9e",
+      "seconds": 181.98333333333332,
+      "decisions": 317,
+      "result": "failed",
+      "detail": "death; restarting 2-1 from its beginning.",
+      "clear_count": 4,
+      "final_x": 2816,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Choose one action. PRIORITY: if grounded and floor_gap_within_takeoff_distance is true, jump right. Otherwise if grounded and enemy_within_jump_distance is true, jump right. If grounded and wall_within_40px and wall_fits_headroom are both true, jump right. If rising, hold jump and run right. If falling, run right without jump. Otherwise run right without jump. Do not retreat from flying enemies: keep moving to the next platform. Follow active stage lessons.\n",
+            "criteria": {
+              "right_run": "Continue right without jump when falling or when no jump hazard is present.",
+              "right_run_jump": "Jump right when grounded with a nearby hazard, or sustain a rising jump."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T07:59:34.868712+00:00"
+    },
+    {
+      "stage": "2-1",
+      "attempt": 3,
+      "at": "2026-09-28T07:59:34.981328+00:00",
+      "profile": "2-1-r27-split-spring-notes",
+      "profile_url": "/data/campaign-research/profiles/2-1-003.json",
+      "profile_sha256": "fb34b747ca372b7eea6446635134a989461783eeaefde5060f30f3ae866cd2c3",
+      "source_sha256": "e90ff5f8d2b36eb8b882e6089dc680b4cca96854756c37af767867ced6958e9e",
+      "seconds": 203.25,
+      "decisions": 191,
+      "result": "interrupted",
+      "detail": "Worker restarted before this attempt completed.",
+      "clear_count": 4,
+      "final_x": 1682,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Choose one action. PRIORITY: if grounded and floor_gap_within_takeoff_distance is true, jump right. Otherwise if grounded and enemy_within_jump_distance is true, jump right. If grounded and wall_within_40px and wall_fits_headroom are both true, jump right. If rising, hold jump and run right. If falling, run right without jump. Otherwise run right without jump. Do not retreat from flying enemies: keep moving to the next platform. Follow active stage lessons.\n",
+            "criteria": {
+              "right_run": "Continue right without jump when falling or when no jump hazard is present.",
+              "right_run_jump": "Jump right when grounded with a nearby hazard, or sustain a rising jump."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      }
+    },
+    {
+      "stage": "2-1",
+      "attempt": 4,
+      "at": "2026-09-28T07:59:50.215816+00:00",
+      "profile": "2-1-r27-split-spring-notes",
+      "profile_url": "/data/campaign-research/profiles/2-1-004.json",
+      "profile_sha256": "fb34b747ca372b7eea6446635134a989461783eeaefde5060f30f3ae866cd2c3",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 216.53333333333333,
+      "decisions": 317,
+      "result": "failed",
+      "detail": "death; restarting 2-1 from its beginning.",
+      "clear_count": 4,
+      "final_x": 2816,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Choose one action. PRIORITY: if grounded and floor_gap_within_takeoff_distance is true, jump right. Otherwise if grounded and enemy_within_jump_distance is true, jump right. If grounded and wall_within_40px and wall_fits_headroom are both true, jump right. If rising, hold jump and run right. If falling, run right without jump. Otherwise run right without jump. Do not retreat from flying enemies: keep moving to the next platform. Follow active stage lessons.\n",
+            "criteria": {
+              "right_run": "Continue right without jump when falling or when no jump hazard is present.",
+              "right_run_jump": "Jump right when grounded with a nearby hazard, or sustain a rising jump."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:00:11.892933+00:00"
+    },
+    {
+      "stage": "2-1",
+      "attempt": 5,
+      "at": "2026-09-28T08:00:12.034545+00:00",
+      "profile": "2-1-r27-split-spring-notes",
+      "profile_url": "/data/campaign-research/profiles/2-1-005.json",
+      "profile_sha256": "fb34b747ca372b7eea6446635134a989461783eeaefde5060f30f3ae866cd2c3",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 237.8,
+      "decisions": 317,
+      "result": "failed",
+      "detail": "death; restarting 2-1 from its beginning.",
+      "clear_count": 4,
+      "final_x": 2816,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Choose one action. PRIORITY: if grounded and floor_gap_within_takeoff_distance is true, jump right. Otherwise if grounded and enemy_within_jump_distance is true, jump right. If grounded and wall_within_40px and wall_fits_headroom are both true, jump right. If rising, hold jump and run right. If falling, run right without jump. Otherwise run right without jump. Do not retreat from flying enemies: keep moving to the next platform. Follow active stage lessons.\n",
+            "criteria": {
+              "right_run": "Continue right without jump when falling or when no jump hazard is present.",
+              "right_run_jump": "Jump right when grounded with a nearby hazard, or sustain a rising jump."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:00:34.331186+00:00"
+    },
+    {
+      "stage": "2-1",
+      "attempt": 6,
+      "at": "2026-09-28T08:01:24.491144+00:00",
+      "profile": "campaign-2-1-focused-brake-r01",
+      "profile_url": "/data/campaign-research/profiles/2-1-006.json",
+      "profile_sha256": "3859f9f278793d02c8327e2a4dcbc0b2e95f1ac545b07f261ac6fe4ea75ffa79",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 259.06666666666666,
+      "decisions": 865,
+      "result": "cleared",
+      "detail": "2-1 cleared: game completion flag.",
+      "clear_count": 5,
+      "final_x": 3193,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Choose one action. PRIORITY: if grounded and floor_gap_within_takeoff_distance is true, jump right. Otherwise if grounded and enemy_within_jump_distance is true, jump right. If grounded and wall_within_40px and wall_fits_headroom are both true, jump right. If rising, hold jump and run right. If falling, run right without jump. Otherwise run right without jump. Do not retreat from flying enemies: keep moving to the next platform. Follow active stage lessons.\n",
+            "criteria": {
+              "right_run": "Continue right without jump when falling or when no jump hazard is present.",
+              "right_run_jump": "Jump right when grounded with a nearby hazard, or sustain a rising jump."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:02:27.046491+00:00"
+    },
+    {
+      "stage": "2-2",
+      "attempt": 1,
+      "at": "2026-09-28T08:02:27.208536+00:00",
+      "profile": "2-2-r14-exit-transition",
+      "profile_url": "/data/campaign-research/profiles/2-2-001.json",
+      "profile_sha256": "8b274db5ce5a06557f521c396a25b8c20f60adefa7bc56241b2bfd995aa1bf51",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 312.6166666666667,
+      "decisions": 480,
+      "result": "cleared",
+      "detail": "2-2 cleared: game completion flag.",
+      "clear_count": 6,
+      "final_x": 3161,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 82,
+          "grounded": false,
+          "motion": "airborne",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "This stage is UNDERWATER. Swim toward the exit on the right. If jump_held is true, choose right_run to release A. Otherwise, if feet_y is greater than80 choose right_run_jump to stroke upward. Otherwise choose right_run to swim right without ascending. Repeat strokes to stay near the top of the water.\n",
+            "criteria": {
+              "right_run_jump": "jump_held is false AND feet_y >80: swim upward and right.",
+              "right_run": "jump_held is true OR feet_y <=80: release A and move right."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:03:02.807513+00:00"
+    },
+    {
+      "stage": "2-3",
+      "attempt": 1,
+      "at": "2026-09-28T08:03:02.946140+00:00",
+      "profile": "2-3-r21-late-bridge",
+      "profile_url": "/data/campaign-research/profiles/2-3-001.json",
+      "profile_sha256": "0f5f8cdce016db1f730394045228e7df3ca4a492b7b97725bc273846574e324e",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 345.4,
+      "decisions": 320,
+      "result": "cleared",
+      "detail": "2-3 cleared: game completion flag.",
+      "clear_count": 7,
+      "final_x": 3593,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": true,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Is Mario falling? Answer using the motion field only.\n",
+            "criteria": {
+              "right_run": "Yes, motion is falling.",
+              "right_run_jump": "No, motion is grounded or rising or airborne."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:03:25.289547+00:00"
+    },
+    {
+      "stage": "2-4",
+      "attempt": 1,
+      "at": "2026-09-28T08:03:25.428512+00:00",
+      "profile": "2-4-r09-ledge-landing",
+      "profile_url": "/data/campaign-research/profiles/2-4-001.json",
+      "profile_sha256": "f6e2cda035541b588c93e22f82d29c928b4f6dc162595fbcee288dae3f64aa39",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 367.15,
+      "decisions": 237,
+      "result": "cleared",
+      "detail": "2-4 cleared: game completion flag.",
+      "clear_count": 8,
+      "final_x": 2262,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 112,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Is Mario falling? Answer using the motion field only.\n",
+            "criteria": {
+              "right_run": "Yes, motion is falling.",
+              "right_run_jump": "No, motion is grounded or rising or airborne."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:03:41.964798+00:00"
+    },
+    {
+      "stage": "3-1",
+      "attempt": 1,
+      "at": "2026-09-28T08:03:42.078980+00:00",
+      "profile": "3-1-r10-brake-before-stair-koopa",
+      "profile_url": "/data/campaign-research/profiles/3-1-001.json",
+      "profile_sha256": "f33027eac50e53ace69d4353edae355a3d22e44db43ba3fdc016f0a437e4b9ec",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 383.0833333333333,
+      "decisions": 348,
+      "result": "cleared",
+      "detail": "3-1 cleared: game completion flag.",
+      "clear_count": 9,
+      "final_x": 3193,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Is Mario falling? Answer using the motion field only.\n",
+            "criteria": {
+              "right_run": "Yes, motion is falling.",
+              "right_run_jump": "No, motion is grounded or rising or airborne."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:04:06.957033+00:00"
+    },
+    {
+      "stage": "3-2",
+      "attempt": 1,
+      "at": "2026-09-28T08:04:07.094257+00:00",
+      "profile": "3-2-r08-landing-reflection",
+      "profile_url": "/data/campaign-research/profiles/3-2-001.json",
+      "profile_sha256": "cb7d3405c627b379aa705c2327a0fdd2d5bf0e9d1444aff8e4bd043933b38190",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 406.1666666666667,
+      "decisions": 309,
+      "result": "cleared",
+      "detail": "3-2 cleared: game completion flag.",
+      "clear_count": 10,
+      "final_x": 3337,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Is Mario falling? Answer using the motion field only.\n",
+            "criteria": {
+              "right_run": "Yes, motion is falling.",
+              "right_run_jump": "No, motion is grounded or rising or airborne."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:04:28.950034+00:00"
+    },
+    {
+      "stage": "3-3",
+      "attempt": 1,
+      "at": "2026-09-28T08:04:29.089995+00:00",
+      "profile": "3-3-r10-takeoff-fix",
+      "profile_url": "/data/campaign-research/profiles/3-3-001.json",
+      "profile_sha256": "df14707dbf6eb62f7542f926e2acb4d43fd702e774227e353b30b25aee463095",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 427.1,
+      "decisions": 245,
+      "result": "cleared",
+      "detail": "3-3 cleared: game completion flag.",
+      "clear_count": 11,
+      "final_x": 2409,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Is Mario falling? Answer using the motion field only.\n",
+            "criteria": {
+              "right_run": "Yes, motion is falling.",
+              "right_run_jump": "No, motion is grounded or rising or airborne."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:04:46.045734+00:00"
+    },
+    {
+      "stage": "3-4",
+      "attempt": 1,
+      "at": "2026-09-28T08:04:46.185933+00:00",
+      "profile": "3-4-r11-endgame",
+      "profile_url": "/data/campaign-research/profiles/3-4-001.json",
+      "profile_sha256": "af34765615ecd748f1c23077c314c7a1a45578799b7779790bc8b6772a5c78f2",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 443.78333333333336,
+      "decisions": 268,
+      "result": "cleared",
+      "detail": "3-4 cleared: game completion flag.",
+      "clear_count": 12,
+      "final_x": 2245,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 112,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": 16,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Is Mario falling? Answer using the motion field only.\n",
+            "criteria": {
+              "right_run": "Yes, motion is falling.",
+              "right_run_jump": "No, motion is grounded or rising or airborne."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:05:05.349942+00:00"
+    },
+    {
+      "stage": "4-1",
+      "attempt": 1,
+      "at": "2026-09-28T08:05:05.489896+00:00",
+      "profile": "4-1-r11-endgame",
+      "profile_url": "/data/campaign-research/profiles/4-1-001.json",
+      "profile_sha256": "a95663cf968963339ee851ba8e742287decc24abb8fc977b8087b6e5e2b43a73",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 461.98333333333335,
+      "decisions": 367,
+      "result": "cleared",
+      "detail": "4-1 cleared: game completion flag.",
+      "clear_count": 13,
+      "final_x": 3593,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Choose one action. PRIORITY: if grounded and floor_gap_within_takeoff_distance is true, jump right. Otherwise if grounded and enemy_within_jump_distance is true, jump right. If grounded and wall_within_40px and wall_fits_headroom are both true, jump right. If rising, hold jump and run right. If falling, run right without jump. Otherwise run right without jump. Do not retreat from flying enemies: keep moving to the next platform. Follow active stage lessons.\n",
+            "criteria": {
+              "right_run": "Continue right without jump when falling or when no jump hazard is present.",
+              "right_run_jump": "Jump right when grounded with a nearby hazard, or sustain a rising jump."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:05:31.808285+00:00"
+    },
+    {
+      "stage": "4-2",
+      "attempt": 1,
+      "at": "2026-09-28T08:05:31.949606+00:00",
+      "profile": "4-2-r11-endgame",
+      "profile_url": "/data/campaign-research/profiles/4-2-001.json",
+      "profile_sha256": "eab9d4fe7e183e89da3d64682e6b5d428fbe94ab30a6d79408b7fb6ae5a3ed85",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 486.75,
+      "decisions": 362,
+      "result": "cleared",
+      "detail": "4-2 cleared: game completion flag.",
+      "clear_count": 14,
+      "final_x": 3161,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 83,
+          "grounded": false,
+          "motion": "airborne",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {
+            "approach-island": 0
+          }
+        },
+        "questions": {
+          "action": {
+            "instructions": "OVERRIDE: Is x less than151?",
+            "criteria": {
+              "right_run": "Yes, x is less than151.",
+              "right_run_jump": "No, x is151orhigher."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:05:57.594797+00:00"
+    },
+    {
+      "stage": "4-3",
+      "attempt": 1,
+      "at": "2026-09-28T08:05:57.731702+00:00",
+      "profile": "4-3-r10-short-hop-before-tall-step",
+      "profile_url": "/data/campaign-research/profiles/4-3-001.json",
+      "profile_sha256": "fa449626f6890b5f2b2a9ba72df96272ffba8d85427bd791f133d7d492447501",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 510.6,
+      "decisions": 226,
+      "result": "cleared",
+      "detail": "4-3 cleared: game completion flag.",
+      "clear_count": 15,
+      "final_x": 2345,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Is Mario falling? Answer using the motion field only.\n",
+            "criteria": {
+              "right_run": "Yes, motion is falling.",
+              "right_run_jump": "No, motion is grounded or rising or airborne."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:06:13.660518+00:00"
+    },
+    {
+      "stage": "4-4",
+      "attempt": 1,
+      "at": "2026-09-28T08:06:13.802585+00:00",
+      "profile": "4-4-r11-final-bubble",
+      "profile_url": "/data/campaign-research/profiles/4-4-001.json",
+      "profile_sha256": "4ea8abb88a52ea5ed194ae941b3dfc29092c5db38fdbb283992ad7058734bb07",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 526.0333333333333,
+      "decisions": 373,
+      "result": "cleared",
+      "detail": "4-4 cleared: game completion flag.",
+      "clear_count": 16,
+      "final_x": 2772,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 112,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": 16,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Choose one action. PRIORITY: if grounded and floor_gap_within_takeoff_distance is true, jump right. Otherwise if grounded and enemy_within_jump_distance is true, jump right. If grounded and wall_within_40px and wall_fits_headroom are both true, jump right. If rising, hold jump and run right. If falling, run right without jump. Otherwise run right without jump. Do not retreat from flying enemies: keep moving to the next platform. Follow active stage lessons.\n",
+            "criteria": {
+              "right_run": "Continue right without jump when falling or when no jump hazard is present.",
+              "right_run_jump": "Jump right when grounded with a nearby hazard, or sustain a rising jump."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:06:40.309024+00:00"
+    },
+    {
+      "stage": "5-1",
+      "attempt": 1,
+      "at": "2026-09-28T08:06:40.445634+00:00",
+      "profile": "5-1-r07-reflection",
+      "profile_url": "/data/campaign-research/profiles/5-1-001.json",
+      "profile_sha256": "f45736899591daa97d5613ff5fd100e2f0ef6df1d2679b20cfa3152acd322f03",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 551.0833333333334,
+      "decisions": 338,
+      "result": "cleared",
+      "detail": "5-1 cleared: game completion flag.",
+      "clear_count": 17,
+      "final_x": 3177,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Choose one action. PRIORITY: if grounded and floor_gap_within_takeoff_distance is true, jump right. Otherwise if grounded and enemy_within_jump_distance is true, jump right. If grounded and wall_within_40px and wall_fits_headroom are both true, jump right. If rising, hold jump and run right. If falling, run right without jump. Otherwise run right without jump. Do not retreat from flying enemies: keep moving to the next platform. Follow active stage lessons.\n",
+            "criteria": {
+              "right_run": "Continue right without jump when falling or when no jump hazard is present.",
+              "right_run_jump": "Jump right when grounded with a nearby hazard, or sustain a rising jump."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:07:04.668364+00:00"
+    },
+    {
+      "stage": "5-2",
+      "attempt": 1,
+      "at": "2026-09-28T08:07:04.810096+00:00",
+      "profile": "5-2-r07-reflection",
+      "profile_url": "/data/campaign-research/profiles/5-2-001.json",
+      "profile_sha256": "2fa425a51275241a1f1f1d2d53881376f50da2d028ee3d198d628d7330e2e276",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 573.95,
+      "decisions": 343,
+      "result": "cleared",
+      "detail": "5-2 cleared: game completion flag.",
+      "clear_count": 18,
+      "final_x": 3193,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": true,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Choose one action. PRIORITY: if grounded and floor_gap_within_takeoff_distance is true, jump right. Otherwise if grounded and enemy_within_jump_distance is true, jump right. If grounded and wall_within_40px and wall_fits_headroom are both true, jump right. If rising, hold jump and run right. If falling, run right without jump. Otherwise run right without jump. Do not retreat from flying enemies: keep moving to the next platform. Follow active stage lessons.\n",
+            "criteria": {
+              "right_run": "Continue right without jump when falling or when no jump hazard is present.",
+              "right_run_jump": "Jump right when grounded with a nearby hazard, or sustain a rising jump."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:07:29.064240+00:00"
+    },
+    {
+      "stage": "5-3",
+      "attempt": 1,
+      "at": "2026-09-28T08:07:29.205746+00:00",
+      "profile": "5-3-r16",
+      "profile_url": "/data/campaign-research/profiles/5-3-001.json",
+      "profile_sha256": "3ccb7253d5ae82d6ea819e7455dfea6cbdcfad0b0a21de1e26ed16ebed88ebd3",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 596.9833333333333,
+      "decisions": 183,
+      "result": "failed",
+      "detail": "death; restarting 5-3 from its beginning.",
+      "clear_count": 18,
+      "final_x": 1503,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Is Mario falling? Answer using the motion field only.\n",
+            "criteria": {
+              "right_run": "Yes, motion is falling.",
+              "right_run_jump": "No, motion is grounded or rising or airborne."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:07:41.849555+00:00"
+    },
+    {
+      "stage": "5-3",
+      "attempt": 2,
+      "at": "2026-09-28T08:07:41.987921+00:00",
+      "profile": "5-3-r16",
+      "profile_url": "/data/campaign-research/profiles/5-3-002.json",
+      "profile_sha256": "3ccb7253d5ae82d6ea819e7455dfea6cbdcfad0b0a21de1e26ed16ebed88ebd3",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 609.9,
+      "decisions": 183,
+      "result": "failed",
+      "detail": "death; restarting 5-3 from its beginning.",
+      "clear_count": 18,
+      "final_x": 1503,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Is Mario falling? Answer using the motion field only.\n",
+            "criteria": {
+              "right_run": "Yes, motion is falling.",
+              "right_run_jump": "No, motion is grounded or rising or airborne."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:07:55.706968+00:00"
+    },
+    {
+      "stage": "5-3",
+      "attempt": 3,
+      "at": "2026-09-28T08:07:55.847319+00:00",
+      "profile": "5-3-r16",
+      "profile_url": "/data/campaign-research/profiles/5-3-003.json",
+      "profile_sha256": "3ccb7253d5ae82d6ea819e7455dfea6cbdcfad0b0a21de1e26ed16ebed88ebd3",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 622.8166666666667,
+      "decisions": 183,
+      "result": "failed",
+      "detail": "death; restarting 5-3 from its beginning.",
+      "clear_count": 18,
+      "final_x": 1503,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Is Mario falling? Answer using the motion field only.\n",
+            "criteria": {
+              "right_run": "Yes, motion is falling.",
+              "right_run_jump": "No, motion is grounded or rising or airborne."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:08:08.663644+00:00"
+    },
+    {
+      "stage": "5-3",
+      "attempt": 4,
+      "at": "2026-09-28T08:08:08.803407+00:00",
+      "profile": "5-3-r16",
+      "profile_url": "/data/campaign-research/profiles/5-3-004.json",
+      "profile_sha256": "3ccb7253d5ae82d6ea819e7455dfea6cbdcfad0b0a21de1e26ed16ebed88ebd3",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 635.7333333333333,
+      "decisions": 183,
+      "result": "failed",
+      "detail": "death; restarting 5-3 from its beginning.",
+      "clear_count": 18,
+      "final_x": 1503,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Is Mario falling? Answer using the motion field only.\n",
+            "criteria": {
+              "right_run": "Yes, motion is falling.",
+              "right_run_jump": "No, motion is grounded or rising or airborne."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:08:21.553228+00:00"
+    },
+    {
+      "stage": "5-3",
+      "attempt": 5,
+      "at": "2026-09-28T08:08:21.664956+00:00",
+      "profile": "5-3-r16",
+      "profile_url": "/data/campaign-research/profiles/5-3-005.json",
+      "profile_sha256": "3ccb7253d5ae82d6ea819e7455dfea6cbdcfad0b0a21de1e26ed16ebed88ebd3",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 648.65,
+      "decisions": 285,
+      "result": "cleared",
+      "detail": "5-3 cleared: game completion flag.",
+      "clear_count": 19,
+      "final_x": 2425,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Is Mario falling? Answer using the motion field only.\n",
+            "criteria": {
+              "right_run": "Yes, motion is falling.",
+              "right_run_jump": "No, motion is grounded or rising or airborne."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:08:40.921129+00:00"
+    },
+    {
+      "stage": "5-4",
+      "attempt": 1,
+      "at": "2026-09-28T08:08:41.053605+00:00",
+      "profile": "5-4-r21",
+      "profile_url": "/data/campaign-research/profiles/5-4-001.json",
+      "profile_sha256": "ac2d487f7eead321092e1f20af1d2e4da219ae32ae93fe1b4304ad33ae0d19d6",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 668.1,
+      "decisions": 242,
+      "result": "cleared",
+      "detail": "5-4 cleared: game completion flag.",
+      "clear_count": 20,
+      "final_x": 2259,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 112,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": 16,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Is Mario falling? Answer using the motion field only.\n",
+            "criteria": {
+              "right_run": "Yes, motion is falling.",
+              "right_run_jump": "No, motion is grounded or rising or airborne."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:08:57.964124+00:00"
+    },
+    {
+      "stage": "6-1",
+      "attempt": 1,
+      "at": "2026-09-28T08:08:58.089031+00:00",
+      "profile": "6-1-r03-reflection",
+      "profile_url": "/data/campaign-research/profiles/6-1-001.json",
+      "profile_sha256": "47daaa104e3f3543ce0b8e342df2be1d7113f23387763dd0c182185abbab3d8f",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 684.3833333333333,
+      "decisions": 281,
+      "result": "cleared",
+      "detail": "6-1 cleared: game completion flag.",
+      "clear_count": 21,
+      "final_x": 2969,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Choose one action. PRIORITY: if grounded and floor_gap_within_takeoff_distance is true, jump right. Otherwise if grounded and enemy_within_jump_distance is true, jump right. If grounded and wall_within_40px and wall_fits_headroom are both true, jump right. If rising, hold jump and run right. If falling, run right without jump. Otherwise run right without jump. Do not retreat from flying enemies: keep moving to the next platform. Follow active stage lessons.\n",
+            "criteria": {
+              "right_run": "Continue right without jump when falling or when no jump hazard is present.",
+              "right_run_jump": "Jump right when grounded with a nearby hazard, or sustain a rising jump."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:09:17.848238+00:00"
+    },
+    {
+      "stage": "6-2",
+      "attempt": 1,
+      "at": "2026-09-28T08:09:17.988460+00:00",
+      "profile": "6-2-r27",
+      "profile_url": "/data/campaign-research/profiles/6-2-001.json",
+      "profile_sha256": "baabc323d83cec728da8025aebb48a4c14ea7ba6cc82e8d735fe74191fbfca77",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 703.65,
+      "decisions": 849,
+      "result": "failed",
+      "detail": "stalled; restarting 6-2 from its beginning.",
+      "clear_count": 21,
+      "final_x": 1378,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Choose one action. PRIORITY: if grounded and floor_gap_within_takeoff_distance is true, jump right. Otherwise if grounded and enemy_within_jump_distance is true, jump right. If grounded and wall_within_40px and wall_fits_headroom are both true, jump right. If rising, hold jump and run right. If falling, run right without jump. Otherwise run right without jump. Do not retreat from flying enemies: keep moving to the next platform. Follow active stage lessons.\n",
+            "criteria": {
+              "right_run": "Continue right without jump when falling or when no jump hazard is present.",
+              "right_run_jump": "Jump right when grounded with a nearby hazard, or sustain a rising jump."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:10:19.674414+00:00"
+    },
+    {
+      "stage": "6-2",
+      "attempt": 2,
+      "at": "2026-09-28T08:10:19.810898+00:00",
+      "profile": "6-2-r27",
+      "profile_url": "/data/campaign-research/profiles/6-2-002.json",
+      "profile_sha256": "baabc323d83cec728da8025aebb48a4c14ea7ba6cc82e8d735fe74191fbfca77",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 760.7166666666667,
+      "decisions": 849,
+      "result": "failed",
+      "detail": "stalled; restarting 6-2 from its beginning.",
+      "clear_count": 21,
+      "final_x": 1378,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Choose one action. PRIORITY: if grounded and floor_gap_within_takeoff_distance is true, jump right. Otherwise if grounded and enemy_within_jump_distance is true, jump right. If grounded and wall_within_40px and wall_fits_headroom are both true, jump right. If rising, hold jump and run right. If falling, run right without jump. Otherwise run right without jump. Do not retreat from flying enemies: keep moving to the next platform. Follow active stage lessons.\n",
+            "criteria": {
+              "right_run": "Continue right without jump when falling or when no jump hazard is present.",
+              "right_run_jump": "Jump right when grounded with a nearby hazard, or sustain a rising jump."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:11:21.964329+00:00"
+    },
+    {
+      "stage": "6-2",
+      "attempt": 3,
+      "at": "2026-09-28T08:11:22.103596+00:00",
+      "profile": "6-2-r27",
+      "profile_url": "/data/campaign-research/profiles/6-2-003.json",
+      "profile_sha256": "baabc323d83cec728da8025aebb48a4c14ea7ba6cc82e8d735fe74191fbfca77",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 817.7833333333333,
+      "decisions": 849,
+      "result": "failed",
+      "detail": "stalled; restarting 6-2 from its beginning.",
+      "clear_count": 21,
+      "final_x": 1378,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Choose one action. PRIORITY: if grounded and floor_gap_within_takeoff_distance is true, jump right. Otherwise if grounded and enemy_within_jump_distance is true, jump right. If grounded and wall_within_40px and wall_fits_headroom are both true, jump right. If rising, hold jump and run right. If falling, run right without jump. Otherwise run right without jump. Do not retreat from flying enemies: keep moving to the next platform. Follow active stage lessons.\n",
+            "criteria": {
+              "right_run": "Continue right without jump when falling or when no jump hazard is present.",
+              "right_run_jump": "Jump right when grounded with a nearby hazard, or sustain a rising jump."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:12:24.464551+00:00"
+    },
+    {
+      "stage": "6-2",
+      "attempt": 4,
+      "at": "2026-09-28T08:12:24.605452+00:00",
+      "profile": "campaign-6-2-r01-low-step-plant-phase",
+      "profile_url": "/data/campaign-research/profiles/6-2-004.json",
+      "profile_sha256": "bb4818f929f069fd9fd10b5d8bb2d4a1b9decd884382f289e3cd334e3332c405",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 874.85,
+      "decisions": 306,
+      "result": "failed",
+      "detail": "death; restarting 6-2 from its beginning.",
+      "clear_count": 21,
+      "final_x": 1775,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Choose one action. PRIORITY: if grounded and floor_gap_within_takeoff_distance is true, jump right. Otherwise if grounded and enemy_within_jump_distance is true, jump right. If grounded and wall_within_40px and wall_fits_headroom are both true, jump right. If rising, hold jump and run right. If falling, run right without jump. Otherwise run right without jump. Do not retreat from flying enemies: keep moving to the next platform. Follow active stage lessons.\n",
+            "criteria": {
+              "right_run": "Continue right without jump when falling or when no jump hazard is present.",
+              "right_run_jump": "Jump right when grounded with a nearby hazard, or sustain a rising jump."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:12:45.518537+00:00"
+    },
+    {
+      "stage": "6-2",
+      "attempt": 5,
+      "at": "2026-09-28T08:12:45.659593+00:00",
+      "profile": "campaign-6-2-r01-low-step-plant-phase",
+      "profile_url": "/data/campaign-research/profiles/6-2-005.json",
+      "profile_sha256": "bb4818f929f069fd9fd10b5d8bb2d4a1b9decd884382f289e3cd334e3332c405",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 895.55,
+      "decisions": 331,
+      "result": "failed",
+      "detail": "death; restarting 6-2 from its beginning.",
+      "clear_count": 21,
+      "final_x": 1778,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Choose one action. PRIORITY: if grounded and floor_gap_within_takeoff_distance is true, jump right. Otherwise if grounded and enemy_within_jump_distance is true, jump right. If grounded and wall_within_40px and wall_fits_headroom are both true, jump right. If rising, hold jump and run right. If falling, run right without jump. Otherwise run right without jump. Do not retreat from flying enemies: keep moving to the next platform. Follow active stage lessons.\n",
+            "criteria": {
+              "right_run": "Continue right without jump when falling or when no jump hazard is present.",
+              "right_run_jump": "Jump right when grounded with a nearby hazard, or sustain a rising jump."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:13:08.850229+00:00"
+    },
+    {
+      "stage": "6-2",
+      "attempt": 6,
+      "at": "2026-09-28T08:13:29.004586+00:00",
+      "profile": "campaign-6-2-r02-final-landing-release",
+      "profile_url": "/data/campaign-research/profiles/6-2-006.json",
+      "profile_sha256": "7a9e11797e47b0342ed43163a163e8caf76d6bb336c1cc01729731d0e90cc208",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 917.7833333333333,
+      "decisions": 518,
+      "result": "cleared",
+      "detail": "6-2 cleared: game completion flag.",
+      "clear_count": 22,
+      "final_x": 3449,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Choose one action. PRIORITY: if grounded and floor_gap_within_takeoff_distance is true, jump right. Otherwise if grounded and enemy_within_jump_distance is true, jump right. If grounded and wall_within_40px and wall_fits_headroom are both true, jump right. If rising, hold jump and run right. If falling, run right without jump. Otherwise run right without jump. Do not retreat from flying enemies: keep moving to the next platform. Follow active stage lessons.\n",
+            "criteria": {
+              "right_run": "Continue right without jump when falling or when no jump hazard is present.",
+              "right_run_jump": "Jump right when grounded with a nearby hazard, or sustain a rising jump."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:14:06.457795+00:00"
+    },
+    {
+      "stage": "6-3",
+      "attempt": 1,
+      "at": "2026-09-28T08:14:06.597120+00:00",
+      "profile": "6-3-r29",
+      "profile_url": "/data/campaign-research/profiles/6-3-001.json",
+      "profile_sha256": "ddd82d1e3197d4a4de9c2df4c4ab7a8315825946842d501500da88ee0e8bfcbb",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 952.0166666666667,
+      "decisions": 270,
+      "result": "cleared",
+      "detail": "6-3 cleared: game completion flag.",
+      "clear_count": 23,
+      "final_x": 2665,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Is Mario falling? Answer using the motion field only.\n",
+            "criteria": {
+              "right_run": "Yes, motion is falling.",
+              "right_run_jump": "No, motion is grounded or rising or airborne."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:14:25.364259+00:00"
+    },
+    {
+      "stage": "6-4",
+      "attempt": 1,
+      "at": "2026-09-28T08:14:25.494366+00:00",
+      "profile": "6-4-r33-under-bowser",
+      "profile_url": "/data/campaign-research/profiles/6-4-001.json",
+      "profile_sha256": "08b54dc4aeefe94f2760aab29e326c65118e043c8d71b5bc9017aec9faf80cdb",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 970.3,
+      "decisions": 243,
+      "result": "cleared",
+      "detail": "6-4 cleared: game completion flag.",
+      "clear_count": 24,
+      "final_x": 2259,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 112,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": 16,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Choose one action. PRIORITY: if grounded and floor_gap_within_takeoff_distance is true, jump right. Otherwise if grounded and enemy_within_jump_distance is true, jump right. If grounded and wall_within_40px and wall_fits_headroom are both true, jump right. If rising, hold jump and run right. If falling, run right without jump. Otherwise run right without jump. Do not retreat from flying enemies: keep moving to the next platform. Follow active stage lessons.\n",
+            "criteria": {
+              "right_run": "Continue right without jump when falling or when no jump hazard is present.",
+              "right_run_jump": "Jump right when grounded with a nearby hazard, or sustain a rising jump."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:14:42.322280+00:00"
+    },
+    {
+      "stage": "7-1",
+      "attempt": 1,
+      "at": "2026-09-28T08:14:42.462540+00:00",
+      "profile": "7-1-r12-runoverpipe",
+      "profile_url": "/data/campaign-research/profiles/7-1-001.json",
+      "profile_sha256": "e1b40794d720b130dc70358ce8508ff8cc8aaf13958836629cfe696681481bf9",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 987.0,
+      "decisions": 317,
+      "result": "cleared",
+      "detail": "7-1 cleared: game completion flag.",
+      "clear_count": 25,
+      "final_x": 2857,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Choose one action. PRIORITY: if grounded and floor_gap_within_takeoff_distance is true, jump right. Otherwise if grounded and enemy_within_jump_distance is true, jump right. If grounded and wall_within_40px and wall_fits_headroom are both true, jump right. If rising, hold jump and run right. If falling, run right without jump. Otherwise run right without jump. Do not retreat from flying enemies: keep moving to the next platform. Follow active stage lessons.\n",
+            "criteria": {
+              "right_run": "Continue right without jump when falling or when no jump hazard is present.",
+              "right_run_jump": "Jump right when grounded with a nearby hazard, or sustain a rising jump."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:15:04.668414+00:00"
+    },
+    {
+      "stage": "7-2",
+      "attempt": 1,
+      "at": "2026-09-28T08:15:04.830942+00:00",
+      "profile": "7-2-r20-early-exit-descent",
+      "profile_url": "/data/campaign-research/profiles/7-2-001.json",
+      "profile_sha256": "d0bca8122b09f634dc843a70f2b0a2da136cb57e0cbeb9db2e1ec84e6e9a6686",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 1008.4,
+      "decisions": 450,
+      "result": "failed",
+      "detail": "death; restarting 7-2 from its beginning.",
+      "clear_count": 25,
+      "final_x": 2998,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 82,
+          "grounded": false,
+          "motion": "airborne",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "This stage is UNDERWATER. Swim toward the exit on the right. If jump_held is true, choose right_run to release A. Otherwise, if feet_y is greater than80 choose right_run_jump to stroke upward. Otherwise choose right_run to swim right without ascending. Repeat strokes to stay near the top of the water.\n",
+            "criteria": {
+              "right_run_jump": "jump_held is false AND feet_y >80: swim upward and right.",
+              "right_run": "jump_held is true OR feet_y <=80: release A and move right."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:15:37.216829+00:00"
+    },
+    {
+      "stage": "7-2",
+      "attempt": 2,
+      "at": "2026-09-28T08:15:37.350390+00:00",
+      "profile": "7-2-r20-early-exit-descent",
+      "profile_url": "/data/campaign-research/profiles/7-2-002.json",
+      "profile_sha256": "d0bca8122b09f634dc843a70f2b0a2da136cb57e0cbeb9db2e1ec84e6e9a6686",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 1039.3333333333333,
+      "decisions": 450,
+      "result": "failed",
+      "detail": "death; restarting 7-2 from its beginning.",
+      "clear_count": 25,
+      "final_x": 2998,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 82,
+          "grounded": false,
+          "motion": "airborne",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "This stage is UNDERWATER. Swim toward the exit on the right. If jump_held is true, choose right_run to release A. Otherwise, if feet_y is greater than80 choose right_run_jump to stroke upward. Otherwise choose right_run to swim right without ascending. Repeat strokes to stay near the top of the water.\n",
+            "criteria": {
+              "right_run_jump": "jump_held is false AND feet_y >80: swim upward and right.",
+              "right_run": "jump_held is true OR feet_y <=80: release A and move right."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:16:10.378708+00:00"
+    },
+    {
+      "stage": "7-2",
+      "attempt": 3,
+      "at": "2026-09-28T08:16:10.543173+00:00",
+      "profile": "7-2-r20-early-exit-descent",
+      "profile_url": "/data/campaign-research/profiles/7-2-003.json",
+      "profile_sha256": "d0bca8122b09f634dc843a70f2b0a2da136cb57e0cbeb9db2e1ec84e6e9a6686",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 1070.2666666666667,
+      "decisions": 450,
+      "result": "failed",
+      "detail": "death; restarting 7-2 from its beginning.",
+      "clear_count": 25,
+      "final_x": 2998,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 82,
+          "grounded": false,
+          "motion": "airborne",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "This stage is UNDERWATER. Swim toward the exit on the right. If jump_held is true, choose right_run to release A. Otherwise, if feet_y is greater than80 choose right_run_jump to stroke upward. Otherwise choose right_run to swim right without ascending. Repeat strokes to stay near the top of the water.\n",
+            "criteria": {
+              "right_run_jump": "jump_held is false AND feet_y >80: swim upward and right.",
+              "right_run": "jump_held is true OR feet_y <=80: release A and move right."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:16:46.274496+00:00"
+    },
+    {
+      "stage": "7-2",
+      "attempt": 4,
+      "at": "2026-09-28T08:16:46.408979+00:00",
+      "profile": "7-2-r20-early-exit-descent",
+      "profile_url": "/data/campaign-research/profiles/7-2-004.json",
+      "profile_sha256": "d0bca8122b09f634dc843a70f2b0a2da136cb57e0cbeb9db2e1ec84e6e9a6686",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 1101.2,
+      "decisions": 450,
+      "result": "failed",
+      "detail": "death; restarting 7-2 from its beginning.",
+      "clear_count": 25,
+      "final_x": 2998,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 82,
+          "grounded": false,
+          "motion": "airborne",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "This stage is UNDERWATER. Swim toward the exit on the right. If jump_held is true, choose right_run to release A. Otherwise, if feet_y is greater than80 choose right_run_jump to stroke upward. Otherwise choose right_run to swim right without ascending. Repeat strokes to stay near the top of the water.\n",
+            "criteria": {
+              "right_run_jump": "jump_held is false AND feet_y >80: swim upward and right.",
+              "right_run": "jump_held is true OR feet_y <=80: release A and move right."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:17:18.373578+00:00"
+    },
+    {
+      "stage": "7-2",
+      "attempt": 5,
+      "at": "2026-09-28T08:17:18.517843+00:00",
+      "profile": "campaign-7-2-r01-water-exit-stroke",
+      "profile_url": "/data/campaign-research/profiles/7-2-005.json",
+      "profile_sha256": "d83d32f08231f5d4b13a9899072bfbebc87a8e54307a26d66ea89d0437f28892",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 1132.1333333333334,
+      "decisions": 492,
+      "result": "cleared",
+      "detail": "7-2 cleared: game completion flag.",
+      "clear_count": 26,
+      "final_x": 3161,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 82,
+          "grounded": false,
+          "motion": "airborne",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "This stage is UNDERWATER. Swim toward the exit on the right. If jump_held is true, choose right_run to release A. Otherwise, if feet_y is greater than80 choose right_run_jump to stroke upward. Otherwise choose right_run to swim right without ascending. Repeat strokes to stay near the top of the water.\n",
+            "criteria": {
+              "right_run_jump": "jump_held is false AND feet_y >80: swim upward and right.",
+              "right_run": "jump_held is true OR feet_y <=80: release A and move right."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:17:53.158885+00:00"
+    },
+    {
+      "stage": "7-3",
+      "attempt": 1,
+      "at": "2026-09-28T08:17:53.271975+00:00",
+      "profile": "7-3-r08-latehop4",
+      "profile_url": "/data/campaign-research/profiles/7-3-001.json",
+      "profile_sha256": "9876138fe139b51c1d2eee279bdbb98cedf6637835e0afdfbe32409db8876570",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 1165.6666666666667,
+      "decisions": 319,
+      "result": "cleared",
+      "detail": "7-3 cleared: game completion flag.",
+      "clear_count": 27,
+      "final_x": 3593,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": true,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Is Mario falling? Answer using the motion field only.\n",
+            "criteria": {
+              "right_run": "Yes, motion is falling.",
+              "right_run_jump": "No, motion is grounded or rising or airborne."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:18:15.290251+00:00"
+    },
+    {
+      "stage": "7-4",
+      "attempt": 1,
+      "at": "2026-09-28T08:18:15.403057+00:00",
+      "profile": "7-4-r24-rununderbowser",
+      "profile_url": "/data/campaign-research/profiles/7-4-001.json",
+      "profile_sha256": "ae72a17afa2473650b02063a0bb1e6b346ae2f7427bac50a28c75dad9e5dd4a7",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 1187.2666666666667,
+      "decisions": 418,
+      "result": "cleared",
+      "detail": "7-4 cleared: game completion flag.",
+      "clear_count": 28,
+      "final_x": 3286,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 112,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": 16,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Choose one action. PRIORITY: if grounded and floor_gap_within_takeoff_distance is true, jump right. Otherwise if grounded and enemy_within_jump_distance is true, jump right. If grounded and wall_within_40px and wall_fits_headroom are both true, jump right. If rising, hold jump and run right. If falling, run right without jump. Otherwise run right without jump. Do not retreat from flying enemies: keep moving to the next platform. Follow active stage lessons.\n",
+            "criteria": {
+              "right_run": "Continue right without jump when falling or when no jump hazard is present.",
+              "right_run_jump": "Jump right when grounded with a nearby hazard, or sustain a rising jump."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:18:44.682083+00:00"
+    },
+    {
+      "stage": "8-1",
+      "attempt": 1,
+      "at": "2026-09-28T08:18:44.819179+00:00",
+      "profile": "8-1-r15-broken-stair-brake-5800",
+      "profile_url": "/data/campaign-research/profiles/8-1-001.json",
+      "profile_sha256": "d3200c644c27d111611531be8e23cd240c28eb03eea0dad179acf5ca5d64757d",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 1215.2,
+      "decisions": 655,
+      "result": "cleared",
+      "detail": "8-1 cleared: game completion flag.",
+      "clear_count": 29,
+      "final_x": 6009,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Is Mario falling? Answer using the motion field only.\n",
+            "criteria": {
+              "right_run": "Yes, motion is falling.",
+              "right_run_jump": "No, motion is grounded or rising or airborne."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:19:28.091038+00:00"
+    },
+    {
+      "stage": "8-2",
+      "attempt": 1,
+      "at": "2026-09-28T08:19:28.234845+00:00",
+      "profile": "8-2-r14-koopa-wait-40",
+      "profile_url": "/data/campaign-research/profiles/8-2-001.json",
+      "profile_sha256": "1e0ddd7acc80407cf0079f21f9b0dc464a661d80517a2eec7e9f78b172955d8b",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 1258.3333333333333,
+      "decisions": 420,
+      "result": "cleared",
+      "detail": "8-2 cleared: game completion flag.",
+      "clear_count": 30,
+      "final_x": 3449,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Is Mario falling? Answer using the motion field only.\n",
+            "criteria": {
+              "right_run": "Yes, motion is falling.",
+              "right_run_jump": "No, motion is grounded or rising or airborne."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:19:57.640696+00:00"
+    },
+    {
+      "stage": "8-3",
+      "attempt": 1,
+      "at": "2026-09-28T08:19:57.753129+00:00",
+      "profile": "8-3-r05-second-pipe",
+      "profile_url": "/data/campaign-research/profiles/8-3-001.json",
+      "profile_sha256": "0d2812202a85fa2420e52bb7ac7c00fbd716801ed0fabb9c825bd7ebfbe8e32d",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 1286.2,
+      "decisions": 372,
+      "result": "cleared",
+      "detail": "8-3 cleared: game completion flag.",
+      "clear_count": 31,
+      "final_x": 3417,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 208,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "note_elapsed_frames": {}
+        },
+        "questions": {
+          "action": {
+            "instructions": "Is Mario falling? Answer using the motion field only.\n",
+            "criteria": {
+              "right_run": "Yes, motion is falling.",
+              "right_run_jump": "No, motion is grounded or rising or airborne."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:20:23.642082+00:00"
+    },
+    {
+      "stage": "8-4",
+      "attempt": 1,
+      "at": "2026-09-28T08:20:23.784783+00:00",
+      "profile": "stage-8-4-r82-matched-final-phase",
+      "profile_url": "/data/campaign-research/profiles/8-4-001.json",
+      "profile_sha256": "978e2352237e249724ff2bccbfc59b24ef14dcdfbb83c6d0e92a2f8f77e8d217",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 1311.1,
+      "decisions": 537,
+      "result": "failed",
+      "detail": "death; restarting 8-4 from its beginning.",
+      "clear_count": 31,
+      "final_x": 2391,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 112,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "room": {
+            "area_data_address": 41980,
+            "area_type": 3
+          },
+          "note_elapsed_frames": {
+            "lower-step": 0
+          }
+        },
+        "questions": {
+          "action": {
+            "instructions": "Walk down the initial stairs before jumping. Jump right if motion is rising, or if grounded and feet_y >=160. Otherwise walk right without run or jump.",
+            "criteria": {
+              "right_run_jump": "Rising, OR grounded with feet_y >=160: jump right.",
+              "right": "Otherwise: walk right with no run or jump."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:21:00.060454+00:00"
+    },
+    {
+      "stage": "8-4",
+      "attempt": 2,
+      "at": "2026-09-28T08:21:00.201051+00:00",
+      "profile": "stage-8-4-r82-matched-final-phase",
+      "profile_url": "/data/campaign-research/profiles/8-4-002.json",
+      "profile_sha256": "978e2352237e249724ff2bccbfc59b24ef14dcdfbb83c6d0e92a2f8f77e8d217",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 1329.8166666666666,
+      "decisions": 537,
+      "result": "failed",
+      "detail": "death; restarting 8-4 from its beginning.",
+      "clear_count": 31,
+      "final_x": 2391,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 112,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "room": {
+            "area_data_address": 41980,
+            "area_type": 3
+          },
+          "note_elapsed_frames": {
+            "lower-step": 0
+          }
+        },
+        "questions": {
+          "action": {
+            "instructions": "Walk down the initial stairs before jumping. Jump right if motion is rising, or if grounded and feet_y >=160. Otherwise walk right without run or jump.",
+            "criteria": {
+              "right_run_jump": "Rising, OR grounded with feet_y >=160: jump right.",
+              "right": "Otherwise: walk right with no run or jump."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:21:39.821321+00:00"
+    },
+    {
+      "stage": "8-4",
+      "attempt": 3,
+      "at": "2026-09-28T08:21:39.966095+00:00",
+      "profile": "stage-8-4-r82-matched-final-phase",
+      "profile_url": "/data/campaign-research/profiles/8-4-003.json",
+      "profile_sha256": "978e2352237e249724ff2bccbfc59b24ef14dcdfbb83c6d0e92a2f8f77e8d217",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 1348.5333333333333,
+      "decisions": 537,
+      "result": "failed",
+      "detail": "death; restarting 8-4 from its beginning.",
+      "clear_count": 31,
+      "final_x": 2391,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 112,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "room": {
+            "area_data_address": 41980,
+            "area_type": 3
+          },
+          "note_elapsed_frames": {
+            "lower-step": 0
+          }
+        },
+        "questions": {
+          "action": {
+            "instructions": "Walk down the initial stairs before jumping. Jump right if motion is rising, or if grounded and feet_y >=160. Otherwise walk right without run or jump.",
+            "criteria": {
+              "right_run_jump": "Rising, OR grounded with feet_y >=160: jump right.",
+              "right": "Otherwise: walk right with no run or jump."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:22:19.286194+00:00"
+    },
+    {
+      "stage": "8-4",
+      "attempt": 4,
+      "at": "2026-09-28T08:22:19.400061+00:00",
+      "profile": "stage-8-4-r82-matched-final-phase",
+      "profile_url": "/data/campaign-research/profiles/8-4-004.json",
+      "profile_sha256": "978e2352237e249724ff2bccbfc59b24ef14dcdfbb83c6d0e92a2f8f77e8d217",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 1367.25,
+      "decisions": 537,
+      "result": "failed",
+      "detail": "death; restarting 8-4 from its beginning.",
+      "clear_count": 31,
+      "final_x": 2391,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 112,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "room": {
+            "area_data_address": 41980,
+            "area_type": 3
+          },
+          "note_elapsed_frames": {
+            "lower-step": 0
+          }
+        },
+        "questions": {
+          "action": {
+            "instructions": "Walk down the initial stairs before jumping. Jump right if motion is rising, or if grounded and feet_y >=160. Otherwise walk right without run or jump.",
+            "criteria": {
+              "right_run_jump": "Rising, OR grounded with feet_y >=160: jump right.",
+              "right": "Otherwise: walk right with no run or jump."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:22:58.479615+00:00"
+    },
+    {
+      "stage": "8-4",
+      "attempt": 5,
+      "at": "2026-09-28T08:22:58.623619+00:00",
+      "profile": "stage-8-4-r82-matched-final-phase",
+      "profile_url": "/data/campaign-research/profiles/8-4-005.json",
+      "profile_sha256": "978e2352237e249724ff2bccbfc59b24ef14dcdfbb83c6d0e92a2f8f77e8d217",
+      "source_sha256": "dc43a66bbb8c26dcc2c5b57889fb7c1abe0dea7c4790b2cb9527fe89db94feb2",
+      "seconds": 1385.9666666666667,
+      "decisions": 1262,
+      "result": "cleared",
+      "detail": "8-4 cleared: final axe completion flag.",
+      "clear_count": 32,
+      "final_x": 4805,
+      "first_request": {
+        "state": {
+          "x": 40,
+          "feet_y": 112,
+          "grounded": true,
+          "motion": "grounded",
+          "horizontal_speed": null,
+          "jump_held": false,
+          "enemy_ahead": null,
+          "enemy_within_jump_distance": false,
+          "enemy_above_within_48px": false,
+          "enemy_above_within_braking_distance": false,
+          "jump_elapsed_frames": 0,
+          "wall_within_40px": false,
+          "wall_fits_headroom": false,
+          "headroom_px": null,
+          "floor_gap_within_takeoff_distance": false,
+          "last_action": null,
+          "retreat_origin_support_feet_y": null,
+          "room": {
+            "area_data_address": 41980,
+            "area_type": 3
+          },
+          "note_elapsed_frames": {
+            "lower-step": 0
+          }
+        },
+        "questions": {
+          "action": {
+            "instructions": "Walk down the initial stairs before jumping. Jump right if motion is rising, or if grounded and feet_y >=160. Otherwise walk right without run or jump.",
+            "criteria": {
+              "right_run_jump": "Rising, OR grounded with feet_y >=160: jump right.",
+              "right": "Otherwise: walk right with no run or jump."
+            }
+          }
+        },
+        "inference": {
+          "samples": 1,
+          "seed": 0,
+          "steps": 1
+        }
+      },
+      "end_at": "2026-09-28T08:24:25.142700+00:00"
+    }
+  ],
+  "events": [
+    {
+      "at": "2026-09-28T07:54:21.544473+00:00",
+      "kind": "stage_start",
+      "stage": "1-1",
+      "attempt": 1,
+      "message": "Live DJev attempt 1 on 1-1."
+    },
+    {
+      "at": "2026-09-28T07:54:25.718830+00:00",
+      "kind": "error",
+      "stage": "1-1",
+      "attempt": 1,
+      "message": "TypeSafeInternalServerError: POST http://127.0.0.1:18515/v1/systemone: 502 upstream 400: {\"error\":{\"message\":\"This model's maximum context length is 4096 tokens. However, you requested 10 output tokens and your prompt contains at least 4087 input tokens, for a total of at least 4097 tokens. Please reduce the length of the input prompt or the number of requested output tokens. (parameter"
+    },
+    {
+      "at": "2026-09-28T07:54:56.125240+00:00",
+      "kind": "stage_start",
+      "stage": "1-1",
+      "attempt": 2,
+      "message": "Live DJev attempt 2 on 1-1."
+    },
+    {
+      "at": "2026-09-28T07:55:00.515051+00:00",
+      "kind": "error",
+      "stage": "1-1",
+      "attempt": 2,
+      "message": "TypeSafeInternalServerError: POST http://127.0.0.1:18516/v1/systemone: 502 upstream 400: {\"error\":{\"message\":\"This model's maximum context length is 4096 tokens. However, you requested 10 output tokens and your prompt contains at least 4087 input tokens, for a total of at least 4097 tokens. Please reduce the length of the input prompt or the number of requested output tokens. (parameter"
+    },
+    {
+      "at": "2026-09-28T07:55:25.531820+00:00",
+      "kind": "stage_start",
+      "stage": "1-1",
+      "attempt": 3,
+      "message": "Live DJev attempt 3 on 1-1."
+    },
+    {
+      "at": "2026-09-28T07:55:48.130123+00:00",
+      "kind": "stage_failure",
+      "stage": "1-1",
+      "attempt": 3,
+      "message": "death; restarting 1-1 from its beginning."
+    },
+    {
+      "at": "2026-09-28T07:55:48.248499+00:00",
+      "kind": "stage_start",
+      "stage": "1-1",
+      "attempt": 4,
+      "message": "Live DJev attempt 4 on 1-1."
+    },
+    {
+      "at": "2026-09-28T07:56:10.082199+00:00",
+      "kind": "stage_failure",
+      "stage": "1-1",
+      "attempt": 4,
+      "message": "death; restarting 1-1 from its beginning."
+    },
+    {
+      "at": "2026-09-28T07:56:10.224837+00:00",
+      "kind": "stage_start",
+      "stage": "1-1",
+      "attempt": 5,
+      "message": "Live DJev attempt 5 on 1-1."
+    },
+    {
+      "at": "2026-09-28T07:56:54.217750+00:00",
+      "kind": "stage_clear",
+      "stage": "1-1",
+      "attempt": 5,
+      "message": "1-1 cleared: game completion flag."
+    },
+    {
+      "at": "2026-09-28T07:56:54.338518+00:00",
+      "kind": "stage_start",
+      "stage": "1-2",
+      "attempt": 1,
+      "message": "Live DJev attempt 1 on 1-2."
+    },
+    {
+      "at": "2026-09-28T07:57:24.657358+00:00",
+      "kind": "stage_clear",
+      "stage": "1-2",
+      "attempt": 1,
+      "message": "1-2 cleared: game completion flag."
+    },
+    {
+      "at": "2026-09-28T07:57:24.801048+00:00",
+      "kind": "stage_start",
+      "stage": "1-3",
+      "attempt": 1,
+      "message": "Live DJev attempt 1 on 1-3."
+    },
+    {
+      "at": "2026-09-28T07:57:37.027266+00:00",
+      "kind": "stage_failure",
+      "stage": "1-3",
+      "attempt": 1,
+      "message": "death; restarting 1-3 from its beginning."
+    },
+    {
+      "at": "2026-09-28T07:57:37.169939+00:00",
+      "kind": "stage_start",
+      "stage": "1-3",
+      "attempt": 2,
+      "message": "Live DJev attempt 2 on 1-3."
+    },
+    {
+      "at": "2026-09-28T07:57:49.167490+00:00",
+      "kind": "stage_failure",
+      "stage": "1-3",
+      "attempt": 2,
+      "message": "death; restarting 1-3 from its beginning."
+    },
+    {
+      "at": "2026-09-28T07:57:49.309455+00:00",
+      "kind": "stage_start",
+      "stage": "1-3",
+      "attempt": 3,
+      "message": "Live DJev attempt 3 on 1-3."
+    },
+    {
+      "at": "2026-09-28T07:58:01.238080+00:00",
+      "kind": "stage_failure",
+      "stage": "1-3",
+      "attempt": 3,
+      "message": "death; restarting 1-3 from its beginning."
+    },
+    {
+      "at": "2026-09-28T07:58:01.374270+00:00",
+      "kind": "stage_start",
+      "stage": "1-3",
+      "attempt": 4,
+      "message": "Live DJev attempt 4 on 1-3."
+    },
+    {
+      "at": "2026-09-28T07:58:13.174512+00:00",
+      "kind": "stage_failure",
+      "stage": "1-3",
+      "attempt": 4,
+      "message": "death; restarting 1-3 from its beginning."
+    },
+    {
+      "at": "2026-09-28T07:58:13.315558+00:00",
+      "kind": "stage_start",
+      "stage": "1-3",
+      "attempt": 5,
+      "message": "Live DJev attempt 5 on 1-3."
+    },
+    {
+      "at": "2026-09-28T07:58:31.773879+00:00",
+      "kind": "stage_clear",
+      "stage": "1-3",
+      "attempt": 5,
+      "message": "1-3 cleared: game completion flag."
+    },
+    {
+      "at": "2026-09-28T07:58:31.914277+00:00",
+      "kind": "stage_start",
+      "stage": "1-4",
+      "attempt": 1,
+      "message": "Live DJev attempt 1 on 1-4."
+    },
+    {
+      "at": "2026-09-28T07:58:48.314977+00:00",
+      "kind": "stage_clear",
+      "stage": "1-4",
+      "attempt": 1,
+      "message": "1-4 cleared: game completion flag."
+    },
+    {
+      "at": "2026-09-28T07:58:48.457484+00:00",
+      "kind": "stage_start",
+      "stage": "2-1",
+      "attempt": 1,
+      "message": "Live DJev attempt 1 on 2-1."
+    },
+    {
+      "at": "2026-09-28T07:59:11.453923+00:00",
+      "kind": "stage_failure",
+      "stage": "2-1",
+      "attempt": 1,
+      "message": "death; restarting 2-1 from its beginning."
+    },
+    {
+      "at": "2026-09-28T07:59:11.596619+00:00",
+      "kind": "stage_start",
+      "stage": "2-1",
+      "attempt": 2,
+      "message": "Live DJev attempt 2 on 2-1."
+    },
+    {
+      "at": "2026-09-28T07:59:34.868712+00:00",
+      "kind": "stage_failure",
+      "stage": "2-1",
+      "attempt": 2,
+      "message": "death; restarting 2-1 from its beginning."
+    },
+    {
+      "at": "2026-09-28T07:59:34.981328+00:00",
+      "kind": "stage_start",
+      "stage": "2-1",
+      "attempt": 3,
+      "message": "Live DJev attempt 3 on 2-1."
+    },
+    {
+      "at": "2026-09-28T07:59:50.215816+00:00",
+      "kind": "stage_start",
+      "stage": "2-1",
+      "attempt": 4,
+      "message": "Live DJev attempt 4 on 2-1."
+    },
+    {
+      "at": "2026-09-28T08:00:11.892933+00:00",
+      "kind": "stage_failure",
+      "stage": "2-1",
+      "attempt": 4,
+      "message": "death; restarting 2-1 from its beginning."
+    },
+    {
+      "at": "2026-09-28T08:00:12.034545+00:00",
+      "kind": "stage_start",
+      "stage": "2-1",
+      "attempt": 5,
+      "message": "Live DJev attempt 5 on 2-1."
+    },
+    {
+      "at": "2026-09-28T08:00:34.331186+00:00",
+      "kind": "stage_failure",
+      "stage": "2-1",
+      "attempt": 5,
+      "message": "death; restarting 2-1 from its beginning."
+    },
+    {
+      "at": "2026-09-28T08:00:34.331230+00:00",
+      "kind": "reflection_needed",
+      "stage": "2-1",
+      "attempt": 5,
+      "message": "5 failed attempts; review traces and supply a revised profile or explicit continue command."
+    },
+    {
+      "at": "2026-09-28T08:01:24.339840+00:00",
+      "kind": "reflection_resumed",
+      "stage": "2-1",
+      "attempt": 5,
+      "message": "Supervisor supplied a revision or approved the next batch."
+    },
+    {
+      "at": "2026-09-28T08:01:24.491144+00:00",
+      "kind": "stage_start",
+      "stage": "2-1",
+      "attempt": 6,
+      "message": "Live DJev attempt 6 on 2-1."
+    },
+    {
+      "at": "2026-09-28T08:02:27.046491+00:00",
+      "kind": "stage_clear",
+      "stage": "2-1",
+      "attempt": 6,
+      "message": "2-1 cleared: game completion flag."
+    },
+    {
+      "at": "2026-09-28T08:02:27.208536+00:00",
+      "kind": "stage_start",
+      "stage": "2-2",
+      "attempt": 1,
+      "message": "Live DJev attempt 1 on 2-2."
+    },
+    {
+      "at": "2026-09-28T08:03:02.807513+00:00",
+      "kind": "stage_clear",
+      "stage": "2-2",
+      "attempt": 1,
+      "message": "2-2 cleared: game completion flag."
+    },
+    {
+      "at": "2026-09-28T08:03:02.946140+00:00",
+      "kind": "stage_start",
+      "stage": "2-3",
+      "attempt": 1,
+      "message": "Live DJev attempt 1 on 2-3."
+    },
+    {
+      "at": "2026-09-28T08:03:25.289547+00:00",
+      "kind": "stage_clear",
+      "stage": "2-3",
+      "attempt": 1,
+      "message": "2-3 cleared: game completion flag."
+    },
+    {
+      "at": "2026-09-28T08:03:25.428512+00:00",
+      "kind": "stage_start",
+      "stage": "2-4",
+      "attempt": 1,
+      "message": "Live DJev attempt 1 on 2-4."
+    },
+    {
+      "at": "2026-09-28T08:03:41.964798+00:00",
+      "kind": "stage_clear",
+      "stage": "2-4",
+      "attempt": 1,
+      "message": "2-4 cleared: game completion flag."
+    },
+    {
+      "at": "2026-09-28T08:03:42.078980+00:00",
+      "kind": "stage_start",
+      "stage": "3-1",
+      "attempt": 1,
+      "message": "Live DJev attempt 1 on 3-1."
+    },
+    {
+      "at": "2026-09-28T08:04:06.957033+00:00",
+      "kind": "stage_clear",
+      "stage": "3-1",
+      "attempt": 1,
+      "message": "3-1 cleared: game completion flag."
+    },
+    {
+      "at": "2026-09-28T08:04:07.094257+00:00",
+      "kind": "stage_start",
+      "stage": "3-2",
+      "attempt": 1,
+      "message": "Live DJev attempt 1 on 3-2."
+    },
+    {
+      "at": "2026-09-28T08:04:28.950034+00:00",
+      "kind": "stage_clear",
+      "stage": "3-2",
+      "attempt": 1,
+      "message": "3-2 cleared: game completion flag."
+    },
+    {
+      "at": "2026-09-28T08:04:29.089995+00:00",
+      "kind": "stage_start",
+      "stage": "3-3",
+      "attempt": 1,
+      "message": "Live DJev attempt 1 on 3-3."
+    },
+    {
+      "at": "2026-09-28T08:04:46.045734+00:00",
+      "kind": "stage_clear",
+      "stage": "3-3",
+      "attempt": 1,
+      "message": "3-3 cleared: game completion flag."
+    },
+    {
+      "at": "2026-09-28T08:04:46.185933+00:00",
+      "kind": "stage_start",
+      "stage": "3-4",
+      "attempt": 1,
+      "message": "Live DJev attempt 1 on 3-4."
+    },
+    {
+      "at": "2026-09-28T08:05:05.349942+00:00",
+      "kind": "stage_clear",
+      "stage": "3-4",
+      "attempt": 1,
+      "message": "3-4 cleared: game completion flag."
+    },
+    {
+      "at": "2026-09-28T08:05:05.489896+00:00",
+      "kind": "stage_start",
+      "stage": "4-1",
+      "attempt": 1,
+      "message": "Live DJev attempt 1 on 4-1."
+    },
+    {
+      "at": "2026-09-28T08:05:31.808285+00:00",
+      "kind": "stage_clear",
+      "stage": "4-1",
+      "attempt": 1,
+      "message": "4-1 cleared: game completion flag."
+    },
+    {
+      "at": "2026-09-28T08:05:31.949606+00:00",
+      "kind": "stage_start",
+      "stage": "4-2",
+      "attempt": 1,
+      "message": "Live DJev attempt 1 on 4-2."
+    },
+    {
+      "at": "2026-09-28T08:05:57.594797+00:00",
+      "kind": "stage_clear",
+      "stage": "4-2",
+      "attempt": 1,
+      "message": "4-2 cleared: game completion flag."
+    },
+    {
+      "at": "2026-09-28T08:05:57.731702+00:00",
+      "kind": "stage_start",
+      "stage": "4-3",
+      "attempt": 1,
+      "message": "Live DJev attempt 1 on 4-3."
+    },
+    {
+      "at": "2026-09-28T08:06:13.660518+00:00",
+      "kind": "stage_clear",
+      "stage": "4-3",
+      "attempt": 1,
+      "message": "4-3 cleared: game completion flag."
+    },
+    {
+      "at": "2026-09-28T08:06:13.802585+00:00",
+      "kind": "stage_start",
+      "stage": "4-4",
+      "attempt": 1,
+      "message": "Live DJev attempt 1 on 4-4."
+    },
+    {
+      "at": "2026-09-28T08:06:40.309024+00:00",
+      "kind": "stage_clear",
+      "stage": "4-4",
+      "attempt": 1,
+      "message": "4-4 cleared: game completion flag."
+    },
+    {
+      "at": "2026-09-28T08:06:40.445634+00:00",
+      "kind": "stage_start",
+      "stage": "5-1",
+      "attempt": 1,
+      "message": "Live DJev attempt 1 on 5-1."
+    },
+    {
+      "at": "2026-09-28T08:07:04.668364+00:00",
+      "kind": "stage_clear",
+      "stage": "5-1",
+      "attempt": 1,
+      "message": "5-1 cleared: game completion flag."
+    },
+    {
+      "at": "2026-09-28T08:07:04.810096+00:00",
+      "kind": "stage_start",
+      "stage": "5-2",
+      "attempt": 1,
+      "message": "Live DJev attempt 1 on 5-2."
+    },
+    {
+      "at": "2026-09-28T08:07:29.064240+00:00",
+      "kind": "stage_clear",
+      "stage": "5-2",
+      "attempt": 1,
+      "message": "5-2 cleared: game completion flag."
+    },
+    {
+      "at": "2026-09-28T08:07:29.205746+00:00",
+      "kind": "stage_start",
+      "stage": "5-3",
+      "attempt": 1,
+      "message": "Live DJev attempt 1 on 5-3."
+    },
+    {
+      "at": "2026-09-28T08:07:41.849555+00:00",
+      "kind": "stage_failure",
+      "stage": "5-3",
+      "attempt": 1,
+      "message": "death; restarting 5-3 from its beginning."
+    },
+    {
+      "at": "2026-09-28T08:07:41.987921+00:00",
+      "kind": "stage_start",
+      "stage": "5-3",
+      "attempt": 2,
+      "message": "Live DJev attempt 2 on 5-3."
+    },
+    {
+      "at": "2026-09-28T08:07:55.706968+00:00",
+      "kind": "stage_failure",
+      "stage": "5-3",
+      "attempt": 2,
+      "message": "death; restarting 5-3 from its beginning."
+    },
+    {
+      "at": "2026-09-28T08:07:55.847319+00:00",
+      "kind": "stage_start",
+      "stage": "5-3",
+      "attempt": 3,
+      "message": "Live DJev attempt 3 on 5-3."
+    },
+    {
+      "at": "2026-09-28T08:08:08.663644+00:00",
+      "kind": "stage_failure",
+      "stage": "5-3",
+      "attempt": 3,
+      "message": "death; restarting 5-3 from its beginning."
+    },
+    {
+      "at": "2026-09-28T08:08:08.803407+00:00",
+      "kind": "stage_start",
+      "stage": "5-3",
+      "attempt": 4,
+      "message": "Live DJev attempt 4 on 5-3."
+    },
+    {
+      "at": "2026-09-28T08:08:21.553228+00:00",
+      "kind": "stage_failure",
+      "stage": "5-3",
+      "attempt": 4,
+      "message": "death; restarting 5-3 from its beginning."
+    },
+    {
+      "at": "2026-09-28T08:08:21.664956+00:00",
+      "kind": "stage_start",
+      "stage": "5-3",
+      "attempt": 5,
+      "message": "Live DJev attempt 5 on 5-3."
+    },
+    {
+      "at": "2026-09-28T08:08:40.921129+00:00",
+      "kind": "stage_clear",
+      "stage": "5-3",
+      "attempt": 5,
+      "message": "5-3 cleared: game completion flag."
+    },
+    {
+      "at": "2026-09-28T08:08:41.053605+00:00",
+      "kind": "stage_start",
+      "stage": "5-4",
+      "attempt": 1,
+      "message": "Live DJev attempt 1 on 5-4."
+    },
+    {
+      "at": "2026-09-28T08:08:57.964124+00:00",
+      "kind": "stage_clear",
+      "stage": "5-4",
+      "attempt": 1,
+      "message": "5-4 cleared: game completion flag."
+    },
+    {
+      "at": "2026-09-28T08:08:58.089031+00:00",
+      "kind": "stage_start",
+      "stage": "6-1",
+      "attempt": 1,
+      "message": "Live DJev attempt 1 on 6-1."
+    },
+    {
+      "at": "2026-09-28T08:09:17.848238+00:00",
+      "kind": "stage_clear",
+      "stage": "6-1",
+      "attempt": 1,
+      "message": "6-1 cleared: game completion flag."
+    },
+    {
+      "at": "2026-09-28T08:09:17.988460+00:00",
+      "kind": "stage_start",
+      "stage": "6-2",
+      "attempt": 1,
+      "message": "Live DJev attempt 1 on 6-2."
+    },
+    {
+      "at": "2026-09-28T08:10:19.674414+00:00",
+      "kind": "stage_failure",
+      "stage": "6-2",
+      "attempt": 1,
+      "message": "stalled; restarting 6-2 from its beginning."
+    },
+    {
+      "at": "2026-09-28T08:10:19.810898+00:00",
+      "kind": "stage_start",
+      "stage": "6-2",
+      "attempt": 2,
+      "message": "Live DJev attempt 2 on 6-2."
+    },
+    {
+      "at": "2026-09-28T08:11:21.964329+00:00",
+      "kind": "stage_failure",
+      "stage": "6-2",
+      "attempt": 2,
+      "message": "stalled; restarting 6-2 from its beginning."
+    },
+    {
+      "at": "2026-09-28T08:11:22.103596+00:00",
+      "kind": "stage_start",
+      "stage": "6-2",
+      "attempt": 3,
+      "message": "Live DJev attempt 3 on 6-2."
+    },
+    {
+      "at": "2026-09-28T08:12:24.464551+00:00",
+      "kind": "stage_failure",
+      "stage": "6-2",
+      "attempt": 3,
+      "message": "stalled; restarting 6-2 from its beginning."
+    },
+    {
+      "at": "2026-09-28T08:12:24.605452+00:00",
+      "kind": "stage_start",
+      "stage": "6-2",
+      "attempt": 4,
+      "message": "Live DJev attempt 4 on 6-2."
+    },
+    {
+      "at": "2026-09-28T08:12:45.518537+00:00",
+      "kind": "stage_failure",
+      "stage": "6-2",
+      "attempt": 4,
+      "message": "death; restarting 6-2 from its beginning."
+    },
+    {
+      "at": "2026-09-28T08:12:45.659593+00:00",
+      "kind": "stage_start",
+      "stage": "6-2",
+      "attempt": 5,
+      "message": "Live DJev attempt 5 on 6-2."
+    },
+    {
+      "at": "2026-09-28T08:13:08.850229+00:00",
+      "kind": "stage_failure",
+      "stage": "6-2",
+      "attempt": 5,
+      "message": "death; restarting 6-2 from its beginning."
+    },
+    {
+      "at": "2026-09-28T08:13:08.850247+00:00",
+      "kind": "reflection_needed",
+      "stage": "6-2",
+      "attempt": 5,
+      "message": "5 failed attempts; review traces and supply a revised profile or explicit continue command."
+    },
+    {
+      "at": "2026-09-28T08:13:28.854608+00:00",
+      "kind": "reflection_resumed",
+      "stage": "6-2",
+      "attempt": 5,
+      "message": "Supervisor supplied a revision or approved the next batch."
+    },
+    {
+      "at": "2026-09-28T08:13:29.004586+00:00",
+      "kind": "stage_start",
+      "stage": "6-2",
+      "attempt": 6,
+      "message": "Live DJev attempt 6 on 6-2."
+    },
+    {
+      "at": "2026-09-28T08:14:06.457795+00:00",
+      "kind": "stage_clear",
+      "stage": "6-2",
+      "attempt": 6,
+      "message": "6-2 cleared: game completion flag."
+    },
+    {
+      "at": "2026-09-28T08:14:06.597120+00:00",
+      "kind": "stage_start",
+      "stage": "6-3",
+      "attempt": 1,
+      "message": "Live DJev attempt 1 on 6-3."
+    },
+    {
+      "at": "2026-09-28T08:14:25.364259+00:00",
+      "kind": "stage_clear",
+      "stage": "6-3",
+      "attempt": 1,
+      "message": "6-3 cleared: game completion flag."
+    },
+    {
+      "at": "2026-09-28T08:14:25.494366+00:00",
+      "kind": "stage_start",
+      "stage": "6-4",
+      "attempt": 1,
+      "message": "Live DJev attempt 1 on 6-4."
+    },
+    {
+      "at": "2026-09-28T08:14:42.322280+00:00",
+      "kind": "stage_clear",
+      "stage": "6-4",
+      "attempt": 1,
+      "message": "6-4 cleared: game completion flag."
+    },
+    {
+      "at": "2026-09-28T08:14:42.462540+00:00",
+      "kind": "stage_start",
+      "stage": "7-1",
+      "attempt": 1,
+      "message": "Live DJev attempt 1 on 7-1."
+    },
+    {
+      "at": "2026-09-28T08:15:04.668414+00:00",
+      "kind": "stage_clear",
+      "stage": "7-1",
+      "attempt": 1,
+      "message": "7-1 cleared: game completion flag."
+    },
+    {
+      "at": "2026-09-28T08:15:04.830942+00:00",
+      "kind": "stage_start",
+      "stage": "7-2",
+      "attempt": 1,
+      "message": "Live DJev attempt 1 on 7-2."
+    },
+    {
+      "at": "2026-09-28T08:15:37.216829+00:00",
+      "kind": "stage_failure",
+      "stage": "7-2",
+      "attempt": 1,
+      "message": "death; restarting 7-2 from its beginning."
+    },
+    {
+      "at": "2026-09-28T08:15:37.350390+00:00",
+      "kind": "stage_start",
+      "stage": "7-2",
+      "attempt": 2,
+      "message": "Live DJev attempt 2 on 7-2."
+    },
+    {
+      "at": "2026-09-28T08:16:10.378708+00:00",
+      "kind": "stage_failure",
+      "stage": "7-2",
+      "attempt": 2,
+      "message": "death; restarting 7-2 from its beginning."
+    },
+    {
+      "at": "2026-09-28T08:16:10.543173+00:00",
+      "kind": "stage_start",
+      "stage": "7-2",
+      "attempt": 3,
+      "message": "Live DJev attempt 3 on 7-2."
+    },
+    {
+      "at": "2026-09-28T08:16:46.274496+00:00",
+      "kind": "stage_failure",
+      "stage": "7-2",
+      "attempt": 3,
+      "message": "death; restarting 7-2 from its beginning."
+    },
+    {
+      "at": "2026-09-28T08:16:46.408979+00:00",
+      "kind": "stage_start",
+      "stage": "7-2",
+      "attempt": 4,
+      "message": "Live DJev attempt 4 on 7-2."
+    },
+    {
+      "at": "2026-09-28T08:17:18.373578+00:00",
+      "kind": "stage_failure",
+      "stage": "7-2",
+      "attempt": 4,
+      "message": "death; restarting 7-2 from its beginning."
+    },
+    {
+      "at": "2026-09-28T08:17:18.517843+00:00",
+      "kind": "stage_start",
+      "stage": "7-2",
+      "attempt": 5,
+      "message": "Live DJev attempt 5 on 7-2."
+    },
+    {
+      "at": "2026-09-28T08:17:53.158885+00:00",
+      "kind": "stage_clear",
+      "stage": "7-2",
+      "attempt": 5,
+      "message": "7-2 cleared: game completion flag."
+    },
+    {
+      "at": "2026-09-28T08:17:53.271975+00:00",
+      "kind": "stage_start",
+      "stage": "7-3",
+      "attempt": 1,
+      "message": "Live DJev attempt 1 on 7-3."
+    },
+    {
+      "at": "2026-09-28T08:18:15.290251+00:00",
+      "kind": "stage_clear",
+      "stage": "7-3",
+      "attempt": 1,
+      "message": "7-3 cleared: game completion flag."
+    },
+    {
+      "at": "2026-09-28T08:18:15.403057+00:00",
+      "kind": "stage_start",
+      "stage": "7-4",
+      "attempt": 1,
+      "message": "Live DJev attempt 1 on 7-4."
+    },
+    {
+      "at": "2026-09-28T08:18:44.682083+00:00",
+      "kind": "stage_clear",
+      "stage": "7-4",
+      "attempt": 1,
+      "message": "7-4 cleared: game completion flag."
+    },
+    {
+      "at": "2026-09-28T08:18:44.819179+00:00",
+      "kind": "stage_start",
+      "stage": "8-1",
+      "attempt": 1,
+      "message": "Live DJev attempt 1 on 8-1."
+    },
+    {
+      "at": "2026-09-28T08:19:28.091038+00:00",
+      "kind": "stage_clear",
+      "stage": "8-1",
+      "attempt": 1,
+      "message": "8-1 cleared: game completion flag."
+    },
+    {
+      "at": "2026-09-28T08:19:28.234845+00:00",
+      "kind": "stage_start",
+      "stage": "8-2",
+      "attempt": 1,
+      "message": "Live DJev attempt 1 on 8-2."
+    },
+    {
+      "at": "2026-09-28T08:19:57.640696+00:00",
+      "kind": "stage_clear",
+      "stage": "8-2",
+      "attempt": 1,
+      "message": "8-2 cleared: game completion flag."
+    },
+    {
+      "at": "2026-09-28T08:19:57.753129+00:00",
+      "kind": "stage_start",
+      "stage": "8-3",
+      "attempt": 1,
+      "message": "Live DJev attempt 1 on 8-3."
+    },
+    {
+      "at": "2026-09-28T08:20:23.642082+00:00",
+      "kind": "stage_clear",
+      "stage": "8-3",
+      "attempt": 1,
+      "message": "8-3 cleared: game completion flag."
+    },
+    {
+      "at": "2026-09-28T08:20:23.784783+00:00",
+      "kind": "stage_start",
+      "stage": "8-4",
+      "attempt": 1,
+      "message": "Live DJev attempt 1 on 8-4."
+    },
+    {
+      "at": "2026-09-28T08:21:00.060454+00:00",
+      "kind": "stage_failure",
+      "stage": "8-4",
+      "attempt": 1,
+      "message": "death; restarting 8-4 from its beginning."
+    },
+    {
+      "at": "2026-09-28T08:21:00.201051+00:00",
+      "kind": "stage_start",
+      "stage": "8-4",
+      "attempt": 2,
+      "message": "Live DJev attempt 2 on 8-4."
+    },
+    {
+      "at": "2026-09-28T08:21:39.821321+00:00",
+      "kind": "stage_failure",
+      "stage": "8-4",
+      "attempt": 2,
+      "message": "death; restarting 8-4 from its beginning."
+    },
+    {
+      "at": "2026-09-28T08:21:39.966095+00:00",
+      "kind": "stage_start",
+      "stage": "8-4",
+      "attempt": 3,
+      "message": "Live DJev attempt 3 on 8-4."
+    },
+    {
+      "at": "2026-09-28T08:22:19.286194+00:00",
+      "kind": "stage_failure",
+      "stage": "8-4",
+      "attempt": 3,
+      "message": "death; restarting 8-4 from its beginning."
+    },
+    {
+      "at": "2026-09-28T08:22:19.400061+00:00",
+      "kind": "stage_start",
+      "stage": "8-4",
+      "attempt": 4,
+      "message": "Live DJev attempt 4 on 8-4."
+    },
+    {
+      "at": "2026-09-28T08:22:58.479615+00:00",
+      "kind": "stage_failure",
+      "stage": "8-4",
+      "attempt": 4,
+      "message": "death; restarting 8-4 from its beginning."
+    },
+    {
+      "at": "2026-09-28T08:22:58.623619+00:00",
+      "kind": "stage_start",
+      "stage": "8-4",
+      "attempt": 5,
+      "message": "Live DJev attempt 5 on 8-4."
+    },
+    {
+      "at": "2026-09-28T08:24:25.142700+00:00",
+      "kind": "stage_clear",
+      "stage": "8-4",
+      "attempt": 5,
+      "message": "8-4 cleared: final axe completion flag."
+    },
+    {
+      "at": "2026-09-28T08:24:25.143178+00:00",
+      "kind": "campaign_complete",
+      "stage": "8-4",
+      "attempt": 5,
+      "message": "Reached the final axe after all scheduled stages."
+    }
+  ],
+  "revisions": [
+    {
+      "stage": "1-1",
+      "attempt": 3,
+      "title": "Fit the request into context",
+      "failure": "The first two attempts ended with API errors; full observations exceeded the serving context limit.",
+      "change": "Switched the request to minimal observations.",
+      "outcome": "The minimal profile cleared on attempt 5, after two gameplay failures.",
+      "diffs": [
+        {
+          "path": "observation",
+          "before": null,
+          "after": "minimal"
+        }
+      ],
+      "before_url": "/data/campaign-research/profiles/1-1-002.json",
+      "after_url": "/data/campaign-research/profiles/1-1-003.json"
+    },
+    {
+      "stage": "2-1",
+      "attempt": 6,
+      "title": "Make the landing instruction specific",
+      "failure": "At x1518, the long request selected right_run while Mario was rising; the saved winner braked with left_jump.",
+      "change": "Replaced the local instruction and supplied only motion: rising \u2192 left_jump; otherwise \u2192 right_run.",
+      "outcome": "Attempt 6 cleared the stage.",
+      "diffs": [
+        {
+          "path": "memory_notes.early-enemy-landing",
+          "before": {
+            "id": "early-enemy-landing",
+            "min_x": 1480,
+            "max_x": 1550,
+            "instructions": "OVERRIDE: land early before the next enemy. If rising hold jump and brake left. Otherwise run right without jump.",
+            "criteria": {
+              "left_jump": "Rising.",
+              "right_run": "Grounded or falling."
+            }
+          },
+          "after": {
+            "id": "early-enemy-landing",
+            "min_x": 1480,
+            "max_x": 1550,
+            "instructions": "Choose the action matching motion: when rising, hold jump and brake left. Otherwise run right without jump.",
+            "criteria": {
+              "left_jump": "motion is rising.",
+              "right_run": "motion is not rising."
+            },
+            "replace_instructions": true,
+            "observation_fields": [
+              "motion"
+            ]
+          }
+        }
+      ],
+      "before_url": "/data/campaign-research/profiles/2-1-005.json",
+      "after_url": "/data/campaign-research/profiles/2-1-006.json"
+    },
+    {
+      "stage": "6-2",
+      "attempt": 4,
+      "title": "Test a new route out of the pipe trap",
+      "failure": "Attempts 1\u20133 stalled at x1378 after jumping too early from a higher pipe.",
+      "change": "Tried dropping to the intermediate step, braking, waiting, then jumping. Physics probes informed the prompt; those probes do not count as model clears.",
+      "outcome": "Attempts 4\u20135 got farther but failed. This revision was not retained as the successful policy.",
+      "diffs": [
+        {
+          "path": "memory_notes.campaign-low-step-brake",
+          "before": null,
+          "after": {
+            "id": "campaign-low-step-brake",
+            "min_x": 1300,
+            "max_x": 1450,
+            "activate_when": {
+              "grounded": true,
+              "feet_y_min": 176,
+              "feet_y_max": 176,
+              "x_min": 1328,
+              "x_max": 1360
+            },
+            "replace_instructions": true,
+            "observation_fields": [
+              "motion",
+              "note_elapsed_frames"
+            ],
+            "instructions": "Is note_elapsed_frames.campaign-low-step-brake less than 16?",
+            "criteria": {
+              "left": "Yes: timer <16.",
+              "wait": "No: timer >=16."
+            }
+          }
+        },
+        {
+          "path": "memory_notes.campaign-low-step-drop",
+          "before": null,
+          "after": {
+            "id": "campaign-low-step-drop",
+            "min_x": 1290,
+            "max_x": 1340,
+            "replace_instructions": true,
+            "observation_fields": [
+              "feet_y",
+              "motion",
+              "note_elapsed_frames"
+            ],
+            "instructions": "Is feet_y at least 200? Jump only from the low ground. Otherwise release jump and move right to drop onto the lower pipe.",
+            "criteria": {
+              "right_run_jump": "Yes: feet_y >=200.",
+              "right_run": "No: feet_y <200."
+            }
+          }
+        },
+        {
+          "path": "memory_notes.campaign-low-step-launch",
+          "before": null,
+          "after": {
+            "id": "campaign-low-step-launch",
+            "min_x": 1300,
+            "max_x": 1450,
+            "activate_when": {
+              "after_note_frames": {
+                "campaign-low-step-brake": 56
+              }
+            },
+            "replace_instructions": true,
+            "observation_fields": [
+              "motion"
+            ],
+            "instructions": "Is Mario falling? Use only motion.",
+            "criteria": {
+              "right_run": "Yes: falling.",
+              "right_run_jump": "No: grounded or rising or airborne."
+            }
+          }
+        }
+      ],
+      "before_url": "/data/campaign-research/profiles/6-2-003.json",
+      "after_url": "/data/campaign-research/profiles/6-2-004.json"
+    },
+    {
+      "stage": "6-2",
+      "attempt": 6,
+      "title": "Recover the earlier landing choice",
+      "failure": "The first divergence was at x1141: the same original request produced a left/wait tie instead of the historical wait.",
+      "change": "Returned to the original profile and added a narrow motion-only landing instruction: release controls when falling.",
+      "outcome": "Attempt 6 cleared. All 518 actions, frame counts, and Mario states matched the historical winner.",
+      "diffs": [
+        {
+          "path": "memory_notes.campaign-cluster-landing-release",
+          "before": null,
+          "after": {
+            "id": "campaign-cluster-landing-release",
+            "min_x": 1140,
+            "max_x": 1144,
+            "replace_instructions": true,
+            "observation_fields": [
+              "motion"
+            ],
+            "instructions": "Is Mario falling? Release horizontal controls during the final landing; otherwise brake left. Use only motion.",
+            "criteria": {
+              "wait": "Yes: motion is falling.",
+              "left": "No: motion is grounded or rising."
+            }
+          }
+        },
+        {
+          "path": "memory_notes.campaign-low-step-brake",
+          "before": {
+            "id": "campaign-low-step-brake",
+            "min_x": 1300,
+            "max_x": 1450,
+            "activate_when": {
+              "grounded": true,
+              "feet_y_min": 176,
+              "feet_y_max": 176,
+              "x_min": 1328,
+              "x_max": 1360
+            },
+            "replace_instructions": true,
+            "observation_fields": [
+              "motion",
+              "note_elapsed_frames"
+            ],
+            "instructions": "Is note_elapsed_frames.campaign-low-step-brake less than 16?",
+            "criteria": {
+              "left": "Yes: timer <16.",
+              "wait": "No: timer >=16."
+            }
+          },
+          "after": null
+        },
+        {
+          "path": "memory_notes.campaign-low-step-drop",
+          "before": {
+            "id": "campaign-low-step-drop",
+            "min_x": 1290,
+            "max_x": 1340,
+            "replace_instructions": true,
+            "observation_fields": [
+              "feet_y",
+              "motion",
+              "note_elapsed_frames"
+            ],
+            "instructions": "Is feet_y at least 200? Jump only from the low ground. Otherwise release jump and move right to drop onto the lower pipe.",
+            "criteria": {
+              "right_run_jump": "Yes: feet_y >=200.",
+              "right_run": "No: feet_y <200."
+            }
+          },
+          "after": null
+        },
+        {
+          "path": "memory_notes.campaign-low-step-launch",
+          "before": {
+            "id": "campaign-low-step-launch",
+            "min_x": 1300,
+            "max_x": 1450,
+            "activate_when": {
+              "after_note_frames": {
+                "campaign-low-step-brake": 56
+              }
+            },
+            "replace_instructions": true,
+            "observation_fields": [
+              "motion"
+            ],
+            "instructions": "Is Mario falling? Use only motion.",
+            "criteria": {
+              "right_run": "Yes: falling.",
+              "right_run_jump": "No: grounded or rising or airborne."
+            }
+          },
+          "after": null
+        }
+      ],
+      "before_url": "/data/campaign-research/profiles/6-2-005.json",
+      "after_url": "/data/campaign-research/profiles/6-2-006.json"
+    },
+    {
+      "stage": "7-2",
+      "attempt": 5,
+      "title": "Clarify the water-exit stroke",
+      "failure": "Attempts 1\u20134 died near x2998 after missing an upward stroke at the exit shelf.",
+      "change": "Added a narrow motion-only note around x2900: stroke when grounded or rising; release when falling.",
+      "outcome": "Attempt 5 cleared.",
+      "diffs": [
+        {
+          "path": "memory_notes.campaign-exit-shelf-stroke",
+          "before": null,
+          "after": {
+            "id": "campaign-exit-shelf-stroke",
+            "min_x": 2900,
+            "max_x": 2905,
+            "replace_instructions": true,
+            "observation_fields": [
+              "motion"
+            ],
+            "instructions": "Is Mario falling? Take an upward stroke from the exit shelf; sustain an existing ascent. Use only motion.",
+            "criteria": {
+              "right_run": "Yes: falling.",
+              "right_run_jump": "No: grounded or rising or airborne."
+            }
+          }
+        }
+      ],
+      "before_url": "/data/campaign-research/profiles/7-2-004.json",
+      "after_url": "/data/campaign-research/profiles/7-2-005.json"
+    }
+  ],
+  "unused_candidates": [
+    {
+      "stage": "1-3",
+      "text": "A grounded-only candidate was prepared, but attempt 5 cleared using the original profile before that candidate was needed."
+    },
+    {
+      "stage": "8-4",
+      "text": "Four attempts failed. A focused wait candidate was prepared, but attempt 5 cleared with the original r82 profile. The candidate did not cause this success."
+    }
+  ],
+  "scope": "This is the new sequential campaign, initialized from prior stage-specific winners. Earlier independent-stage optimization is a separate experiment. Reflections below are retrospective summaries grounded in saved traces and profile changes, not a private reasoning transcript."
+}

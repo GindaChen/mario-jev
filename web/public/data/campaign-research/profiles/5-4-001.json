@@ -1,0 +1,190 @@
+{
+  "name": "5-4-r21",
+  "mode": "reflection",
+  "questions": {
+    "movement": {
+      "type": "choice",
+      "instructions": "Apply the first matching rule: (1) enemy_dy < 0 AND enemy_dx <= 64: dodge_left. (2) grounded is true AND lowest_floor_drop_px == 0: run_right. (3) retreating is true AND drop_px < 32 AND lowest_floor_drop_px > 0: brake_left. (4) blocked is true AND wall_height > headroom: brake_left. Otherwise run_right. Null means absent; a comparison to null does not match.",
+      "criteria": {
+        "run_right": "Move right.",
+        "brake_left": "Move left.",
+        "dodge_left": "Step left to avoid a nearby enemy falling from above."
+      }
+    },
+    "enemy": {
+      "type": "choice",
+      "instructions": "Choose C if distance_px <= 48 and vertical_offset_px >= 0. Choose A if distance_px is null. Otherwise choose B.",
+      "criteria": {
+        "A": "No enemy.",
+        "B": "Do not jump yet.",
+        "C": "Jump now."
+      }
+    },
+    "enemy_low": {
+      "type": "choice",
+      "instructions": "Choose C if distance_px <= 40 and vertical_offset_px >= 0. Choose A if distance_px is null. Otherwise choose B.",
+      "criteria": {
+        "A": "No enemy.",
+        "B": "Do not jump yet.",
+        "C": "Jump now."
+      }
+    },
+    "wall": {
+      "type": "choice",
+      "instructions": "Choose A if distance_px is null. Choose C if distance_px <= 48 and (headroom_px is null OR height_px <= headroom_px). Otherwise choose B.",
+      "criteria": {
+        "A": "No wall.",
+        "B": "Do not jump at this wall.",
+        "C": "Jump over the nearby wall."
+      }
+    },
+    "pit": {
+      "type": "choice",
+      "instructions": "Choose A if distance_px is null. Choose C if distance_px <= 48 and floor_gaps is not empty. Otherwise choose B.",
+      "criteria": {
+        "A": "No missing floor.",
+        "B": "Not time to jump; far away or a safe drop.",
+        "C": "Jump over the nearby floor gap."
+      }
+    },
+    "air": {
+      "type": "choice",
+      "instructions": "Which direction is Mario moving vertically?",
+      "criteria": {
+        "A": "Rising upward.",
+        "B": "Falling downward."
+      }
+    }
+  },
+  "units": "body_lengths_v2",
+  "movement_observation": "goal_direction",
+  "route_geometry": true,
+  "route_displacement": true,
+  "route_minimal": true,
+  "enemy_vertical": true,
+  "api_retries": 2,
+  "movement_enemies": true,
+  "route_floor": true,
+  "hazard_pixels": true,
+  "instructions": "Is Mario falling? Answer using the motion field only.",
+  "criteria": {
+    "right_run": "Yes, motion is falling.",
+    "right_run_jump": "No, motion is grounded or rising or airborne."
+  },
+  "memory_notes": [
+    {
+      "id": "under-firebar",
+      "min_x": 1100,
+      "max_x": 1230,
+      "instructions": "OVERRIDE: Run along the floor beneath the rotating firebar, keeping jump released.",
+      "criteria": {
+        "right_run": "Move right without jumping.",
+        "right_run_jump": "Jump upward while moving right."
+      }
+    },
+    {
+      "id": "under-bowser",
+      "min_x": 2130,
+      "max_x": 2210,
+      "instructions": "OVERRIDE the motion question. Is x less than 2211? Run under Bowser during his jump.",
+      "criteria": {
+        "right_run": "Yes, x < 2211.",
+        "right_run_jump": "No, x >= 2211."
+      }
+    },
+    {
+      "id": "under-firebar",
+      "min_x": 1050,
+      "max_x": 1230,
+      "instructions": "OVERRIDE: stay low under firebar. Run right while grounded or falling. Sustain only already rising jumps.",
+      "criteria": {
+        "right_run": "Grounded or falling.",
+        "right_run_jump": "Already rising."
+      }
+    },
+    {
+      "id": "lesson-1050",
+      "min_x": 1050,
+      "max_x": 1170,
+      "replace_instructions": true,
+      "instructions": "Is Mario grounded? Jump forward only while grounded, otherwise run right with jump released.",
+      "criteria": {
+        "right_run_jump": "Mario is grounded.",
+        "right_run": "Mario is NOT grounded."
+      }
+    },
+    {
+      "id": "firebar-wait",
+      "min_x": 990,
+      "max_x": 1030,
+      "replace_instructions": true,
+      "instructions": "Has firebar-wait elapsed less than60 frames? Wait for safe firebar phase, then run right.",
+      "criteria": {
+        "wait": "Elapsed less than60.",
+        "right_run": "Elapsed at least60."
+      }
+    },
+    {
+      "id": "cross-ledge",
+      "min_x": 1600,
+      "max_x": 1840,
+      "replace_instructions": true,
+      "instructions": "Is Mario falling? Keep forward momentum across the narrow ledge.",
+      "criteria": {
+        "right_run_jump": "Grounded or rising.",
+        "right_run": "Falling."
+      }
+    },
+    {
+      "id": "delay-ledge-launch",
+      "min_x": 1540,
+      "max_x": 1565,
+      "replace_instructions": true,
+      "instructions": "Approach the edge before jumping across. Sustain existing rising jumps only.",
+      "criteria": {
+        "right_run": "Grounded or falling.",
+        "right_run_jump": "Already rising."
+      }
+    },
+    {
+      "id": "ledge-brake",
+      "min_x": 1688,
+      "max_x": 1780,
+      "sticky_on_left": true,
+      "replace_instructions": true,
+      "instructions": "Is note_elapsed_frames.ledge-brake less than 36? Answer using only this elapsed frame count.",
+      "criteria": {
+        "left": "Yes, ledge-brake elapsed is less than 36.",
+        "right_run_jump": "No, ledge-brake elapsed is at least 36."
+      }
+    },
+    {
+      "id": "under-bubble",
+      "min_x": 2050,
+      "max_x": 2120,
+      "replace_instructions": true,
+      "instructions": "Is Mario already rising? Stay low under the airborne lava bubble.",
+      "criteria": {
+        "right_run_jump": "Mario is already rising.",
+        "right_run": "Mario is grounded or falling."
+      }
+    }
+  ],
+  "inference": {
+    "samples": 1,
+    "seed": 0,
+    "steps": 1
+  },
+  "reflection_start_x": 0,
+  "compact_state": true,
+  "one_frame_rearm": true,
+  "observation_style": "facts",
+  "thresholds": {
+    "enemy": 40,
+    "pit": 24,
+    "above": 64
+  },
+  "extra_solid_tiles": [
+    98
+  ]
+}

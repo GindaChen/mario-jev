@@ -1,0 +1,25 @@
+{
+  "name": "v1-compact-unified",
+  "observation": "compact",
+  "ceiling_routing": "unified",
+  "questions": {
+    "movement": {
+      "instructions": "Choose movement toward the goal on the right. Usually run right, including during jumps. Use left only to retreat from a wall too tall to jump from this close, or to escape being trapped. Jump is decided separately.",
+      "criteria": {
+        "run_right": "Run right with momentum.",
+        "walk_right": "Walk right slowly for precision.",
+        "brake_left": "Retreat left to create space for a new jump.",
+        "wait": "Stay in place."
+      }
+    },
+    "start_jump": {
+      "instructions": "Should Mario start a jump now? True if grounded and there is an enemy within 48 pixels, a wall within 48 pixels, or a pit edge within 48 pixels. With low bricks overhead, approach the enemy to within 32 pixels before jumping. If blocked at a climbable wall, jump. Do not jump early when hazards are farther away. False if airborne, jump button already held, or no nearby hazard. Use terrain.nearest_obstacle and nearest_threat."
+    },
+    "ceiling_hop": {
+      "instructions": "Should Mario hop over a nearby enemy? True if grounded, jump button released, and an enemy is within 32 pixels. False otherwise."
+    },
+    "sustain_jump": {
+      "instructions": "Is Mario rising? Hold jump while rising to gain height. Release jump while falling, grounded, or after hitting a ceiling."
+    }
+  }
+}

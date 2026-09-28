@@ -1,0 +1,15 @@
+[Unit]
+Description=Live DJev Mario overnight campaign
+StartLimitIntervalSec=300
+StartLimitBurst=3
+
+[Service]
+Type=simple
+WorkingDirectory=/home/juc049/projects/mario-amd/harness
+ExecStart=/home/juc049/projects/mario-amd/harness/.venv/bin/python scripts/run_campaign.py --root runs/overnight-campaign --resume
+Restart=on-failure
+RestartSec=30
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=default.target

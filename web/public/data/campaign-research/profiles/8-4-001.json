@@ -1,0 +1,637 @@
+{
+  "name": "stage-8-4-r82-matched-final-phase",
+  "mode": "reflection",
+  "questions": {
+    "movement": {
+      "type": "choice",
+      "instructions": "Apply the first matching rule: (1) enemy_dy < 0 AND enemy_dx <= 64: dodge_left. (2) grounded is true AND lowest_floor_drop_px == 0: run_right. (3) retreating is true AND drop_px < 32 AND lowest_floor_drop_px > 0: brake_left. (4) blocked is true AND wall_height > headroom: brake_left. Otherwise run_right. Null means absent; a comparison to null does not match.",
+      "criteria": {
+        "run_right": "Move right.",
+        "brake_left": "Move left.",
+        "dodge_left": "Step left to avoid a nearby enemy falling from above."
+      }
+    },
+    "enemy": {
+      "type": "choice",
+      "instructions": "Choose C if distance_px <= 48 and vertical_offset_px >= 0. Choose A if distance_px is null. Otherwise choose B.",
+      "criteria": {
+        "A": "No enemy.",
+        "B": "Do not jump yet.",
+        "C": "Jump now."
+      }
+    },
+    "enemy_low": {
+      "type": "choice",
+      "instructions": "Choose C if distance_px <= 40 and vertical_offset_px >= 0. Choose A if distance_px is null. Otherwise choose B.",
+      "criteria": {
+        "A": "No enemy.",
+        "B": "Do not jump yet.",
+        "C": "Jump now."
+      }
+    },
+    "wall": {
+      "type": "choice",
+      "instructions": "Choose A if distance_px is null. Choose C if distance_px <= 48 and (headroom_px is null OR height_px <= headroom_px). Otherwise choose B.",
+      "criteria": {
+        "A": "No wall.",
+        "B": "Do not jump at this wall.",
+        "C": "Jump over the nearby wall."
+      }
+    },
+    "pit": {
+      "type": "choice",
+      "instructions": "Choose A if distance_px is null. Choose C if distance_px <= 48 and floor_gaps is not empty. Otherwise choose B.",
+      "criteria": {
+        "A": "No missing floor.",
+        "B": "Not time to jump; far away or a safe drop.",
+        "C": "Jump over the nearby floor gap."
+      }
+    },
+    "air": {
+      "type": "choice",
+      "instructions": "Which direction is Mario moving vertically?",
+      "criteria": {
+        "A": "Rising upward.",
+        "B": "Falling downward."
+      }
+    }
+  },
+  "units": "body_lengths_v2",
+  "movement_observation": "goal_direction",
+  "route_geometry": true,
+  "route_displacement": true,
+  "route_minimal": true,
+  "enemy_vertical": true,
+  "api_retries": 2,
+  "movement_enemies": true,
+  "route_floor": true,
+  "hazard_pixels": true,
+  "instructions": "Is Mario falling? Answer using the motion field only.",
+  "criteria": {
+    "right_run": "Yes, motion is falling.",
+    "right_run_jump": "No, motion is grounded or rising or airborne."
+  },
+  "memory_notes": [
+    {
+      "id": "lower-step",
+      "min_x": 0,
+      "max_x": 175,
+      "replace_instructions": true,
+      "instructions": "Walk down the initial stairs before jumping. Jump right if motion is rising, or if grounded and feet_y >=160. Otherwise walk right without run or jump.",
+      "criteria": {
+        "right_run_jump": "Rising, OR grounded with feet_y >=160: jump right.",
+        "right": "Otherwise: walk right with no run or jump."
+      },
+      "room_ids": [
+        41980
+      ]
+    },
+    {
+      "id": "first-pipe-wait",
+      "min_x": 215,
+      "max_x": 293,
+      "replace_instructions": true,
+      "instructions": "Wait for the pipe plant to retract. If note_elapsed_frames.first-pipe-wait < 90, wait. Otherwise jump right when grounded or rising; move right without jump when falling.",
+      "criteria": {
+        "wait": "Timer below 90: wait with buttons released.",
+        "right_run_jump": "Timer at least 90 and grounded or rising: jump right.",
+        "right_run": "Timer at least 90 and falling: move right with jump released."
+      },
+      "room_ids": [
+        41980
+      ]
+    },
+    {
+      "id": "third-pipe-wait",
+      "min_x": 730,
+      "max_x": 805,
+      "replace_instructions": true,
+      "instructions": "Wait for the pipe plant to retract. If note_elapsed_frames.third-pipe-wait < 90, wait. Otherwise jump right when grounded or rising; move right without jump when falling.",
+      "criteria": {
+        "wait": "Timer below 90: wait with buttons released.",
+        "right_run_jump": "Timer at least 90 and grounded or rising: jump right.",
+        "right_run": "Timer at least 90 and falling: move right with jump released."
+      },
+      "room_ids": [
+        41980
+      ]
+    },
+    {
+      "id": "pipe-after-coordinate-loop",
+      "min_x": 260,
+      "max_x": 345,
+      "room_ids": [
+        41980
+      ],
+      "replace_instructions": true,
+      "instructions": "This note was first encountered on the initial passage. If note_elapsed_frames.pipe-after-coordinate-loop < 400, jump right when grounded or rising, otherwise run right. After 400 frames, this is the scroll-loop passage: align over elevated pipe at x280. Walk right if x<276, walk left if x>284; otherwise hold down until entering the pipe.",
+      "criteria": {
+        "right_run_jump": "Note timer below400 and grounded or rising: jump right.",
+        "right_run": "Note timer below400 and falling: run right.",
+        "right": "Note timer at least400 and x<276: walk right.",
+        "left": "Note timer at least400 and x>284: walk left.",
+        "down": "Note timer at least400 and276<=x<=284: hold down."
+      },
+      "instruction_router": {
+        "instructions": "Read ONLY note_elapsed_frames.pipe-after-coordinate-loop. Which instruction set applies?",
+        "state_fields": [
+          "note_elapsed_frames"
+        ],
+        "routes": {
+          "cross": {
+            "description": "The timer is less than 400: first passage, cross this area.",
+            "instructions": "Is Mario falling? Use only the motion field.",
+            "criteria": {
+              "right_run": "Yes: falling.",
+              "right_run_jump": "No: grounded or rising or airborne."
+            },
+            "action_state_fields": [
+              "motion"
+            ]
+          },
+          "enter": {
+            "description": "The timer is at least 400: return passage, enter the pipe.",
+            "instructions": "Align over the pipe. Walk right if x<276, left if x>284, otherwise press down.",
+            "criteria": {
+              "right": "x <276.",
+              "left": "x >284.",
+              "down": "276 <= x <=284."
+            },
+            "action_state_fields": [
+              "x"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "second-section-plant",
+      "min_x": 2180,
+      "max_x": 2255,
+      "room_ids": [
+        41980
+      ],
+      "replace_instructions": true,
+      "instructions": "Wait for the pipe plant to retract. If note_elapsed_frames.second-section-plant < 90, wait. Otherwise jump right when grounded or rising; run right when falling.",
+      "criteria": {
+        "wait": "Timer below90: release all buttons and wait.",
+        "right_run_jump": "Timer at least90 and grounded or rising: jump right.",
+        "right_run": "Timer at least90 and falling: run right."
+      }
+    },
+    {
+      "id": "hidden",
+      "min_x": 2355,
+      "max_x": 2500,
+      "room_ids": [
+        41980
+      ],
+      "replace_instructions": true,
+      "instructions": "Use the hidden block. During note_elapsed_frames.hidden < 100, align at x2390 and jump straight up: right when x<2388, left when x>2392, jump otherwise. During 100 <= note_elapsed_frames.hidden < 140, move left. After 140, jump right if grounded or rising, otherwise run right.",
+      "criteria": {
+        "right": "Timer below 100 and x below2388.",
+        "left": "Timer below 100 and x above2392; OR timer from100 through139.",
+        "jump": "Timer below100 and x between2388 and2392.",
+        "right_run_jump": "Timer at least140 and grounded or rising.",
+        "right_run": "Timer at least140 and falling."
+      }
+    },
+    {
+      "id": "recovery",
+      "min_x": 2350,
+      "max_x": 2500,
+      "room_ids": [
+        41980
+      ],
+      "activate_when": {
+        "grounded": true,
+        "feet_y_min": 200,
+        "horizontal_speed_max": 0,
+        "x_min": 2366,
+        "x_max": 2376,
+        "after_note_frames": {
+          "hidden": 60
+        }
+      },
+      "replace_instructions": true,
+      "instructions": "Is note_elapsed_frames.recovery less than 10? Answer using only that number.",
+      "criteria": {
+        "right_run": "Yes: recovery timer < 10.",
+        "right_run_jump": "No: recovery timer >= 10."
+      }
+    },
+    {
+      "id": "blockbrake",
+      "min_x": 2350,
+      "max_x": 2500,
+      "room_ids": [
+        41980
+      ],
+      "activate_when": {
+        "after_note_frames": {
+          "recovery": 30
+        }
+      },
+      "replace_instructions": true,
+      "instructions": "Is Mario grounded? Answer using grounded only.",
+      "criteria": {
+        "right_run": "Yes, grounded.",
+        "left_jump": "No, airborne: keep holding jump and brake left."
+      }
+    },
+    {
+      "id": "blocklaunch",
+      "min_x": 2350,
+      "max_x": 2500,
+      "room_ids": [
+        41980
+      ],
+      "activate_when": {
+        "grounded": true,
+        "feet_y_min": 144,
+        "feet_y_max": 144,
+        "x_min": 2388,
+        "x_max": 2416,
+        "after_note_frames": {
+          "recovery": 20
+        }
+      },
+      "replace_instructions": true,
+      "instructions": "Is note_elapsed_frames.blocklaunch less than 4? Answer using only that number.",
+      "criteria": {
+        "right_run": "Yes: blocklaunch timer < 4; release jump.",
+        "right_run_jump": "No: blocklaunch timer >= 4; jump right."
+      }
+    },
+    {
+      "id": "pipebrake",
+      "min_x": 2408,
+      "max_x": 2437,
+      "room_ids": [
+        41980
+      ],
+      "activate_when": {
+        "after_note_frames": {
+          "blocklaunch": 4
+        }
+      },
+      "replace_instructions": true,
+      "instructions": "Is horizontal_speed at least 1? Answer using only horizontal_speed.",
+      "criteria": {
+        "left_jump": "Yes: horizontal_speed >= 1.",
+        "right_run_jump": "No: horizontal_speed < 1."
+      }
+    },
+    {
+      "id": "pipefarbrake",
+      "min_x": 2438,
+      "max_x": 2500,
+      "room_ids": [
+        41980
+      ],
+      "activate_when": {
+        "after_note_frames": {
+          "blocklaunch": 4
+        }
+      },
+      "replace_instructions": true,
+      "instructions": "Is x at least 2438? Answer using only x.",
+      "criteria": {
+        "left_jump": "Yes: x >= 2438.",
+        "right_run_jump": "No: x < 2438."
+      }
+    },
+    {
+      "id": "pipeenter",
+      "min_x": 2350,
+      "max_x": 2500,
+      "room_ids": [
+        41980
+      ],
+      "activate_when": {
+        "grounded": true,
+        "feet_y_min": 96,
+        "feet_y_max": 96,
+        "x_min": 2424,
+        "x_max": 2465,
+        "after_note_frames": {
+          "blocklaunch": 20
+        }
+      },
+      "replace_instructions": true,
+      "instructions": "Align at x2438..2440. Walk right if x<2438; walk left if x>2440; otherwise press down.",
+      "criteria": {
+        "right": "x <2438.",
+        "left": "x >2440.",
+        "down": "2438 <= x <=2440."
+      }
+    },
+    {
+      "id": "thirdbrake",
+      "min_x": 3580,
+      "max_x": 3710,
+      "room_ids": [
+        41980
+      ],
+      "activate_when": {
+        "grounded": false,
+        "x_min": 3624,
+        "x_max": 3630,
+        "feet_y_min": 140,
+        "feet_y_max": 160
+      },
+      "replace_instructions": true,
+      "instructions": "Is note_elapsed_frames.thirdbrake less than 28? Answer using only that number.",
+      "criteria": {
+        "left_jump": "Yes: thirdbrake timer < 28.",
+        "down": "No: thirdbrake timer >= 28."
+      }
+    },
+    {
+      "id": "underwater",
+      "min_x": 0,
+      "max_x": 2000,
+      "room_ids": [
+        44738
+      ],
+      "replace_instructions": true,
+      "instructions": "Swim right. If jump_held is false and feet_y > 128, press jump for an upward stroke. Otherwise release jump and keep moving right.",
+      "criteria": {
+        "right_run_jump": "jump_held is false AND feet_y > 128.",
+        "right_run": "jump_held is true OR feet_y <= 128."
+      }
+    },
+    {
+      "id": "water-exit",
+      "min_x": 990,
+      "max_x": 1200,
+      "room_ids": [
+        44738
+      ],
+      "replace_instructions": true,
+      "instructions": "Swim into the horizontal exit pipe at feet height144. If jump_held is false and feet_y >144, stroke upward; otherwise release jump and continue right.",
+      "criteria": {
+        "right_run_jump": "jump_held false AND feet_y >144.",
+        "right_run": "jump_held true OR feet_y <=144."
+      }
+    },
+    {
+      "id": "thirdshift",
+      "min_x": 3580,
+      "max_x": 3710,
+      "room_ids": [
+        41980
+      ],
+      "activate_when": {
+        "after_note_frames": {
+          "thirdbrake": 52
+        }
+      },
+      "replace_instructions": true,
+      "instructions": "Is note_elapsed_frames.thirdshift less than 18? Answer using only that number.",
+      "criteria": {
+        "left": "Yes: thirdshift timer < 18.",
+        "down": "No: thirdshift timer >= 18."
+      }
+    },
+    {
+      "id": "waterbrake",
+      "min_x": 500,
+      "max_x": 990,
+      "room_ids": [
+        44738
+      ],
+      "activate_when": {
+        "x_min": 540,
+        "x_max": 550
+      },
+      "replace_instructions": true,
+      "instructions": "Is note_elapsed_frames.waterbrake less than 16? Answer using only that number.",
+      "criteria": {
+        "left": "Yes: waterbrake timer < 16; brake with jump released.",
+        "wait": "No: waterbrake timer >= 16; release buttons and descend."
+      }
+    },
+    {
+      "id": "waterdive",
+      "min_x": 500,
+      "max_x": 989,
+      "room_ids": [
+        44738
+      ],
+      "activate_when": {
+        "after_note_frames": {
+          "waterbrake": 36
+        }
+      },
+      "replace_instructions": true,
+      "instructions": "Swim right beneath the ceiling firebar. If jump_held is false and feet_y >176, stroke upward. Otherwise release jump and keep swimming right.",
+      "criteria": {
+        "right_run_jump": "jump_held false AND feet_y >176.",
+        "right_run": "jump_held true OR feet_y <=176."
+      }
+    },
+    {
+      "id": "water-late-deep",
+      "min_x": 800,
+      "max_x": 989,
+      "room_ids": [
+        44738
+      ],
+      "replace_instructions": true,
+      "instructions": "Swim along the bottom below the late firebars. If jump_held is false and feet_y >208, stroke upward. Otherwise release jump and continue right.",
+      "criteria": {
+        "right_run_jump": "jump_held false AND feet_y >208.",
+        "right_run": "jump_held true OR feet_y <=208."
+      }
+    },
+    {
+      "id": "hammer-setup",
+      "min_x": 4210,
+      "max_x": 4380,
+      "room_ids": [
+        41980
+      ],
+      "activate_when": {
+        "grounded": true,
+        "feet_y_min": 208,
+        "feet_y_max": 208,
+        "x_min": 4210,
+        "x_max": 4225
+      },
+      "replace_instructions": true,
+      "instructions": "Is note_elapsed_frames.hammer-setup less than 12? Answer using only that number.",
+      "criteria": {
+        "right_run_jump": "Yes: hammer-setup timer < 12.",
+        "right_run": "No: hammer-setup timer >= 12; release jump to land before the Hammer Brother."
+      }
+    },
+    {
+      "id": "hammer-launch",
+      "min_x": 4288,
+      "max_x": 4450,
+      "room_ids": [
+        41980
+      ],
+      "activate_when": {
+        "grounded": true,
+        "feet_y_min": 208,
+        "feet_y_max": 208,
+        "x_min": 4288,
+        "x_max": 4360,
+        "after_note_frames": {
+          "hammer-setup": 20
+        }
+      },
+      "replace_instructions": true,
+      "instructions": "Is note_elapsed_frames.hammer-launch less than 8? Answer using only that number.",
+      "criteria": {
+        "right_run_jump": "Yes: hammer-launch timer < 8.",
+        "right_run": "No: hammer-launch timer >= 8; release jump to land before the lava."
+      }
+    },
+    {
+      "id": "final-lava-launch",
+      "min_x": 4370,
+      "max_x": 4650,
+      "room_ids": [
+        41980
+      ],
+      "activate_when": {
+        "grounded": true,
+        "feet_y_min": 208,
+        "feet_y_max": 208,
+        "x_min": 4370,
+        "x_max": 4415,
+        "after_note_frames": {
+          "hammer-launch": 20
+        }
+      },
+      "replace_instructions": true,
+      "instructions": "Is Mario falling? Answer using the motion field only.",
+      "criteria": {
+        "right_run": "Yes, motion is falling.",
+        "right_run_jump": "No, motion is grounded or rising or airborne."
+      }
+    },
+    {
+      "id": "rununder-final-bowser",
+      "min_x": 4590,
+      "max_x": 4670,
+      "room_ids": [
+        41980
+      ],
+      "replace_instructions": true,
+      "instructions": "Bowser is above Mario. Stay low and run under him without starting a jump. Is Mario already rising? If rising sustain jump, otherwise run right with jump released.",
+      "criteria": {
+        "right_run": "Grounded or falling: stay low and run right.",
+        "right_run_jump": "Already rising: sustain existing jump."
+      }
+    },
+    {
+      "id": "bowserbrake",
+      "min_x": 4550,
+      "max_x": 4670,
+      "room_ids": [
+        41980
+      ],
+      "activate_when": {
+        "grounded": true,
+        "x_min": 4610,
+        "x_max": 4625
+      },
+      "replace_instructions": true,
+      "instructions": "Is note_elapsed_frames.bowserbrake less than 16? Answer using only that number.",
+      "criteria": {
+        "left": "Yes: bowserbrake timer < 16; brake left with jump released.",
+        "wait": "No: bowserbrake timer >= 16; release all buttons and wait."
+      }
+    },
+    {
+      "id": "bowserresume",
+      "min_x": 4550,
+      "max_x": 4670,
+      "room_ids": [
+        41980
+      ],
+      "activate_when": {
+        "after_note_frames": {
+          "bowserbrake": 126
+        }
+      },
+      "replace_instructions": true,
+      "instructions": "Is Mario already rising? If rising sustain jump, otherwise run right with jump released.",
+      "criteria": {
+        "right_run": "Grounded or falling: stay low and run right.",
+        "right_run_jump": "Already rising: sustain existing jump."
+      }
+    },
+    {
+      "id": "shortbrake",
+      "min_x": 2260,
+      "max_x": 2303,
+      "room_ids": [
+        41980
+      ],
+      "replace_instructions": true,
+      "instructions": "Is note_elapsed_frames.shortbrake less than 10? Answer using only that number.",
+      "criteria": {
+        "right_jump": "Yes: shortbrake timer < 10.",
+        "left_jump": "No: shortbrake timer >= 10."
+      }
+    },
+    {
+      "id": "shortlaunch",
+      "min_x": 2260,
+      "max_x": 2354,
+      "room_ids": [
+        41980
+      ],
+      "activate_when": {
+        "grounded": true,
+        "feet_y_min": 160,
+        "feet_y_max": 160,
+        "x_min": 2270,
+        "x_max": 2301,
+        "after_note_frames": {
+          "shortbrake": 8
+        }
+      },
+      "replace_instructions": true,
+      "instructions": "Is Mario falling? Answer using the motion field only.",
+      "criteria": {
+        "right_run": "Yes, motion is falling.",
+        "right_run_jump": "No, motion is grounded or rising or airborne."
+      }
+    },
+    {
+      "id": "castle-entry",
+      "min_x": 4150,
+      "max_x": 4160,
+      "room_ids": [
+        41980
+      ],
+      "replace_instructions": true,
+      "instructions": "Is note_elapsed_frames.castle-entry less than4? Use only that number.",
+      "criteria": {
+        "wait": "Yes: timer <4.",
+        "right_run_jump": "No: timer >=4."
+      }
+    }
+  ],
+  "inference": {
+    "samples": 1,
+    "seed": 0,
+    "steps": 1
+  },
+  "reflection_start_x": 0,
+  "compact_state": true,
+  "one_frame_rearm": true,
+  "observation_style": "facts",
+  "thresholds": {
+    "enemy": 40,
+    "pit": 24,
+    "above": 64
+  },
+  "include_room_metadata": true
+}

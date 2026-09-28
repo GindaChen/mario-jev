@@ -24,7 +24,9 @@ def positive(value):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "--policy", choices=["jev", "djev", "scorer", "laya", "scripted"], default="jev"
+        "--policy",
+        choices=["jev", "djev", "scorer", "laya", "modular", "scripted"],
+        default="jev",
     )
     parser.add_argument(
         "--djev-url",
@@ -96,6 +98,14 @@ def main():
     parser.add_argument(
         "--speed", type=positive, default=1, help="Replay speed multiplier (default: 1)"
     )
+    parser.add_argument(
+        "--jev-profile", "--djev-profile", dest="jev_profile", type=Path
+    )
+    parser.add_argument(
+        "--djev-api-path",
+        choices=["/v1/request", "/v1/systemone"],
+        default="/v1/request",
+    )
     parser.add_argument("--laya-url", default="http://127.0.0.1:18821")
     parser.add_argument(
         "--laya-profile", type=Path, default=Path("prompts/laya/v9.json")
@@ -117,7 +127,13 @@ def main():
         default=100,
         help="Stop after this many new decisions without increasing furthest x",
     )
+    parser.add_argument("--decision-url", default="http://127.0.0.1:18822")
+    parser.add_argument(
+        "--decision-profile", type=Path, default=Path("prompts/laya/v9.json")
+    )
     args = parser.parse_args()
+    if args.policy == "modular" and args.model not in ("kev", "nimble", "openjev4"):
+        parser.error("--policy modular requires --model kev, nimble, or openjev4")
     env_id = f"SuperMarioBros-{args.world}-{args.stage}-v0"
     if args.replay:
         from .replay import replay
@@ -180,9 +196,37 @@ def main():
             )
             return
         if args.policy == "djev":
-            from .djev import DjevPolicy
+            from .djev import DjevPolicy, ModularDjevPolicy
 
-            policy = DjevPolicy(args.djev_url, isolation=args.djev_isolation)
+            if (
+                args.jev_profile
+                and json.loads(args.jev_profile.read_text()).get("mode") == "reflection"
+            ):
+                from .reflection import ReflectionDjevPolicy
+
+                policy = ReflectionDjevPolicy(
+                    args.djev_url,
+                    args.jev_profile,
+                    isolation=args.djev_isolation,
+                    api_path=args.djev_api_path,
+                )
+            elif (
+                args.jev_profile
+                and json.loads(args.jev_profile.read_text()).get("mode") == "modular"
+            ):
+                policy = ModularDjevPolicy(
+                    args.djev_url,
+                    args.jev_profile,
+                    isolation=args.djev_isolation,
+                    api_path=args.djev_api_path,
+                )
+            else:
+                policy = DjevPolicy(
+                    args.djev_url,
+                    isolation=args.djev_isolation,
+                    profile=args.jev_profile,
+                    api_path=args.djev_api_path,
+                )
         elif args.policy == "laya":
             from .laya import LayaPolicy, ModularLayaPolicy
 
@@ -192,14 +236,32 @@ def main():
                 else LayaPolicy
             )
             policy = policy_class(args.laya_url, args.laya_profile)
+        elif args.policy == "modular":
+            from .modular import ModularCandidatePolicy
+
+            policy = ModularCandidatePolicy(
+                args.decision_url, args.decision_profile, args.model
+            )
         elif args.policy == "scorer":
             from .scorer import ScorerPolicy
 
             policy = ScorerPolicy(
                 args.scorer_url, args.model, direct=args.scorer_direct
             )
+        elif (
+            args.policy == "jev"
+            and args.jev_profile
+            and json.loads(args.jev_profile.read_text()).get("mode") == "modular"
+        ):
+            from .jev_modular import ModularJevPolicy
+
+            policy = ModularJevPolicy(args.model, args.jev_profile)
         else:
-            policy = JevPolicy(args.model) if args.policy == "jev" else ScriptedPolicy()
+            policy = (
+                JevPolicy(args.model, profile=args.jev_profile)
+                if args.policy == "jev"
+                else ScriptedPolicy()
+            )
         args.log_dir.mkdir(parents=True, exist_ok=True)
         path = args.log_dir / (
             datetime.now(UTC).strftime("%Y%m%dT%H%M%S%fZ") + ".jsonl"
@@ -215,10 +277,30 @@ def main():
                 {
                     "type": "config",
                     "policy": args.policy,
+                    "decision_url": args.decision_url
+                    if args.policy == "modular"
+                    else None,
+                    "decision_profile": str(args.decision_profile)
+                    if args.policy == "modular"
+                    else None,
+                    "decision_profile_sha256": getattr(policy, "digest", None)
+                    if args.policy == "modular"
+                    else None,
+                    "jev_profile": str(args.jev_profile)
+                    if args.policy in ("jev", "djev") and args.jev_profile
+                    else None,
+                    "jev_profile_sha256": getattr(
+                        policy, "digest", getattr(policy, "profile_digest", None)
+                    )
+                    if args.policy in ("jev", "djev")
+                    else None,
                     "model": args.policy
                     if args.policy in ("djev", "laya")
                     else args.model,
                     "djev_url": args.djev_url if args.policy == "djev" else None,
+                    "djev_api_path": args.djev_api_path
+                    if args.policy == "djev"
+                    else None,
                     "djev_isolation": args.djev_isolation
                     if args.policy == "djev"
                     else None,
@@ -230,7 +312,9 @@ def main():
                     "replayed_prefix_decisions": len(prefix),
                     "fresh_start": not bool(args.resume),
                     "stall_decisions": args.stall_decisions,
-                    "laya_profile_sha256": getattr(policy, "digest", None),
+                    "laya_profile_sha256": getattr(policy, "digest", None)
+                    if args.policy == "laya"
+                    else None,
                     "laya_profile": str(args.laya_profile)
                     if args.policy == "laya"
                     else None,
@@ -238,6 +322,12 @@ def main():
                     "decisions": args.decisions,
                     "episodes": args.episodes,
                     "history": args.history,
+                    "extra_solid_tiles": (getattr(policy, "profile", None) or {}).get(
+                        "extra_solid_tiles", []
+                    ),
+                    "include_room_metadata": (getattr(policy, "profile", None) or {}).get(
+                        "include_room_metadata", False
+                    ),
                     "interrupt_on_landing": True,
                     "seed": args.seed,
                     "env": env_id,
@@ -251,7 +341,15 @@ def main():
                         # nes-py exposes its pyglet window through the viewer.
                         env.unwrapped.viewer._window.set_size(800, 600)
                         env.render()
-                memory = ObservationMemory(args.history)
+                memory = ObservationMemory(
+                    args.history,
+                    extra_solid_tiles=(getattr(policy, "profile", None) or {}).get(
+                        "extra_solid_tiles", ()
+                    ),
+                    include_room_metadata=(getattr(policy, "profile", None) or {}).get(
+                        "include_room_metadata", False
+                    ),
+                )
                 max_x = int(info["x_pos"])
                 total_reward = 0.0
                 completed = False
@@ -281,7 +379,15 @@ def main():
                     info, reward, terminated, truncated, samples = execute_action(
                         env,
                         action,
-                        recorded["frames_executed"] if recorded else args.frames,
+                        recorded["frames_executed"]
+                        if recorded
+                        else max(
+                            1,
+                            min(
+                                args.frames,
+                                diagnostics.get("requested_action_frames", args.frames),
+                            ),
+                        ),
                         args.headless,
                     )
                     executed = len(samples)

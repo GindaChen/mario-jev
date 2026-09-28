@@ -1,0 +1,130 @@
+{
+  "name": "2-3-r21-late-bridge",
+  "mode": "reflection",
+  "questions": {
+    "movement": {
+      "type": "choice",
+      "instructions": "Apply the first matching rule: (1) enemy_dy < 0 AND enemy_dx <= 64: dodge_left. (2) grounded is true AND lowest_floor_drop_px == 0: run_right. (3) retreating is true AND drop_px < 32 AND lowest_floor_drop_px > 0: brake_left. (4) blocked is true AND wall_height > headroom: brake_left. Otherwise run_right. Null means absent; a comparison to null does not match.",
+      "criteria": {
+        "run_right": "Move right.",
+        "brake_left": "Move left.",
+        "dodge_left": "Step left to avoid a nearby enemy falling from above."
+      }
+    },
+    "enemy": {
+      "type": "choice",
+      "instructions": "Choose C if distance_px <= 48 and vertical_offset_px >= 0. Choose A if distance_px is null. Otherwise choose B.",
+      "criteria": {
+        "A": "No enemy.",
+        "B": "Do not jump yet.",
+        "C": "Jump now."
+      }
+    },
+    "enemy_low": {
+      "type": "choice",
+      "instructions": "Choose C if distance_px <= 40 and vertical_offset_px >= 0. Choose A if distance_px is null. Otherwise choose B.",
+      "criteria": {
+        "A": "No enemy.",
+        "B": "Do not jump yet.",
+        "C": "Jump now."
+      }
+    },
+    "wall": {
+      "type": "choice",
+      "instructions": "Choose A if distance_px is null. Choose C if distance_px <= 48 and (headroom_px is null OR height_px <= headroom_px). Otherwise choose B.",
+      "criteria": {
+        "A": "No wall.",
+        "B": "Do not jump at this wall.",
+        "C": "Jump over the nearby wall."
+      }
+    },
+    "pit": {
+      "type": "choice",
+      "instructions": "Choose A if distance_px is null. Choose C if distance_px <= 48 and floor_gaps is not empty. Otherwise choose B.",
+      "criteria": {
+        "A": "No missing floor.",
+        "B": "Not time to jump; far away or a safe drop.",
+        "C": "Jump over the nearby floor gap."
+      }
+    },
+    "air": {
+      "type": "choice",
+      "instructions": "Which direction is Mario moving vertically?",
+      "criteria": {
+        "A": "Rising upward.",
+        "B": "Falling downward."
+      }
+    }
+  },
+  "units": "body_lengths_v2",
+  "movement_observation": "goal_direction",
+  "route_geometry": true,
+  "route_displacement": true,
+  "route_minimal": true,
+  "enemy_vertical": true,
+  "api_retries": 2,
+  "movement_enemies": true,
+  "route_floor": true,
+  "hazard_pixels": true,
+  "instructions": "Is Mario falling? Answer using the motion field only.",
+  "criteria": {
+    "right_run": "Yes, motion is falling.",
+    "right_run_jump": "No, motion is grounded or rising or airborne."
+  },
+  "memory_notes": [
+    {
+      "id": "delay-first-fish-jump",
+      "min_x": 350,
+      "max_x": 395,
+      "instructions": "OVERRIDE the motion question. Is x less than 396?",
+      "criteria": {
+        "right_run": "Yes, x < 396.",
+        "right_run_jump": "No, x >= 396."
+      }
+    },
+    {
+      "id": "delay-middle-bridge",
+      "min_x": 1150,
+      "max_x": 1230,
+      "instructions": "OVERRIDE the motion question. Is x less than 1231?",
+      "criteria": {
+        "right_run": "Yes, x < 1231.",
+        "right_run_jump": "No, x >= 1231."
+      }
+    },
+    {
+      "id": "delay-third-gap",
+      "min_x": 1400,
+      "max_x": 1480,
+      "instructions": "OVERRIDE the motion question. Is x less than 1481?",
+      "criteria": {
+        "right_run": "Yes, x < 1481.",
+        "right_run_jump": "No, x >= 1481."
+      }
+    },
+    {
+      "id": "delay-late-gap",
+      "min_x": 2350,
+      "max_x": 2440,
+      "instructions": "OVERRIDE the motion question. Is x less than 2441?",
+      "criteria": {
+        "right_run": "Yes, x < 2441.",
+        "right_run_jump": "No, x >= 2441."
+      }
+    }
+  ],
+  "inference": {
+    "samples": 1,
+    "seed": 0,
+    "steps": 1
+  },
+  "reflection_start_x": 0,
+  "compact_state": true,
+  "one_frame_rearm": true,
+  "observation_style": "facts",
+  "thresholds": {
+    "enemy": 40,
+    "pit": 24,
+    "above": 64
+  }
+}

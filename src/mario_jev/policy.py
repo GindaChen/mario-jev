@@ -1,5 +1,9 @@
 """Policies return a controller action and diagnostics."""
 
+import hashlib
+import json
+from pathlib import Path
+
 from typesafe_sdk import Choice, Noul, RetryPolicy, TypeSafeClient
 
 ACTIONS = {
@@ -11,11 +15,17 @@ ACTIONS = {
     "left": ["left"],
     "left_jump": ["left", "A"],
     "jump": ["A"],
+    "down": ["down"],
 }
 
 
 class JevPolicy:
-    def __init__(self, model="jev-latest", *, client=None):
+    def __init__(self, model="jev-latest", *, client=None, profile=None):
+        self.profile = json.loads(Path(profile).read_text()) if profile else None
+        self.previous_decision = None
+        self.profile_digest = (
+            hashlib.sha256(Path(profile).read_bytes()).hexdigest() if profile else None
+        )
         self.client = (
             client
             if client is not None
@@ -44,8 +54,53 @@ class JevPolicy:
             ),
         }
 
+        if self.profile:
+            self.questions = {
+                k: (Choice(**v) if k == "movement" else Noul(**v))
+                for k, v in self.profile["questions"].items()
+            }
+
     def choose(self, state):
-        response = self.client.system_one(state=state, questions=self.questions)
+        observation = state
+        if self.profile and self.profile.get("observation") == "compact":
+            observation = {
+                k: state[k]
+                for k in (
+                    "mario",
+                    "action_frames",
+                    "jump_already_held",
+                    "nearest_threat",
+                    "blocked_forward",
+                    "jump_corridor",
+                    "landing_surfaces",
+                )
+            }
+            observation["mario"] = {
+                k: v for k, v in state["mario"].items() if k not in ("x", "y")
+            }
+            observation["terrain"] = state["terrain"]["summary"]
+        if self.profile and self.profile.get("observation") == "minimal":
+            terrain = state["terrain"]["summary"]
+            enemy = state["nearest_threat"]
+            wall = terrain["nearest_obstacle"]
+            pit = terrain["nearest_empty_column_below_feet"]
+            observation = {
+                "motion": state["mario"]["motion"],
+                "grounded": state["mario"]["grounded"],
+                "jump_held": state["jump_already_held"],
+                "enemy_distance_px": enemy["dx"] if enemy else None,
+                "wall_distance_px": wall["distance_px"] if wall else None,
+                "wall_height_px": wall["height_above_feet_px"] if wall else None,
+                "ceiling_clearance_px": terrain["overhead_clearance_px"],
+                "pit_edge_distance_px": pit["edge_distance_px"] if pit else None,
+                "blocked_forward": state["blocked_forward"],
+                "feet_y": state["mario"]["feet_y"],
+                "floor_gaps": state["landing_surfaces"]["floor_gaps"],
+                "platforms": state["landing_surfaces"]["surfaces"],
+            }
+        if self.profile and self.profile.get("remember_last_decision"):
+            observation["previous_decision"] = self.previous_decision
+        response = self.client.system_one(state=observation, questions=self.questions)
         movement = response.answers["movement"]
         start = response.answers["start_jump"].noul
         sustain = response.answers["sustain_jump"].noul
@@ -57,6 +112,8 @@ class JevPolicy:
             and not summary.get("nearest_empty_column_below_feet")
         )
         ceiling_hop = response.answers["ceiling_hop"].noul
+        if self.profile and self.profile.get("ceiling_routing") == "unified":
+            ceiling_approach = False
         if ceiling_approach:
             start = ceiling_hop
         grounded = state["mario"]["grounded"]
@@ -76,7 +133,25 @@ class JevPolicy:
         action = next(
             name for name, candidate in ACTIONS.items() if candidate == buttons
         )
+        self.previous_decision = {
+            "movement": movement.choice,
+            "jump_pressed": jump,
+            "feet_y": state["mario"].get("feet_y"),
+            "blocked_forward": state.get("blocked_forward"),
+        }
         return action, {
+            "profile": self.profile["name"] if self.profile else "legacy",
+            "profile_sha256": self.profile_digest,
+            "backend_diagnostics": {
+                "state": observation,
+                "questions": {
+                    k: {
+                        "instructions": v.instructions,
+                        **({"criteria": v.criteria} if hasattr(v, "criteria") else {}),
+                    }
+                    for k, v in self.questions.items()
+                },
+            },
             "confidence": movement.confidence,
             "probabilities": dict(movement.probabilities),
             "decisions": {

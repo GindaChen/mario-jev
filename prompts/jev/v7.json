@@ -1,0 +1,26 @@
+{
+  "name": "v7-direct-retreat",
+  "observation": "compact",
+  "ceiling_routing": "unified",
+  "questions": {
+    "movement": {
+      "instructions": "If blocked_forward is true, retreat left to find another route. Otherwise move right. If previous_decision.movement is brake_left, continue left until falling off the ledge. Once falling, return right.",
+      "criteria": {
+        "run_right": "Move right through a clear path.",
+        "walk_right": "Walk right.",
+        "brake_left": "Move left to escape a blocked passage.",
+        "wait": "Wait."
+      }
+    },
+    "start_jump": {
+      "instructions": "Is a jump needed RIGHT NOW? Only when Mario is grounded and jump_already_held is false. Enemy: use nearest_threat.dx (not horizontal_gap_px). Jump when dx is at most 40 pixels; wait when dx is greater than 40. Wall: jump when terrain.nearest_obstacle.distance_px is at most48 pixels. Pit: jump when terrain.nearest_empty_column_below_feet.edge_distance_px is at most48 pixels. Return false when no such nearby hazard exists. Being under a ceiling is not itself a reason to jump. Do not jump merely because an enemy is visible. Do NOT jump into a wall when its height_above_feet_px exceeds overhead_clearance_px: retreat and drop to the lower passage instead. Missing floor on a raised platform can be a safe drop if landing_surfaces shows continuous floor beneath; walk off rather than jumping into the ceiling. When moving left to drop off a ledge beneath an unjumpable wall, RELEASE jump and walk off; jumping would keep Mario trapped on the ledge."
+    },
+    "ceiling_hop": {
+      "instructions": "Should Mario hop over a nearby enemy? True if grounded, jump button released, and an enemy is within 32 pixels. False otherwise."
+    },
+    "sustain_jump": {
+      "instructions": "Is Mario rising? Hold jump while rising to gain height. Release jump while falling, grounded, or after hitting a ceiling."
+    }
+  },
+  "remember_last_decision": true
+}

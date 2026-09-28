@@ -7,3 +7,13 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 *.egg-info/
+
+# Generated experiment artifacts
+deliverables/
+.DS_Store
+web/public/data/campaign-final/
+web/public/media/
+web/public/data/campaign.json
+web/public/data/campaign-frame.jpg
+web/public/data/mario.json
+web/public/data/journal.json

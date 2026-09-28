@@ -1,0 +1,189 @@
+{
+  "name": "campaign-2-1-focused-brake-r01",
+  "mode": "reflection",
+  "questions": {
+    "movement": {
+      "type": "choice",
+      "instructions": "Apply the first matching rule: (1) enemy_dy < 0 AND enemy_dx <= 64: dodge_left. (2) grounded is true AND lowest_floor_drop_px == 0: run_right. (3) retreating is true AND drop_px < 32 AND lowest_floor_drop_px > 0: brake_left. (4) blocked is true AND wall_height > headroom: brake_left. Otherwise run_right. Null means absent; a comparison to null does not match.",
+      "criteria": {
+        "run_right": "Move right.",
+        "brake_left": "Move left.",
+        "dodge_left": "Step left to avoid a nearby enemy falling from above."
+      }
+    },
+    "enemy": {
+      "type": "choice",
+      "instructions": "Choose C if distance_px <= 48 and vertical_offset_px >= 0. Choose A if distance_px is null. Otherwise choose B.",
+      "criteria": {
+        "A": "No enemy.",
+        "B": "Do not jump yet.",
+        "C": "Jump now."
+      }
+    },
+    "enemy_low": {
+      "type": "choice",
+      "instructions": "Choose C if distance_px <= 40 and vertical_offset_px >= 0. Choose A if distance_px is null. Otherwise choose B.",
+      "criteria": {
+        "A": "No enemy.",
+        "B": "Do not jump yet.",
+        "C": "Jump now."
+      }
+    },
+    "wall": {
+      "type": "choice",
+      "instructions": "Choose A if distance_px is null. Choose C if distance_px <= 48 and (headroom_px is null OR height_px <= headroom_px). Otherwise choose B.",
+      "criteria": {
+        "A": "No wall.",
+        "B": "Do not jump at this wall.",
+        "C": "Jump over the nearby wall."
+      }
+    },
+    "pit": {
+      "type": "choice",
+      "instructions": "Choose A if distance_px is null. Choose C if distance_px <= 48 and floor_gaps is not empty. Otherwise choose B.",
+      "criteria": {
+        "A": "No missing floor.",
+        "B": "Not time to jump; far away or a safe drop.",
+        "C": "Jump over the nearby floor gap."
+      }
+    },
+    "air": {
+      "type": "choice",
+      "instructions": "Which direction is Mario moving vertically?",
+      "criteria": {
+        "A": "Rising upward.",
+        "B": "Falling downward."
+      }
+    }
+  },
+  "units": "body_lengths_v2",
+  "movement_observation": "goal_direction",
+  "route_geometry": true,
+  "route_displacement": true,
+  "route_minimal": true,
+  "enemy_vertical": true,
+  "api_retries": 2,
+  "movement_enemies": true,
+  "route_floor": true,
+  "hazard_pixels": true,
+  "instructions": "Choose one action. PRIORITY: if grounded and floor_gap_within_takeoff_distance is true, jump right. Otherwise if grounded and enemy_within_jump_distance is true, jump right. If grounded and wall_within_40px and wall_fits_headroom are both true, jump right. If rising, hold jump and run right. If falling, run right without jump. Otherwise run right without jump. Do not retreat from flying enemies: keep moving to the next platform. Follow active stage lessons.",
+  "criteria": {
+    "right_run": "Continue right without jump when falling or when no jump hazard is present.",
+    "right_run_jump": "Jump right when grounded with a nearby hazard, or sustain a rising jump."
+  },
+  "memory_notes": [
+    {
+      "id": "short-goomba-hop",
+      "min_x": 570,
+      "max_x": 660,
+      "thresholds": {
+        "enemy": 64
+      },
+      "instructions": "OVERRIDE: use a short hop over the goombas. Jump right only when grounded and enemy_within_jump_distance is true. Otherwise run right with jump released; do not sustain the jump.",
+      "criteria": {
+        "right_run_jump": "Grounded with enemy_within_jump_distance true.",
+        "right_run": "Airborne or no nearby enemy: run right without jump."
+      }
+    },
+    {
+      "id": "pipe-wait",
+      "min_x": 700,
+      "max_x": 760,
+      "instructions": "OVERRIDE: wait beside the tall pipe until the plant retracts. Choose wait while note_elapsed_frames.pipe-wait is less than90. After that, jump right if grounded or rising, otherwise run right without jump.",
+      "criteria": {
+        "wait": "pipe-wait elapsed < 90: release all buttons.",
+        "right_run_jump": "Elapsed >= 90 and grounded or rising: jump right.",
+        "right_run": "Elapsed >= 90 and falling: move right."
+      }
+    },
+    {
+      "id": "early-enemy-landing",
+      "min_x": 1480,
+      "max_x": 1550,
+      "instructions": "Choose the action matching motion: when rising, hold jump and brake left. Otherwise run right without jump.",
+      "criteria": {
+        "left_jump": "motion is rising.",
+        "right_run": "motion is not rising."
+      },
+      "replace_instructions": true,
+      "observation_fields": [
+        "motion"
+      ]
+    },
+    {
+      "id": "second-pipe-wait",
+      "min_x": 1920,
+      "max_x": 1980,
+      "instructions": "OVERRIDE: wait beside this tall pipe. Choose wait while note_elapsed_frames.second-pipe-wait is less than60. After that jump right if grounded or rising, otherwise run right.",
+      "criteria": {
+        "wait": "Elapsed < 60: wait.",
+        "right_run_jump": "Elapsed >= 60 and grounded or rising.",
+        "right_run": "Elapsed >= 60 and falling."
+      }
+    },
+    {
+      "id": "land-before-pit",
+      "min_x": 2040,
+      "max_x": 2140,
+      "instructions": "OVERRIDE: use a short hop. If grounded jump right; otherwise release jump and run right.",
+      "criteria": {
+        "right_run_jump": "Grounded.",
+        "right_run": "Not grounded: release jump."
+      }
+    },
+    {
+      "id": "flying-koopas",
+      "min_x": 2620,
+      "max_x": 2750,
+      "instructions": "OVERRIDE: jump early over these flying koopas. If grounded or rising jump right. If falling run right without jump.",
+      "criteria": {
+        "right_run_jump": "Grounded or rising.",
+        "right_run": "Falling."
+      }
+    },
+    {
+      "id": "approach-spring",
+      "min_x": 2960,
+      "max_x": 3009,
+      "instructions": "OVERRIDE all earlier rules. If feet_y <48 or feet_y >240, choose right_run_jump to cross the wall. Otherwise choose right_run_jump. Hold jump throughout the springboard maneuver.",
+      "criteria": {
+        "right_run_jump": "Jump and move right toward or over the wall.",
+        "right_run": "Release jump only for a grounded rearm."
+      }
+    },
+    {
+      "id": "center-spring",
+      "min_x": 3010,
+      "max_x": 3014,
+      "instructions": "OVERRIDE all earlier rules. If feet_y <48 or feet_y >240, choose right_run_jump to cross the wall. Otherwise choose jump. Hold jump throughout the springboard maneuver.",
+      "criteria": {
+        "jump": "Mario is below the wall top: feet_y is between48 and240 inclusive.",
+        "right_run_jump": "Mario is above the wall top: feet_y is less than48 or greater than240."
+      }
+    },
+    {
+      "id": "return-spring",
+      "min_x": 3015,
+      "max_x": 3070,
+      "instructions": "OVERRIDE all earlier rules. If feet_y <48 or feet_y >240, choose right_run_jump to cross the wall. Otherwise choose left_jump. Hold jump throughout the springboard maneuver.",
+      "criteria": {
+        "left_jump": "Mario is below the wall top: feet_y is between48 and240 inclusive.",
+        "right_run_jump": "Mario is above the wall top: feet_y is less than48 or greater than240."
+      }
+    }
+  ],
+  "inference": {
+    "samples": 1,
+    "seed": 0,
+    "steps": 1
+  },
+  "reflection_start_x": 0,
+  "compact_state": true,
+  "one_frame_rearm": true,
+  "observation_style": "facts",
+  "thresholds": {
+    "enemy": 40,
+    "pit": 24,
+    "above": 64
+  }
+}

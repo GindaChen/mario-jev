@@ -76,6 +76,7 @@ class LayaPolicy:
             "run_right": ["right", "B"],
             "walk_right": ["right"],
             "brake_left": ["left"],
+            "dodge_left": ["left"],
             "wait": [],
         }[movement]
         # Mechanical rearming only; the model decides when to request a jump.
@@ -202,9 +203,16 @@ class ModularLayaPolicy(LayaPolicy):
         q = self.profile["questions"]
         m = state["mario"]
         t = state["terrain"]["summary"]
-        movement = self.query(
-            describe_scene(state), {"movement": q["movement"]}, calls
-        )["movement"]["choice"]
+        movement_state = describe_scene(state)
+        if self.profile.get("movement_observation") == "goal_direction":
+            movement_state = (
+                "Mario's destination is to the right. He needs forward momentum to cross gaps. "
+                "A separate controller question decides when to jump over hazards. "
+                f"Mario is {m['motion']}."
+            )
+        movement = self.query(movement_state, {"movement": q["movement"]}, calls)[
+            "movement"
+        ]["choice"]
         votes = {}
         if m["grounded"]:
             # Identify observed geometry, without deciding whether it warrants an action.
@@ -304,6 +312,7 @@ class ModularLayaPolicy(LayaPolicy):
             "run_right": ["right", "B"],
             "walk_right": ["right"],
             "brake_left": ["left"],
+            "dodge_left": ["left"],
             "wait": [],
         }[movement]
         rearm = m["grounded"] and state["jump_already_held"]

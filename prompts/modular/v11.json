@@ -1,0 +1,62 @@
+{
+  "name": "v11-explicit-counts",
+  "mode": "modular",
+  "questions": {
+    "movement": {
+      "type": "choice",
+      "instructions": "Choose movement toward the destination. Jump timing is decided separately.",
+      "criteria": {
+        "run_right": "Run to the right with forward momentum.",
+        "walk_right": "Walk slowly to the right.",
+        "brake_left": "Move left, away from the destination.",
+        "wait": "Stay still without making progress."
+      }
+    },
+    "enemy": {
+      "type": "choice",
+      "instructions": "Classify the distance to the enemy.",
+      "criteria": {
+        "A": "There is no enemy ahead.",
+        "B": "The enemy is four or more body lengths ahead.",
+        "C": "The enemy is one, two, or three body lengths ahead."
+      }
+    },
+    "enemy_low": {
+      "type": "choice",
+      "instructions": "Classify the distance to the enemy.",
+      "criteria": {
+        "A": "There is no enemy ahead.",
+        "B": "The enemy is three or more body lengths ahead.",
+        "C": "The enemy is one or two body lengths ahead."
+      }
+    },
+    "wall": {
+      "type": "choice",
+      "instructions": "Classify the distance to the wall.",
+      "criteria": {
+        "A": "There is no wall ahead.",
+        "B": "The wall is four or more body lengths ahead.",
+        "C": "The wall is one, two, or three body lengths ahead."
+      }
+    },
+    "pit": {
+      "type": "choice",
+      "instructions": "Classify the distance to the pit.",
+      "criteria": {
+        "A": "There is no pit ahead.",
+        "B": "The pit is four or more body lengths ahead.",
+        "C": "The pit is one, two, or three body lengths ahead."
+      }
+    },
+    "air": {
+      "type": "choice",
+      "instructions": "Which direction is Mario moving vertically?",
+      "criteria": {
+        "A": "Rising upward.",
+        "B": "Falling downward."
+      }
+    }
+  },
+  "units": "body_lengths_v2",
+  "movement_observation": "goal_direction"
+}
