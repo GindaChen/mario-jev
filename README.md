@@ -6,6 +6,10 @@ a jump, plus timing hops under low ceilings. Code composes their answers into co
 The emulator pauses while Jev responds, then advances up to four game frames by default, stopping early on landing.
 The resizable game window opens at 800×600 by default. No JavaScript is required.
 
+For the CLM experiment with one fixed prompt per attempt and failure-only System 2
+reflection, see [CLM.md](CLM.md). It includes the actual prompts, runnable entry
+points and audited results, with the existing jump-release helper disclosed.
+
 ## Setup
 
 ```sh
