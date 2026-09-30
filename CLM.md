@@ -82,6 +82,8 @@ The old timed plant-wait note is adapted to an untested visible-motion hypothesi
 because there is no note clock. This first transfer failed **0/3 clears**, dying
 at x=198 after selecting `right_run` on all 20 decisions each time. No S2 ran.
 See the [1-2 result and action-authority audit](reports/clm-stage12-single-prompt/README.md).
+The subsequent reflection run and reviewer-reference repair are tracked in
+[the 1-2 reflection operations record](reports/clm-stage12-reflection/OPERATIONS.md).
 
 ## Enable failure-only reflection
 
