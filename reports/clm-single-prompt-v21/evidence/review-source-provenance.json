@@ -1,5 +1,7 @@
 {
   "purpose": "Review packaging provenance; historical replay audit remains tied to its original frozen sources.",
+  "review_commit": "b00a20e3f7291320a45b14fcba13454d19782934",
+  "scope": "Hashes and AST comparisons describe the initial review import at review_commit, not subsequent stage-selection or prompt-hint-policy edits.",
   "normalization": "Ignore import statements and explicit check=False on subprocess.run (its default). All other executable AST nodes must match.",
   "files": [
     {

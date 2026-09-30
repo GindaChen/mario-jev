@@ -45,19 +45,26 @@ summaries, not a replacement for the complete archive.
 
 ## Source provenance and review scope
 
-The PR imports the tested CLM code, formats it for review, and extracts
+The initial import at commit `b00a20e3f7291320a45b14fcba13454d19782934`
+formats the tested CLM code for review and extracts
 `compact`, `atomic`, `FixedFrameFactory` and `CODEX_BIN` into `clm_support.py`
 instead of importing the entire older `sync_v3` experiment. Existing
 observation/controller files are byte-identical to the recorded run.
 
 [Review source provenance](evidence/review-source-provenance.json) records the
-original and review source hashes. The five CLM modules have identical executable
+original hashes and review hashes at that commit. At that commit, the five CLM
+modules have identical executable
 ASTs after ignoring imports and the explicit default `check=False` on subprocess
 cleanup; the extracted helper functions match exactly. Historical replay audits
 refer to the original frozen source hashes, not the formatted PR checkout.
 Use the archive's own `frozen/` runtime when replaying historical traces.
 
-The new protocol does not change the game, model weights or scoring. It does not
-publish a new website, start another experiment, or include credentials/model
-weights. The [implementation guide](../../CLM.md) contains prompts, entry points,
+The subsequent World 1-2 extension adds level selection, reset verification and
+a text-only stage-hint policy. The historical import hashes above do not describe
+those later edits. The [1-2 report](../clm-stage12-single-prompt/README.md) has a
+separate source manifest and replay audit for its actual deployed runtime.
+
+The new protocol does not change the game, model weights or scoring. This PR does
+not publish a new website or include credentials/model weights. The
+[implementation guide](../../CLM.md) contains prompts, entry points,
 external S2 prerequisites and commands for a fresh run.

@@ -60,6 +60,29 @@ This mode never launches S2. Results are saved under
 `$clm_control/experiments/fixed3/`; run names cannot overwrite existing runs.
 The process exits at the attempt or wall-time limit.
 
+### Try World 1-2
+
+The evaluator selects the starting level with `--world` and `--stage` (default
+`1 1`). These are fixed for the run, recorded in its manifest and checked against
+the native reset state. Neither S1 nor S2 can change them during an attempt.
+
+```sh
+clm_control="$(mktemp -d)"
+cp -R prompts/clm/single-prompt-1-2/. "$clm_control/"
+PYTHONPATH="$PWD/src" uv run python -m mario_jev.rsi_runtime.clm_single_prompt \
+  --control "$clm_control" --name fixed3 \
+  --source-program "$clm_control/source-program.json" \
+  --world 1 --stage 2 --fixed --max-attempts 3 --wall-limit 600
+```
+
+This [1-2 prompt](prompts/clm/single-prompt-1-2/template/initial-instructions.md)
+combines the v21 base instructions with four earlier DJev 1-2 lessons. All hints
+are ordinary text, present on every decision, including their coordinate ranges.
+The old timed plant-wait note is adapted to an untested visible-motion hypothesis
+because there is no note clock. This first transfer failed **0/3 clears**, dying
+at x=198 after selecting `right_run` on all 20 decisions each time. No S2 ran.
+See the [1-2 result and action-authority audit](reports/clm-stage12-single-prompt/README.md).
+
 ## Enable failure-only reflection
 
 Omit `--fixed`, use a new run name and set `--max-attempts 50 --wall-limit 3600`.
@@ -87,7 +110,21 @@ This mode deliberately retains the existing maximum four-frame action duration,
 early observation on landing and one-frame A release when grounded with A held
 and another jump selected. The helper is not learned. The emulator advances
 native frames without upstream post-step death/scene skips. Completion requires
-the native flag event. Coordinate/time-indexed route scripts are disallowed.
+the native flag event.
+
+Conditional stage hints, including coordinate ranges written in the fixed prompt,
+are allowed. CLM must interpret them and choose the action. Host-side region
+routers, forced jumps at particular positions, recorded button replay and
+elapsed-time/frame-index button schedules are disallowed. The 1-2 S2 template and
+single-prompt reviewer use this contract; the historical 1-1 template retains its
+original, stricter wording. This permission does not enable any code routing.
+
+The shared legacy `reflection.py` still contains optional geographic note
+activation and a fallback path for other experiments. Single-prompt profiles
+reject all fields that enable those paths. Regression checks test every candidate
+at twelve old note boundaries with both legacy paths patched to fail if called.
+Observation code can measure geometry; it cannot force a controller action in
+this mode. Attempt limits can stop a run, but cannot choose buttons.
 
 The warm-start baseline cleared 3/3, followed by 50/50 with failure reflection
 enabled. There were zero failures, zero prompt updates and zero real S2 calls in

@@ -9,7 +9,8 @@ from mario_jev.rsi_runtime.clm_pilot import make_env
 
 p=argparse.ArgumentParser();p.add_argument('root',type=Path);p.add_argument('attempt',type=int);p.add_argument('output',type=Path)
 a=p.parse_args();folder=a.root/f'attempts/{a.attempt:04}';summary=json.loads((folder/'summary.json').read_text())
-env=make_env();env.reset(seed=0)
+manifest=json.loads((a.root/'manifest.json').read_text())
+env=make_env(manifest.get('world',1),manifest.get('stage',1));env.reset(seed=0)
 writer=subprocess.Popen(['ffmpeg','-y','-loglevel','error','-f','rawvideo','-pixel_format','rgb24','-video_size','256x240',
                          '-framerate','60','-i','pipe:0','-an','-vf','scale=512:480:flags=neighbor',
                          '-c:v','libx264','-crf','20','-pix_fmt','yuv420p','-movflags','+faststart',str(a.output)],stdin=subprocess.PIPE)

@@ -341,3 +341,124 @@ def test_single_prompt_reflection_can_only_rewrite_instructions(tmp_path):
         fixed.codex("forbidden")
     with pytest.raises(RuntimeError):
         fixed.publish()
+
+
+def test_single_prompt_never_overrides_model_choice_at_old_stage_boundaries(
+    tmp_path, monkeypatch
+):
+    """Old lesson-region boundaries must not force a movement or jump."""
+    from mario_jev.djev import ModularDjevPolicy
+    from mario_jev.reflection import ReflectionDjevPolicy
+    from mario_jev.rsi_runtime.clm_single_prompt import single_profile
+
+    def forbidden(*args, **kwargs):
+        raise AssertionError("Legacy routing/fallback must not run")
+
+    monkeypatch.setattr(ReflectionDjevPolicy, "_activation_matches", forbidden)
+    monkeypatch.setattr(ModularDjevPolicy, "choose", forbidden)
+    p = tmp_path / "profile.json"
+    prompt = "Play 1-2. The model decides whether a lesson applies."
+    p.write_text(
+        json.dumps(
+            single_profile(
+                {"instructions": prompt, "criteria": dict(DEFAULT_CRITERIA)}, 0
+            )
+        )
+    )
+    fixture = json.loads(
+        (Path(__file__).parent / "fixtures/laya_wall.json").read_text()
+    )
+    calls = []
+    for choice in DEFAULT_CRITERIA:
+
+        def handle(request, selected=choice):
+            body = json.loads(request.content)
+            calls.append(body)
+            return httpx2.Response(
+                200,
+                json={
+                    "model": "clm-latest",
+                    "answers": {
+                        "action": {
+                            "type": "choice",
+                            "choice": selected,
+                            "confidence": 1,
+                            "probabilities": {
+                                k: float(k == selected) for k in DEFAULT_CRITERIA
+                            },
+                        }
+                    },
+                    "usage": {
+                        "input_tokens": 100,
+                        "output_tokens": 0,
+                        "billing_units": 1,
+                    },
+                },
+            )
+
+        policy = ClmReflectionPolicy(
+            "http://local", p, transport=httpx2.MockTransport(handle)
+        )
+        try:
+            for x in (
+                0,
+                939,
+                940,
+                1020,
+                1021,
+                1259,
+                1260,
+                1325,
+                1390,
+                1490,
+                1491,
+                3161,
+            ):
+                state = copy.deepcopy(fixture)
+                state["mario"].update(x=x, grounded=True, feet_y=144)
+                state["action_frames"] = 4
+                state["jump_already_held"] = False
+                action, di = policy.choose(state)
+                assert action == choice and not di["decisions"]["rearm_release"]
+                assert di["active_memory_notes"] == []
+                assert set(calls[-1]["questions"]) == {"action"}
+                assert calls[-1]["questions"]["action"]["instructions"] == prompt
+                assert calls[-1]["questions"]["action"]["criteria"] == DEFAULT_CRITERIA
+                assert "note_elapsed_frames" not in calls[-1]["state"]
+        finally:
+            policy.close()
+    assert len(calls) == len(DEFAULT_CRITERIA) * 12
+
+
+def test_single_prompt_rejects_legacy_geographic_configuration(tmp_path):
+    from mario_jev.rsi_runtime.clm_single_prompt import single_profile
+
+    base = single_profile(
+        {"instructions": "Play Mario.", "criteria": dict(DEFAULT_CRITERIA)}, 0
+    )
+    for key, value in {
+        "memory_notes": [],
+        "reflection_start_x": 940,
+        "instruction_router": {},
+        "thresholds": {},
+        "observation_style": "facts",
+    }.items():
+        p = tmp_path / "bad.json"
+        p.write_text(json.dumps({**base, key: value}))
+        with pytest.raises(ValueError, match="notes or routers"):
+            ClmReflectionPolicy("http://unused", p)
+
+
+def test_fixed_environment_selects_stage_only_at_reset():
+    from mario_jev.rsi_runtime.clm_support import FixedFrameFactory
+
+    for stage in (1, 2):
+        env = FixedFrameFactory.make(world=1, stage=stage)
+        try:
+            _, info = env.reset(seed=0)
+            assert (info["world"], info["stage"]) == (1, stage)
+            assert env.is_single_stage_env
+        finally:
+            env.close()
+    with pytest.raises(ValueError):
+        FixedFrameFactory.make(world=1, stage=5)

@@ -67,6 +67,7 @@ class SinglePromptPilot(ClmPilot):
             initial_prompt_recipe="source.instructions + newline + source.memory, exact bytes",
             candidate_descriptions="Frozen from source program for the entire experiment",
             note_elapsed_frames="Absent from every actual model request",
+            textual_stage_hints_allowed=True,
         )
         if not self.reflection_enabled:
             self.manifest.update(s2_model=None, s2_reasoning=None, s2_timeout_s=0)
@@ -97,6 +98,15 @@ class SinglePromptPilot(ClmPilot):
             "Only the single instructions string may change. All candidate descriptions are frozen. "
             "There are no memory notes, retrieval, note timers, or within-attempt prompt updates. "
             "Any useful reflection lesson must be integrated into that single prompt."
+        )
+
+    def review_action_constraints(self):
+        return (
+            "Conditional stage-specific hints, including coordinate ranges written as ordinary prompt text, "
+            "are allowed: CLM must decide whether they apply and choose every action. "
+            "Reject host-side region/timer action routers, recorded button replay, elapsed-time or "
+            "frame-index button schedules, altered action meanings, success overrides, and attempts "
+            "to modify the harness, ROM, observations, clocks or model weights. "
         )
 
     def publish(self):
@@ -136,6 +146,8 @@ def main():
     parser.add_argument("--endpoint", default="http://127.0.0.1:18432")
     parser.add_argument("--max-attempts", type=int, default=50)
     parser.add_argument("--wall-limit", type=int, default=3600)
+    parser.add_argument("--world", type=int, choices=range(1, 9), default=1)
+    parser.add_argument("--stage", type=int, choices=range(1, 5), default=1)
     parser.add_argument("--fixed", action="store_true")
     args = parser.parse_args()
     args.resume_from = None

@@ -64,7 +64,8 @@ def audit(root):
                 provenance = read(root / f"programs/v{v:04}/provenance.json")
                 assert provenance["review"]["allow"] is True
                 assert read(root / provenance["proposal"])["program"] == p
-            env = make_env()
+            target = (manifest.get("world", 1), manifest.get("stage", 1))
+            env = make_env(*target)
             policy = None
             current = {}
 
@@ -76,6 +77,7 @@ def audit(root):
 
             try:
                 _, info = env.reset(seed=0)
+                assert (int(info["world"]), int(info["stage"])) == target
                 memory = ObservationMemory(12)
                 assert (
                     sha(bytes(env.unwrapped.ram)) == manifest["checkpoint_ram_sha256"]
