@@ -1,0 +1,4 @@
+attempt_id,program_version,outcome,max_x,frames,decisions,attempt_wall_s,automatic_releases,dominant_action,action_types,p50_ms,p95_ms
+1,0,death,198,74,20,0.7448453730903566,0,right_run,1,30.824499437585473,35.76559014618397
+2,0,death,198,74,20,0.14762370521202683,0,right_run,1,2.2387471981346607,2.58603785187006
+3,0,death,198,74,20,0.1487501380033791,0,right_run,1,2.2667234297841787,2.8338409028947353

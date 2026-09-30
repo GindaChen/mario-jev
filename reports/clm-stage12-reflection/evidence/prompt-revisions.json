@@ -1,0 +1,349 @@
+[
+  {
+    "version": 0,
+    "attempt": 1,
+    "prompt_sha256": "07d83ee8f2d39ecc806525397e42d4898e75c537f1d5aab66ff52ab6d54c3dac",
+    "program_sha256": "f7ec29127d6300bae68ef3ee68c4cc29a9a5e0379977195240cbb916c521ee83",
+    "chars": 4781,
+    "outcome": "death",
+    "max_x": 198,
+    "hypothesis": null,
+    "review": null
+  },
+  {
+    "version": 1,
+    "attempt": 2,
+    "prompt_sha256": "94d39f7ae577c7e78d23a81b736f2bc0a55bd1ad5fbfe36ffab96f76e2eba2b2",
+    "program_sha256": "f3a2b8e9bfaca0c3d2c1b43256aae83dd370429689ec8f4d9f0e085f0f76100b",
+    "chars": 4928,
+    "outcome": "death",
+    "max_x": 198,
+    "hypothesis": "A direct, early jump cue based on estimated contact time will make CLM favor a moving jump before the first Goomba reaches Mario.",
+    "review": {
+      "allow": true,
+      "reason": "Only the instructions string changes. The coordinate and height conditions are textual stage hints for the model to interpret from observations; they do not implement host-side routing, replay, timed actions, or harness changes."
+    }
+  },
+  {
+    "version": 2,
+    "attempt": 3,
+    "prompt_sha256": "28ce6b9697d5269fd84a86d881c646d77227acff975ca09ebe3ada19f517cfc0",
+    "program_sha256": "f1cf8d78076b90399f196b3c0c4cdbef911ea00c859332484b28d0225e8ba842",
+    "chars": 5151,
+    "outcome": "death",
+    "max_x": 198,
+    "hypothesis": "The scorer keeps favoring continuous-floor running despite a closing same-height enemy. A more explicit takeoff rule using the observed contact estimate should increase selection of right_run_jump while Mario still has room to jump.",
+    "review": {
+      "allow": true,
+      "reason": "Only the instructions string changes. Its coordinate-based hints are prompt text for the CLM to apply using observations; it adds no host-side router, button replay, timer schedule, action change, success override, or harness modification."
+    }
+  },
+  {
+    "version": 3,
+    "attempt": 4,
+    "prompt_sha256": "44d2a62e707e24b1a2e31c3a85ab1115da337793660a7c6d4e18c09dc229ce19",
+    "program_sha256": "801dfd221a9bd16204e853d6050526505328ac16b58d5f404abf4920083bf2ab",
+    "chars": 3543,
+    "outcome": "stalled",
+    "max_x": 40,
+    "hypothesis": "Putting the grounded-enemy check first, ahead of general floor guidance, may make CLM favor a moving jump when a same-height Goomba is closing.",
+    "review": {
+      "allow": true,
+      "reason": "The single instructions string gives conditional guidance for the model to choose actions from current observations. It includes permitted coordinate hints and relative contact estimates, with no host-side routing, replay, scheduled buttons, action changes, or harness modifications."
+    }
+  },
+  {
+    "version": 4,
+    "attempt": 5,
+    "prompt_sha256": "ee168de18e3ff3c953e6e39b793e6cc9d833c569e10d735ad4cc808cfde434a5",
+    "program_sha256": "ad3a454f8d6eb94f13af856b2ed6bd9421a1e400bb73c3d14e64a378934b964f",
+    "chars": 4389,
+    "outcome": "stalled",
+    "max_x": 40,
+    "hypothesis": "The scorer is overvaluing jumping in place even when the visible route is open. Giving rightward progress priority, while preserving the existing hazard and jump rules, may move Mario out of the starting area.",
+    "review": {
+      "allow": true,
+      "reason": "The candidate changes only the instructions string. Its stage-specific coordinate hints are ordinary conditional guidance for the CLM to evaluate from current observations; they do not implement a host-side action router, timed replay, altered action meanings, success override, or harness modification."
+    }
+  },
+  {
+    "version": 5,
+    "attempt": 6,
+    "prompt_sha256": "bb58f230360527f031036df96313d86d36ffb709a623901923e82e2a5932b37b",
+    "program_sha256": "2cc055c4f6e0cffaec714051102d7add88c9e72e9cab12ec46809e72e22593ad",
+    "chars": 3945,
+    "outcome": "death",
+    "max_x": 198,
+    "hypothesis": "An explicit zero-progress rule will help the scorer reject a jump in place when Mario has a safe path to the right. The current guidance already favors rightward movement, but the recorded scores kept favoring `jump`.",
+    "review": {
+      "allow": true,
+      "reason": "The candidate changes only the instructions string. It gives the model conditional guidance based on observed geometry, motion, and action history, including permitted stage-specific coordinate hints. It does not prescribe a host-side router, timed button schedule, replay, or harness modification."
+    }
+  },
+  {
+    "version": 6,
+    "attempt": 7,
+    "prompt_sha256": "cc152bd1dfa059096dea2ea5a33019967c64434438dc1284e2ad7ff1368d08e9",
+    "program_sha256": "3a5b50f166585650bee99ee4dc469d6bd75af4142342cb687915746e0f2ce91e",
+    "chars": 4226,
+    "outcome": "death",
+    "max_x": 198,
+    "hypothesis": "An earlier moving-jump cue based on the first two Goombas’ distance will help CLM select a jump while Mario still has room to rise before the overhead blocks.",
+    "review": {
+      "allow": true,
+      "reason": "The candidate changes only the instructions string. Its guidance uses observed geometry, motion, and action meanings, including conditional stage-specific hints. The model still chooses each action; there is no host-side router, timed replay, harness modification, or success override."
+    }
+  },
+  {
+    "version": 7,
+    "attempt": 8,
+    "prompt_sha256": "4d7096bb3543a7fd7096d324d7bdd3b170b6d2d19ad834a424eaeee596373b03",
+    "program_sha256": "5607c65d05695adfbb99f122b9fe481bd7442b734b34bee13148e6b17e69bbce",
+    "chars": 3571,
+    "outcome": "stalled",
+    "max_x": 40,
+    "hypothesis": "The scorer is overvaluing continuous floor and choosing right_run despite a closing pair of same-height Goombas. A shorter, higher-priority rule based on the visible enemy gap should make it choose a moving jump while there is still room to clear them.",
+    "review": {
+      "allow": true,
+      "reason": "The candidate changes only the instructions string. Its thresholds and coordinate ranges are conditional guidance for the model, which still chooses every action from current observations. It contains no host-side action routing, replay schedule, success override, or harness modification."
+    }
+  },
+  {
+    "version": 8,
+    "attempt": 9,
+    "prompt_sha256": "178939f62625c7b34632272f168266793030a3db3caff0cac6c15901f74bfe98",
+    "program_sha256": "11b8da1516f21282c4077d75898f9781fe67319ffdbffeaef962ced709162706",
+    "chars": 4087,
+    "outcome": "stalled",
+    "max_x": 40,
+    "hypothesis": "The scorer is choosing a jump in place even when horizontal progress is essential. Making rightward movement an explicit requirement for the opening route may shift its choice toward right_run and, when the Goombas are close enough, right_run_jump.",
+    "review": {
+      "allow": true,
+      "reason": "The candidate changes only the instructions string. Its conditional geometry and coordinate hints are prompt guidance for the CLM to evaluate and choose each action; they do not implement a host-side router, replay, frame schedule, or harness modification."
+    }
+  },
+  {
+    "version": 9,
+    "attempt": 10,
+    "prompt_sha256": "a9449237ad33d568922671804440b4afb499ace3881b0354ea2087d3e33b8fd2",
+    "program_sha256": "e655c7dfc7b10f024425cb2ca9336cdebf065e8c324fda06cfe8b73420be13ff",
+    "chars": 3578,
+    "outcome": "stalled",
+    "max_x": 40,
+    "hypothesis": "The scorer overvalues a stationary jump at the opening, even when Mario is airborne or has clear floor ahead. Putting a simple horizontal movement rule first and limiting jump-in-place to an immediate hazard may shift its score toward useful rightward actions. The recorded scores do not establish which prompt sentence caused the preference.",
+    "review": {
+      "allow": true,
+      "reason": "The candidate changes only the instructions string. Its coordinate ranges and action suggestions are conditional guidance for the model; it does not add a host-side router, replay, schedule, or modify the harness or action meanings."
+    }
+  },
+  {
+    "version": 10,
+    "attempt": 11,
+    "prompt_sha256": "e9432339c617a97281cef63c3ab4d032f10ad77f52a7cca8aa2001fd5dd91821",
+    "program_sha256": "295d7d12f3308e3153e97192be0e34eeda36f79cc1b7a16ccea2dcc444562f1a",
+    "chars": 4450,
+    "outcome": "stalled",
+    "max_x": 40,
+    "hypothesis": "The scorer is favoring a jump in place over safe horizontal travel at the opening. A rule that compares the visible hazard with the next four frames should favor right_run while the Goombas are distant, then a moving jump as they close.",
+    "review": {
+      "allow": true,
+      "reason": "The candidate changes only the instructions string. Its geometry, motion, and coordinate-based hints remain prompt guidance for the model to evaluate and choose each action. It contains no host-side action router, replay schedule, action redefinition, success override, or harness modification."
+    }
+  },
+  {
+    "version": 11,
+    "attempt": 12,
+    "prompt_sha256": "0fe3fe9dca33f6ad5baddcfef62f78f9966545aff5eab1a99100ba61c794648b",
+    "program_sha256": "9632f5c84c26c45c1d5e67a3c3eb9de102f325753538e26067f5ff44f7945bde",
+    "chars": 3676,
+    "outcome": "stalled",
+    "max_x": 40,
+    "hypothesis": "Make immediate forward movement the first decision rule when the next four frames have clear floor and no nearby enemy. The current instructions describe this behavior, but the scorer repeatedly favors jumping in place at x=40. A shorter, geometry-first rule may raise right_run above jump without preventing a moving jump when a hazard becomes close.",
+    "review": {
+      "allow": true,
+      "reason": "Only the instructions string changes. Its coordinate and state conditions are prompt guidance for the CLM to interpret and choose each action; it does not introduce host-side routing, replay, timed button schedules, altered actions, success overrides, or harness changes."
+    }
+  },
+  {
+    "version": 12,
+    "attempt": 13,
+    "prompt_sha256": "3c2ff9ba6580beb70f716d81a2d048da9b97dacba06ca66221bf3e7c22d77b99",
+    "program_sha256": "678199a28c75ce57e729fdfa9b375eb783809de451a5d322598c15ffd2476104",
+    "chars": 4187,
+    "outcome": "stalled",
+    "max_x": 40,
+    "hypothesis": "The scorer overvalues an in-place jump on an open route. Making rightward progress the explicit choice when no immediate hazard intersects Mario's path may shift selection to right_run at the opening and right_run_jump at a useful takeoff gap.",
+    "review": {
+      "allow": true,
+      "reason": "The proposal changes only the instructions string. Its coordinate ranges and action suggestions are conditional guidance for the model to evaluate against current observations; it does not implement host-side routing, replay, schedules, altered action meanings, success overrides, or harness changes."
+    }
+  },
+  {
+    "version": 13,
+    "attempt": 14,
+    "prompt_sha256": "bca03298ac7fd0068eccb68eefa1ebc530f758533a4544a1f67eb65d300124b0",
+    "program_sha256": "379e9963f705e34cd0143779610517729b8912a812d953d71b26b4da7e35ebf5",
+    "chars": 4977,
+    "outcome": "death",
+    "max_x": 198,
+    "hypothesis": "Adding an explicit four-frame comparison of safe horizontal movement will raise right_run above jump when jumping in place cannot improve the path.",
+    "review": {
+      "allow": true,
+      "reason": "The candidate changes only the instructions string. Its coordinate and state conditions are prompt guidance for the model to evaluate from current observations. It does not add host-side action routing, timed replay, altered action meanings, success overrides, or harness changes."
+    }
+  },
+  {
+    "version": 14,
+    "attempt": 15,
+    "prompt_sha256": "318f38d3e49ab49126569af7cea9c76b254acbd994628a67941d0127ea8ae289",
+    "program_sha256": "39c66ab4da4ec531c316c5da56bdddab37db420bb11dbe7ddea4863098ebbcb6",
+    "chars": 4384,
+    "outcome": "stalled",
+    "max_x": 40,
+    "hypothesis": "The four-frame clear-path rule may outweigh the earlier takeoff cue. CLM selected right_run as the opening Goombas closed, leaving too little distance to rise before contact. Giving the grounded enemy takeoff window priority may shift selection to right_run_jump while there is still room.",
+    "review": {
+      "allow": true,
+      "reason": "The proposal changes only the instructions string. Its coordinate ranges and conditionals are stage-specific hints for the CLM to evaluate from current observations; they do not implement host-side action routing, button replay, or frame-index schedules. It preserves the offered actions and native success condition."
+    }
+  },
+  {
+    "version": 15,
+    "attempt": 16,
+    "prompt_sha256": "e2da9ba3b58ad603fb803a070ee244eec405a3160b6b386db259d712ead1c32d",
+    "program_sha256": "c9af599144018cdfe42be9dd85d21349253d1d6456883dd0e7b9df22e9e0b60d",
+    "chars": 3984,
+    "outcome": "death",
+    "max_x": 822,
+    "hypothesis": "The revised opening guidance gave a distant enemy too much weight, causing CLM to choose an in-place jump before Mario had moved. Giving rightward movement clear priority while the enemy gap is distant, with a specific moving-jump threshold once the gap closes, should break the stall without repeating the earlier late-jump failure.",
+    "review": {
+      "allow": true,
+      "reason": "Only the instructions string changes. The guidance uses current geometry, motion, and observed hazards to inform the model’s action choices, including permitted conditional stage-specific coordinate hints. It does not introduce host-side routing, button replay, frame schedules, altered action meanings, success overrides, or harness modifications."
+    }
+  },
+  {
+    "version": 16,
+    "attempt": 17,
+    "prompt_sha256": "7ab0ea5f468f308c00a8490754e46e12c6dc5afe98a530cbb14323933945746c",
+    "program_sha256": "8e1cb373cadefa79ece989dcc55309a8c859ea390d7052052aae27fd5a8739fc",
+    "chars": 4807,
+    "outcome": "stalled",
+    "max_x": 40,
+    "hypothesis": "The jump selected at x≈795 was too early for the approaching Koopa and carried Mario into the side of a low brick span. Waiting on supported ground before that span, then jumping in place when the Koopa is close enough to pass beneath Mario during descent, may avoid the repeated blocked jumps.",
+    "review": {
+      "allow": true,
+      "reason": "The candidate changes only the instructions string. Its stage-specific hints are conditional guidance based on observed geometry and motion; the model still chooses each offered action. It does not add host-side routing, replay, frame schedules, success overrides, or harness modifications."
+    }
+  },
+  {
+    "version": 17,
+    "attempt": 18,
+    "prompt_sha256": "3afb0fe5f3e5adaad72a14c48291f565ef723ae623c7a78aa9535753283c4083",
+    "program_sha256": "d6a6621a3226cb07d6a7710b1e874c53870a65977d95ca23c0152eb4b8d74856",
+    "chars": 3988,
+    "outcome": "stalled",
+    "max_x": 40,
+    "hypothesis": "The scorer is favoring jump in place despite visible safe floor and no nearby hazard. Making forward progress the first decision rule, with an explicit check for zero horizontal velocity, may shift those choices to right_run without suppressing jumps when geometry requires them.",
+    "review": {
+      "allow": true,
+      "reason": "The candidate changes only the instructions string. Its coordinate-based hints are conditional guidance for the model to apply using current observations; it contains no host-side action router, replay schedule, harness change, or success override."
+    }
+  },
+  {
+    "version": 18,
+    "attempt": 19,
+    "prompt_sha256": "86f396c8b18be4ea4fc4b9ecc61737bd8f79484c9f031f1228a129c8b1745042",
+    "program_sha256": "0d55f0fba6bd6fb460befe5784634cb6d91be24171c84912d4f55f2cbfefe520",
+    "chars": 3863,
+    "outcome": "death",
+    "max_x": 198,
+    "hypothesis": "A shorter, explicit movement priority may help CLM favor right_run when the visible route is clear. In this attempt it selected jump even while falling with no nearby enemy, then continued selecting jump after landing, leaving Mario at x=40.",
+    "review": {
+      "allow": true,
+      "reason": "Only the single instructions string changes. Its stage-specific coordinate hints are conditional guidance for the model to apply from current observations; they do not create a host-side action router, button replay, frame schedule, or harness modification."
+    }
+  },
+  {
+    "version": 19,
+    "attempt": 20,
+    "prompt_sha256": "779f9971112ede00c1930701bc8f71a3455dbb84cb395c1d790688a5511e445a",
+    "program_sha256": "49cda60fff5c7ffbb5e6e8e547111afe7e95b5349daeed231bc60a60b9ec1a23",
+    "chars": 4241,
+    "outcome": "death",
+    "max_x": 76,
+    "hypothesis": "Putting the opening Goomba pair’s visible takeoff window first will make the scorer choose a moving jump before contact instead of continuing to run on clear floor.",
+    "review": {
+      "allow": true,
+      "reason": "The candidate changes only the instructions string. Its stage-specific coordinates and thresholds are conditional guidance for the model to apply using current observations; it does not introduce a host-side action router, button replay, timed schedule, altered action meanings, or harness changes."
+    }
+  },
+  {
+    "version": 20,
+    "attempt": 21,
+    "prompt_sha256": "73201de41c1cdc0e31a0c2ea7709ee0206eaf909b54a848cf74c3ded6fad3de5",
+    "program_sha256": "7b8d785c97de4ee834b04ffca0288c800a269c35034112e427f7d74761625ca7",
+    "chars": 4622,
+    "outcome": "stalled",
+    "max_x": 40,
+    "hypothesis": "A geometry-based opening rule favoring right_run on continuous floor while the first Goomba is distant will build horizontal speed and make a timely moving jump more likely.",
+    "review": {
+      "allow": true,
+      "reason": "Only the instructions string changes. The coordinate and distance cues are conditional guidance for the model to apply using current observations; they do not impose a host-side action router, frame schedule, replay, or harness change."
+    }
+  },
+  {
+    "version": 21,
+    "attempt": 22,
+    "prompt_sha256": "368ee1044076bf65557ddcbeeb0a29118c1771b4c5e4bef8a39c5b6c363b916e",
+    "program_sha256": "fd5cbbabb252570628516e46a92ec29e2347ea783dfbb1ad06b2c35bb2645bb1",
+    "chars": 4448,
+    "outcome": "death",
+    "max_x": 93,
+    "hypothesis": "The scorer favors a stationary jump at the opening even when the visible floor permits rightward travel. Giving safe horizontal movement explicit priority, including during the initial fall, may break the x=40 loop and allow a moving jump when the Goombas become relevant.",
+    "review": {
+      "allow": true,
+      "reason": "The candidate changes only the instructions string. Its guidance uses current geometry, motion, and observed hazards; the coordinate ranges are conditional hints for the model to evaluate. It contains no host-side action routing, replay, frame schedule, action redefinition, success override, or harness modification."
+    }
+  },
+  {
+    "version": 22,
+    "attempt": 23,
+    "prompt_sha256": "7183ac95f4605e168132214fdc407e512bc0a97409496dfeef05dc2930c317ff",
+    "program_sha256": "213ffd8726ad2da06ffd599ea8110c1ff7cbabdc6b3c8332d5e3544076dfa923",
+    "chars": 4362,
+    "outcome": "stalled",
+    "max_x": 40,
+    "hypothesis": "Replacing the opening x=90..125 takeoff cue with a cue based on the visible Goomba gap and Mario's motion will help the scorer choose right_run_jump while Mario is grounded and still has room to rise.",
+    "review": {
+      "allow": true,
+      "reason": "The candidate changes only the instructions string. Its coordinate ranges are conditional hints for the model to apply using current observations; it does not introduce host-side action routing, replay, timed schedules, altered action meanings, or harness modifications."
+    }
+  },
+  {
+    "version": 23,
+    "attempt": 24,
+    "prompt_sha256": "edd6e6b911f7f6261119e245645d98c1943153ad5e72a40e803f8e7659ff5ec3",
+    "program_sha256": "2ab75680b3992ab509b87968ccf30f116a13afb1b55601fec7fc2c2d824680f2",
+    "chars": 4533,
+    "outcome": "stalled",
+    "max_x": 482,
+    "hypothesis": "An explicit clear-path steering rule across all vertical states may help the scorer choose horizontal movement at the opening. The current guidance says to move right, but it still selects a stationary jump while Mario has zero horizontal speed and no nearby threat.",
+    "review": {
+      "allow": true,
+      "reason": "The candidate changes only the instructions string. Its coordinate ranges and distance thresholds are conditional guidance for the model to apply using current observations; it does not add host-side routing, timed button schedules, replay, action changes, success overrides, or harness modifications."
+    }
+  },
+  {
+    "version": 24,
+    "attempt": 25,
+    "prompt_sha256": "eaaa32e1072c715122b6a2dae473915dd861d4dd1c1d60784cf4298b09224554",
+    "program_sha256": "86445027703858c44794f997c7120a4d47fcf56da98d3e5e2d0bc70b0d7cd8c0",
+    "chars": 5370,
+    "outcome": "death",
+    "max_x": 179,
+    "hypothesis": "A prominent rule connecting rightward input to crossing a solid step may reduce the scorer's repeated selection of stationary jump. At x=482, jumping vertically raised Mario but never moved him past the step.",
+    "review": {
+      "allow": true,
+      "reason": "Only the instructions string changes. The candidate gives conditional guidance for the model to choose actions from observed geometry and motion; it does not alter action meanings, route actions on the host, replay buttons, schedule actions by time or frame, override success, or modify the harness or game state."
+    }
+  }
+]

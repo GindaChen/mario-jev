@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "decisions_checked": 60,
+  "attempts_checked": 3,
+  "distinct_prompt_hashes": [
+    "07d83ee8f2d39ecc806525397e42d4898e75c537f1d5aab66ff52ab6d54c3dac"
+  ],
+  "agent_workspaces": 0,
+  "reflection_enabled": false,
+  "attempts": [
+    {
+      "attempt_id": 1,
+      "program_version": 0,
+      "instructions_sha256": "07d83ee8f2d39ecc806525397e42d4898e75c537f1d5aab66ff52ab6d54c3dac",
+      "decisions_checked": 20
+    },
+    {
+      "attempt_id": 2,
+      "program_version": 0,
+      "instructions_sha256": "07d83ee8f2d39ecc806525397e42d4898e75c537f1d5aab66ff52ab6d54c3dac",
+      "decisions_checked": 20
+    },
+    {
+      "attempt_id": 3,
+      "program_version": 0,
+      "instructions_sha256": "07d83ee8f2d39ecc806525397e42d4898e75c537f1d5aab66ff52ab6d54c3dac",
+      "decisions_checked": 20
+    }
+  ],
+  "checks": [
+    "Initial prompt exactly equals source instructions + newline + source memory",
+    "Each attempt has exactly one immutable instructions string",
+    "All eight candidate descriptions remain frozen",
+    "No memory fields or note/router objects in any program/profile",
+    "No note_elapsed_frames in any actual model request"
+  ]
+}

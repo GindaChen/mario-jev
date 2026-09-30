@@ -1,0 +1,8 @@
+{
+  "operator_stopped": true,
+  "reason": "Reviewer compared unchanged optimized candidate descriptions to generic DEFAULT_CRITERIA, causing a false rejection. Reference context fixed; game controller unchanged.",
+  "completed_attempts": 3,
+  "remaining_attempt_budget": 47,
+  "original_deadline_unix": 1790732353.2030928,
+  "fresh_restart_from_initial_prompt": true
+}

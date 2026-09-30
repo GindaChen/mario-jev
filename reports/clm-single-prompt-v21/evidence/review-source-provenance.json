@@ -1,0 +1,57 @@
+{
+  "purpose": "Review packaging provenance; historical replay audit remains tied to its original frozen sources.",
+  "review_commit": "b00a20e3f7291320a45b14fcba13454d19782934",
+  "scope": "Hashes and AST comparisons describe the initial review import at review_commit, not subsequent stage-selection or prompt-hint-policy edits.",
+  "normalization": "Ignore import statements and explicit check=False on subprocess.run (its default). All other executable AST nodes must match.",
+  "files": [
+    {
+      "file": "src/mario_jev/clm.py",
+      "frozen_source_sha256": "b31a1fba57a4bf5963cbc491b5b975b5ee30d2916b6c1456f6242cc645076a4c",
+      "review_source_sha256": "39ef68dce67bd68d073e6712ceab3cdd457807b454318e5ba3550137304db4ff",
+      "normalized_ast_equal": true
+    },
+    {
+      "file": "src/mario_jev/rsi_runtime/clm_pilot.py",
+      "frozen_source_sha256": "dc080bd7b87020217a1a35c24c5cf0907045fc81a65b611f4b887ab376bca2cd",
+      "review_source_sha256": "5d9bd116da8bb0ff01dd95e96b213037ec9c3b9ac7bbe9384ef26f8984a320c7",
+      "normalized_ast_equal": true
+    },
+    {
+      "file": "src/mario_jev/rsi_runtime/clm_single_prompt.py",
+      "frozen_source_sha256": "a0caafa0617541f075666d424fa6c96c5aa656e6646e61292e1c66b01d44e038",
+      "review_source_sha256": "3983465c2e7418c2b78a49883229bdbd8c0538e78745883b5e2fc46856666c22",
+      "normalized_ast_equal": true
+    },
+    {
+      "file": "src/mario_jev/rsi_runtime/clm_fixed.py",
+      "frozen_source_sha256": "446e4a97c91791f20991da17839cd60dc1ee55b187b1e754b2423d4fa2fc7ff7",
+      "review_source_sha256": "0410540a0de80d124097e8e5682c6f1d8b7303795700ce44b6bd87813a6c8a6d",
+      "normalized_ast_equal": true
+    },
+    {
+      "file": "src/mario_jev/rsi_runtime/audit_clm.py",
+      "frozen_source_sha256": "c3b7b0310ac0e495b816b614ad1ce89ee733ac8135454a9625e1fc60780b920b",
+      "review_source_sha256": "161cca0c84d5e67a2928a092d257625a1dea2a6ba9589b7f4b0d461d1be621a0",
+      "normalized_ast_equal": true
+    }
+  ],
+  "support_extraction": {
+    "from": "rsi_runtime/sync_v3.py",
+    "to": "rsi_runtime/clm_support.py",
+    "functions_exact_ast_match": [
+      "compact",
+      "atomic",
+      "FixedFrameFactory"
+    ]
+  },
+  "unchanged_existing_controller_files": [
+    "reflection.py",
+    "djev.py",
+    "history.py",
+    "state.py",
+    "policy.py",
+    "runner.py",
+    "jev_modular.py",
+    "modular.py"
+  ]
+}

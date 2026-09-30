@@ -1,0 +1,193 @@
+{
+  "passed": true,
+  "decisions_checked": 2416,
+  "attempts_checked": 25,
+  "distinct_prompt_hashes": [
+    "07d83ee8f2d39ecc806525397e42d4898e75c537f1d5aab66ff52ab6d54c3dac",
+    "0fe3fe9dca33f6ad5baddcfef62f78f9966545aff5eab1a99100ba61c794648b",
+    "178939f62625c7b34632272f168266793030a3db3caff0cac6c15901f74bfe98",
+    "28ce6b9697d5269fd84a86d881c646d77227acff975ca09ebe3ada19f517cfc0",
+    "318f38d3e49ab49126569af7cea9c76b254acbd994628a67941d0127ea8ae289",
+    "368ee1044076bf65557ddcbeeb0a29118c1771b4c5e4bef8a39c5b6c363b916e",
+    "3afb0fe5f3e5adaad72a14c48291f565ef723ae623c7a78aa9535753283c4083",
+    "3c2ff9ba6580beb70f716d81a2d048da9b97dacba06ca66221bf3e7c22d77b99",
+    "44d2a62e707e24b1a2e31c3a85ab1115da337793660a7c6d4e18c09dc229ce19",
+    "4d7096bb3543a7fd7096d324d7bdd3b170b6d2d19ad834a424eaeee596373b03",
+    "7183ac95f4605e168132214fdc407e512bc0a97409496dfeef05dc2930c317ff",
+    "73201de41c1cdc0e31a0c2ea7709ee0206eaf909b54a848cf74c3ded6fad3de5",
+    "779f9971112ede00c1930701bc8f71a3455dbb84cb395c1d790688a5511e445a",
+    "7ab0ea5f468f308c00a8490754e46e12c6dc5afe98a530cbb14323933945746c",
+    "86f396c8b18be4ea4fc4b9ecc61737bd8f79484c9f031f1228a129c8b1745042",
+    "94d39f7ae577c7e78d23a81b736f2bc0a55bd1ad5fbfe36ffab96f76e2eba2b2",
+    "a9449237ad33d568922671804440b4afb499ace3881b0354ea2087d3e33b8fd2",
+    "bb58f230360527f031036df96313d86d36ffb709a623901923e82e2a5932b37b",
+    "bca03298ac7fd0068eccb68eefa1ebc530f758533a4544a1f67eb65d300124b0",
+    "cc152bd1dfa059096dea2ea5a33019967c64434438dc1284e2ad7ff1368d08e9",
+    "e2da9ba3b58ad603fb803a070ee244eec405a3160b6b386db259d712ead1c32d",
+    "e9432339c617a97281cef63c3ab4d032f10ad77f52a7cca8aa2001fd5dd91821",
+    "eaaa32e1072c715122b6a2dae473915dd861d4dd1c1d60784cf4298b09224554",
+    "edd6e6b911f7f6261119e245645d98c1943153ad5e72a40e803f8e7659ff5ec3",
+    "ee168de18e3ff3c953e6e39b793e6cc9d833c569e10d735ad4cc808cfde434a5"
+  ],
+  "agent_workspaces": 52,
+  "reflection_enabled": true,
+  "attempts": [
+    {
+      "attempt_id": 1,
+      "program_version": 0,
+      "instructions_sha256": "07d83ee8f2d39ecc806525397e42d4898e75c537f1d5aab66ff52ab6d54c3dac",
+      "decisions_checked": 20
+    },
+    {
+      "attempt_id": 2,
+      "program_version": 1,
+      "instructions_sha256": "94d39f7ae577c7e78d23a81b736f2bc0a55bd1ad5fbfe36ffab96f76e2eba2b2",
+      "decisions_checked": 20
+    },
+    {
+      "attempt_id": 3,
+      "program_version": 2,
+      "instructions_sha256": "28ce6b9697d5269fd84a86d881c646d77227acff975ca09ebe3ada19f517cfc0",
+      "decisions_checked": 20
+    },
+    {
+      "attempt_id": 4,
+      "program_version": 3,
+      "instructions_sha256": "44d2a62e707e24b1a2e31c3a85ab1115da337793660a7c6d4e18c09dc229ce19",
+      "decisions_checked": 121
+    },
+    {
+      "attempt_id": 5,
+      "program_version": 4,
+      "instructions_sha256": "ee168de18e3ff3c953e6e39b793e6cc9d833c569e10d735ad4cc808cfde434a5",
+      "decisions_checked": 121
+    },
+    {
+      "attempt_id": 6,
+      "program_version": 5,
+      "instructions_sha256": "bb58f230360527f031036df96313d86d36ffb709a623901923e82e2a5932b37b",
+      "decisions_checked": 20
+    },
+    {
+      "attempt_id": 7,
+      "program_version": 6,
+      "instructions_sha256": "cc152bd1dfa059096dea2ea5a33019967c64434438dc1284e2ad7ff1368d08e9",
+      "decisions_checked": 20
+    },
+    {
+      "attempt_id": 8,
+      "program_version": 7,
+      "instructions_sha256": "4d7096bb3543a7fd7096d324d7bdd3b170b6d2d19ad834a424eaeee596373b03",
+      "decisions_checked": 121
+    },
+    {
+      "attempt_id": 9,
+      "program_version": 8,
+      "instructions_sha256": "178939f62625c7b34632272f168266793030a3db3caff0cac6c15901f74bfe98",
+      "decisions_checked": 121
+    },
+    {
+      "attempt_id": 10,
+      "program_version": 9,
+      "instructions_sha256": "a9449237ad33d568922671804440b4afb499ace3881b0354ea2087d3e33b8fd2",
+      "decisions_checked": 121
+    },
+    {
+      "attempt_id": 11,
+      "program_version": 10,
+      "instructions_sha256": "e9432339c617a97281cef63c3ab4d032f10ad77f52a7cca8aa2001fd5dd91821",
+      "decisions_checked": 121
+    },
+    {
+      "attempt_id": 12,
+      "program_version": 11,
+      "instructions_sha256": "0fe3fe9dca33f6ad5baddcfef62f78f9966545aff5eab1a99100ba61c794648b",
+      "decisions_checked": 121
+    },
+    {
+      "attempt_id": 13,
+      "program_version": 12,
+      "instructions_sha256": "3c2ff9ba6580beb70f716d81a2d048da9b97dacba06ca66221bf3e7c22d77b99",
+      "decisions_checked": 121
+    },
+    {
+      "attempt_id": 14,
+      "program_version": 13,
+      "instructions_sha256": "bca03298ac7fd0068eccb68eefa1ebc530f758533a4544a1f67eb65d300124b0",
+      "decisions_checked": 20
+    },
+    {
+      "attempt_id": 15,
+      "program_version": 14,
+      "instructions_sha256": "318f38d3e49ab49126569af7cea9c76b254acbd994628a67941d0127ea8ae289",
+      "decisions_checked": 121
+    },
+    {
+      "attempt_id": 16,
+      "program_version": 15,
+      "instructions_sha256": "e2da9ba3b58ad603fb803a070ee244eec405a3160b6b386db259d712ead1c32d",
+      "decisions_checked": 266
+    },
+    {
+      "attempt_id": 17,
+      "program_version": 16,
+      "instructions_sha256": "7ab0ea5f468f308c00a8490754e46e12c6dc5afe98a530cbb14323933945746c",
+      "decisions_checked": 121
+    },
+    {
+      "attempt_id": 18,
+      "program_version": 17,
+      "instructions_sha256": "3afb0fe5f3e5adaad72a14c48291f565ef723ae623c7a78aa9535753283c4083",
+      "decisions_checked": 121
+    },
+    {
+      "attempt_id": 19,
+      "program_version": 18,
+      "instructions_sha256": "86f396c8b18be4ea4fc4b9ecc61737bd8f79484c9f031f1228a129c8b1745042",
+      "decisions_checked": 20
+    },
+    {
+      "attempt_id": 20,
+      "program_version": 19,
+      "instructions_sha256": "779f9971112ede00c1930701bc8f71a3455dbb84cb395c1d790688a5511e445a",
+      "decisions_checked": 71
+    },
+    {
+      "attempt_id": 21,
+      "program_version": 20,
+      "instructions_sha256": "73201de41c1cdc0e31a0c2ea7709ee0206eaf909b54a848cf74c3ded6fad3de5",
+      "decisions_checked": 121
+    },
+    {
+      "attempt_id": 22,
+      "program_version": 21,
+      "instructions_sha256": "368ee1044076bf65557ddcbeeb0a29118c1771b4c5e4bef8a39c5b6c363b916e",
+      "decisions_checked": 64
+    },
+    {
+      "attempt_id": 23,
+      "program_version": 22,
+      "instructions_sha256": "7183ac95f4605e168132214fdc407e512bc0a97409496dfeef05dc2930c317ff",
+      "decisions_checked": 121
+    },
+    {
+      "attempt_id": 24,
+      "program_version": 23,
+      "instructions_sha256": "edd6e6b911f7f6261119e245645d98c1943153ad5e72a40e803f8e7659ff5ec3",
+      "decisions_checked": 274
+    },
+    {
+      "attempt_id": 25,
+      "program_version": 24,
+      "instructions_sha256": "eaaa32e1072c715122b6a2dae473915dd861d4dd1c1d60784cf4298b09224554",
+      "decisions_checked": 28
+    }
+  ],
+  "checks": [
+    "Initial prompt exactly equals source instructions + newline + source memory",
+    "Each attempt has exactly one immutable instructions string",
+    "All eight candidate descriptions remain frozen",
+    "No memory fields or note/router objects in any program/profile",
+    "No note_elapsed_frames in any actual model request"
+  ]
+}

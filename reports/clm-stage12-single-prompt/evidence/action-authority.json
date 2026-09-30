@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "decisions_checked": 60,
+  "declared_A_releases": 0,
+  "other_action_overrides": 0,
+  "rule": "Executed keys equal CLM-selected keys, except remove A for one frame when grounded and A was already held. No coordinate, zone, enemy or elapsed-time input is consulted by this audit rule."
+}

@@ -1,0 +1,501 @@
+[
+  {
+    "reflection": "0001",
+    "stdout_sha256": "c36816f8a24fee34be04d72abacc3dd32c4cabde613d0f829758696d67d3e81c",
+    "tool_count": 3,
+    "tool_types": {
+      "command_execution": 3
+    },
+    "nonzero_command_exits": [],
+    "proposal_written": true,
+    "answer_present": true,
+    "criteria_equal": true,
+    "review": {
+      "allow": true,
+      "reason": "Only the instructions string changes. The coordinate and height conditions are textual stage hints for the model to interpret from observations; they do not implement host-side routing, replay, timed actions, or harness changes."
+    },
+    "review_tool_count": 0
+  },
+  {
+    "reflection": "0002",
+    "stdout_sha256": "af1ed1e6a28e21dca3f837e34423b73248fcffd9dfd0afd17a4ff8445e14eb6d",
+    "tool_count": 5,
+    "tool_types": {
+      "command_execution": 5
+    },
+    "nonzero_command_exits": [],
+    "proposal_written": true,
+    "answer_present": true,
+    "criteria_equal": true,
+    "review": {
+      "allow": true,
+      "reason": "Only the instructions string changes. Its coordinate-based hints are prompt text for the CLM to apply using observations; it adds no host-side router, button replay, timer schedule, action change, success override, or harness modification."
+    },
+    "review_tool_count": 0
+  },
+  {
+    "reflection": "0003",
+    "stdout_sha256": "f4629e0f0b777a761f16aa0cc6dfd08680e3c2ff516fe724486933c0e3addb0f",
+    "tool_count": 3,
+    "tool_types": {
+      "command_execution": 3
+    },
+    "nonzero_command_exits": [
+      {
+        "id": "item_2",
+        "exit_code": 1
+      }
+    ],
+    "proposal_written": true,
+    "answer_present": true,
+    "criteria_equal": true,
+    "review": {
+      "allow": true,
+      "reason": "The single instructions string gives conditional guidance for the model to choose actions from current observations. It includes permitted coordinate hints and relative contact estimates, with no host-side routing, replay, scheduled buttons, action changes, or harness modifications."
+    },
+    "review_tool_count": 0
+  },
+  {
+    "reflection": "0004",
+    "stdout_sha256": "51255dcb9bcf82f535db3c856e174dfa2059c9cc972a4c6b37922afab236f55f",
+    "tool_count": 4,
+    "tool_types": {
+      "command_execution": 4
+    },
+    "nonzero_command_exits": [],
+    "proposal_written": true,
+    "answer_present": true,
+    "criteria_equal": true,
+    "review": {
+      "allow": true,
+      "reason": "The candidate changes only the instructions string. Its stage-specific coordinate hints are ordinary conditional guidance for the CLM to evaluate from current observations; they do not implement a host-side action router, timed replay, altered action meanings, success override, or harness modification."
+    },
+    "review_tool_count": 0
+  },
+  {
+    "reflection": "0005",
+    "stdout_sha256": "bc9e43549c8cea3a6cacad3721d6a35bd7e1da247f317bfe3248c9a175cc8a7c",
+    "tool_count": 4,
+    "tool_types": {
+      "command_execution": 4
+    },
+    "nonzero_command_exits": [],
+    "proposal_written": true,
+    "answer_present": true,
+    "criteria_equal": true,
+    "review": {
+      "allow": true,
+      "reason": "The candidate changes only the instructions string. It gives the model conditional guidance based on observed geometry, motion, and action history, including permitted stage-specific coordinate hints. It does not prescribe a host-side router, timed button schedule, replay, or harness modification."
+    },
+    "review_tool_count": 0
+  },
+  {
+    "reflection": "0006",
+    "stdout_sha256": "504b37a5db60bd6203b541a19f44f17419e59e2ace751d49722b9f9298fcdc06",
+    "tool_count": 5,
+    "tool_types": {
+      "command_execution": 5
+    },
+    "nonzero_command_exits": [
+      {
+        "id": "item_5",
+        "exit_code": 1
+      }
+    ],
+    "proposal_written": true,
+    "answer_present": true,
+    "criteria_equal": true,
+    "review": {
+      "allow": true,
+      "reason": "The candidate changes only the instructions string. Its guidance uses observed geometry, motion, and action meanings, including conditional stage-specific hints. The model still chooses each action; there is no host-side router, timed replay, harness modification, or success override."
+    },
+    "review_tool_count": 0
+  },
+  {
+    "reflection": "0007",
+    "stdout_sha256": "cfdcd6644facff62eb991febf86cb05e59bc7619a26b0f40f937c7a23068b279",
+    "tool_count": 5,
+    "tool_types": {
+      "command_execution": 5
+    },
+    "nonzero_command_exits": [
+      {
+        "id": "item_3",
+        "exit_code": 1
+      },
+      {
+        "id": "item_4",
+        "exit_code": 1
+      }
+    ],
+    "proposal_written": true,
+    "answer_present": true,
+    "criteria_equal": true,
+    "review": {
+      "allow": true,
+      "reason": "The candidate changes only the instructions string. Its thresholds and coordinate ranges are conditional guidance for the model, which still chooses every action from current observations. It contains no host-side action routing, replay schedule, success override, or harness modification."
+    },
+    "review_tool_count": 0
+  },
+  {
+    "reflection": "0008",
+    "stdout_sha256": "921b6947d799b0340fd7a7ad47c2ee9067445ac027c727bc6cff5da62e508fb1",
+    "tool_count": 3,
+    "tool_types": {
+      "command_execution": 3
+    },
+    "nonzero_command_exits": [],
+    "proposal_written": true,
+    "answer_present": true,
+    "criteria_equal": true,
+    "review": {
+      "allow": true,
+      "reason": "The candidate changes only the instructions string. Its conditional geometry and coordinate hints are prompt guidance for the CLM to evaluate and choose each action; they do not implement a host-side router, replay, frame schedule, or harness modification."
+    },
+    "review_tool_count": 0
+  },
+  {
+    "reflection": "0009",
+    "stdout_sha256": "f23b768171490a6b6c97d57dbbc47a3c5fea4190980983d2c8f3c12ca82ac459",
+    "tool_count": 3,
+    "tool_types": {
+      "command_execution": 3
+    },
+    "nonzero_command_exits": [],
+    "proposal_written": true,
+    "answer_present": true,
+    "criteria_equal": true,
+    "review": {
+      "allow": true,
+      "reason": "The candidate changes only the instructions string. Its coordinate ranges and action suggestions are conditional guidance for the model; it does not add a host-side router, replay, schedule, or modify the harness or action meanings."
+    },
+    "review_tool_count": 0
+  },
+  {
+    "reflection": "0010",
+    "stdout_sha256": "a462d99493a2fd23adfa0cd8e60aec9ec056ff4658172cb711942e3243e9da2c",
+    "tool_count": 5,
+    "tool_types": {
+      "command_execution": 5
+    },
+    "nonzero_command_exits": [],
+    "proposal_written": true,
+    "answer_present": true,
+    "criteria_equal": true,
+    "review": {
+      "allow": true,
+      "reason": "The candidate changes only the instructions string. Its geometry, motion, and coordinate-based hints remain prompt guidance for the model to evaluate and choose each action. It contains no host-side action router, replay schedule, action redefinition, success override, or harness modification."
+    },
+    "review_tool_count": 0
+  },
+  {
+    "reflection": "0011",
+    "stdout_sha256": "3e6220b8c907233657eb6c1ca3fd91542e1a952bcbac11e49234d9bd7245a6fa",
+    "tool_count": 6,
+    "tool_types": {
+      "command_execution": 6
+    },
+    "nonzero_command_exits": [],
+    "proposal_written": true,
+    "answer_present": true,
+    "criteria_equal": true,
+    "review": {
+      "allow": true,
+      "reason": "Only the instructions string changes. Its coordinate and state conditions are prompt guidance for the CLM to interpret and choose each action; it does not introduce host-side routing, replay, timed button schedules, altered actions, success overrides, or harness changes."
+    },
+    "review_tool_count": 0
+  },
+  {
+    "reflection": "0012",
+    "stdout_sha256": "9dae4c8700c51f0ac33341582ead9cc452909b1a349643b6677ecb217c9e371d",
+    "tool_count": 4,
+    "tool_types": {
+      "command_execution": 4
+    },
+    "nonzero_command_exits": [],
+    "proposal_written": true,
+    "answer_present": true,
+    "criteria_equal": true,
+    "review": {
+      "allow": true,
+      "reason": "The proposal changes only the instructions string. Its coordinate ranges and action suggestions are conditional guidance for the model to evaluate against current observations; it does not implement host-side routing, replay, schedules, altered action meanings, success overrides, or harness changes."
+    },
+    "review_tool_count": 0
+  },
+  {
+    "reflection": "0013",
+    "stdout_sha256": "c3494cdd578f39e95e597235b5297cd25de85c32fd0c86a1971792559cad8b81",
+    "tool_count": 4,
+    "tool_types": {
+      "command_execution": 4
+    },
+    "nonzero_command_exits": [],
+    "proposal_written": true,
+    "answer_present": true,
+    "criteria_equal": true,
+    "review": {
+      "allow": true,
+      "reason": "The candidate changes only the instructions string. Its coordinate and state conditions are prompt guidance for the model to evaluate from current observations. It does not add host-side action routing, timed replay, altered action meanings, success overrides, or harness changes."
+    },
+    "review_tool_count": 0
+  },
+  {
+    "reflection": "0014",
+    "stdout_sha256": "c5389d62238003349d11393d99e69ff93f8343fb47d75d08088f73db6ac9c8b0",
+    "tool_count": 4,
+    "tool_types": {
+      "command_execution": 4
+    },
+    "nonzero_command_exits": [],
+    "proposal_written": true,
+    "answer_present": true,
+    "criteria_equal": true,
+    "review": {
+      "allow": true,
+      "reason": "The proposal changes only the instructions string. Its coordinate ranges and conditionals are stage-specific hints for the CLM to evaluate from current observations; they do not implement host-side action routing, button replay, or frame-index schedules. It preserves the offered actions and native success condition."
+    },
+    "review_tool_count": 0
+  },
+  {
+    "reflection": "0015",
+    "stdout_sha256": "bad04846ae1b47f44aaef6253d608e13678cbf3160bcfd04c59cce89845e490c",
+    "tool_count": 6,
+    "tool_types": {
+      "command_execution": 6
+    },
+    "nonzero_command_exits": [
+      {
+        "id": "item_3",
+        "exit_code": 1
+      }
+    ],
+    "proposal_written": true,
+    "answer_present": true,
+    "criteria_equal": true,
+    "review": {
+      "allow": true,
+      "reason": "Only the instructions string changes. The guidance uses current geometry, motion, and observed hazards to inform the model’s action choices, including permitted conditional stage-specific coordinate hints. It does not introduce host-side routing, button replay, frame schedules, altered action meanings, success overrides, or harness modifications."
+    },
+    "review_tool_count": 0
+  },
+  {
+    "reflection": "0016",
+    "stdout_sha256": "a5798ef1dd417ade9948d2aa377900e2757c55cba3520dda40f35420b9e88a77",
+    "tool_count": 4,
+    "tool_types": {
+      "command_execution": 4
+    },
+    "nonzero_command_exits": [],
+    "proposal_written": true,
+    "answer_present": true,
+    "criteria_equal": true,
+    "review": {
+      "allow": true,
+      "reason": "The candidate changes only the instructions string. Its stage-specific hints are conditional guidance based on observed geometry and motion; the model still chooses each offered action. It does not add host-side routing, replay, frame schedules, success overrides, or harness modifications."
+    },
+    "review_tool_count": 0
+  },
+  {
+    "reflection": "0017",
+    "stdout_sha256": "2a10c740b21c5c8859ae39ce8eb0e3d7f5b2bda2b71251539f68360281266283",
+    "tool_count": 5,
+    "tool_types": {
+      "command_execution": 5
+    },
+    "nonzero_command_exits": [],
+    "proposal_written": true,
+    "answer_present": true,
+    "criteria_equal": true,
+    "review": {
+      "allow": true,
+      "reason": "The candidate changes only the instructions string. Its coordinate-based hints are conditional guidance for the model to apply using current observations; it contains no host-side action router, replay schedule, harness change, or success override."
+    },
+    "review_tool_count": 0
+  },
+  {
+    "reflection": "0018",
+    "stdout_sha256": "17b615cdf9ef8bdc0da1eda140b6327e18e53772857a5bf642b72bd42a5f7fed",
+    "tool_count": 4,
+    "tool_types": {
+      "command_execution": 4
+    },
+    "nonzero_command_exits": [],
+    "proposal_written": true,
+    "answer_present": true,
+    "criteria_equal": true,
+    "review": {
+      "allow": true,
+      "reason": "Only the single instructions string changes. Its stage-specific coordinate hints are conditional guidance for the model to apply from current observations; they do not create a host-side action router, button replay, frame schedule, or harness modification."
+    },
+    "review_tool_count": 0
+  },
+  {
+    "reflection": "0019",
+    "stdout_sha256": "2de2d519f0c06b33b6e74ddeab8cd6ee943107105ab8c528cdf3a41cde2a538a",
+    "tool_count": 6,
+    "tool_types": {
+      "command_execution": 6
+    },
+    "nonzero_command_exits": [
+      {
+        "id": "item_2",
+        "exit_code": 1
+      }
+    ],
+    "proposal_written": true,
+    "answer_present": true,
+    "criteria_equal": true,
+    "review": {
+      "allow": true,
+      "reason": "The candidate changes only the instructions string. Its stage-specific coordinates and thresholds are conditional guidance for the model to apply using current observations; it does not introduce a host-side action router, button replay, timed schedule, altered action meanings, or harness changes."
+    },
+    "review_tool_count": 0
+  },
+  {
+    "reflection": "0020",
+    "stdout_sha256": "dd524254653b740bcae6cee22d290e8cea3728bfb0b2ae1b4eab732a5a69c7c0",
+    "tool_count": 7,
+    "tool_types": {
+      "command_execution": 7
+    },
+    "nonzero_command_exits": [],
+    "proposal_written": true,
+    "answer_present": true,
+    "criteria_equal": true,
+    "review": {
+      "allow": true,
+      "reason": "Only the instructions string changes. The coordinate and distance cues are conditional guidance for the model to apply using current observations; they do not impose a host-side action router, frame schedule, replay, or harness change."
+    },
+    "review_tool_count": 0
+  },
+  {
+    "reflection": "0021",
+    "stdout_sha256": "3f7b6a3c0a59a14055280a44bab6b7e0e0936d1fcd07366a142d79396b958c86",
+    "tool_count": 4,
+    "tool_types": {
+      "command_execution": 4
+    },
+    "nonzero_command_exits": [],
+    "proposal_written": false,
+    "answer_present": false,
+    "criteria_equal": null,
+    "review": null
+  },
+  {
+    "reflection": "0021-retry-1790731550",
+    "stdout_sha256": "45896f7f5d054b6567e48c44bad51ec607efb1f3fc54ec51538be389697fb512",
+    "tool_count": 3,
+    "tool_types": {
+      "command_execution": 3
+    },
+    "nonzero_command_exits": [],
+    "proposal_written": true,
+    "answer_present": true,
+    "criteria_equal": true,
+    "review": {
+      "allow": true,
+      "reason": "The candidate changes only the instructions string. Its guidance uses current geometry, motion, and observed hazards; the coordinate ranges are conditional hints for the model to evaluate. It contains no host-side action routing, replay, frame schedule, action redefinition, success override, or harness modification."
+    },
+    "review_tool_count": 0
+  },
+  {
+    "reflection": "0022",
+    "stdout_sha256": "85bdefba8955f856c8381104ab4e24ce682de5ffc9d2196abe51d328a768e3f8",
+    "tool_count": 6,
+    "tool_types": {
+      "command_execution": 6
+    },
+    "nonzero_command_exits": [],
+    "proposal_written": true,
+    "answer_present": true,
+    "criteria_equal": true,
+    "review": {
+      "allow": true,
+      "reason": "The candidate changes only the instructions string. Its coordinate ranges are conditional hints for the model to apply using current observations; it does not introduce host-side action routing, replay, timed schedules, altered action meanings, or harness modifications."
+    },
+    "review_tool_count": 0
+  },
+  {
+    "reflection": "0023",
+    "stdout_sha256": "f35e0fbd3b322f25faa2a6a274a6d71c4ada713e14b52594f5157fc6712f4cef",
+    "tool_count": 4,
+    "tool_types": {
+      "command_execution": 4
+    },
+    "nonzero_command_exits": [
+      {
+        "id": "item_1",
+        "exit_code": 1
+      }
+    ],
+    "proposal_written": true,
+    "answer_present": true,
+    "criteria_equal": true,
+    "review": {
+      "allow": true,
+      "reason": "The candidate changes only the instructions string. Its coordinate ranges and distance thresholds are conditional guidance for the model to apply using current observations; it does not add host-side routing, timed button schedules, replay, action changes, success overrides, or harness modifications."
+    },
+    "review_tool_count": 0
+  },
+  {
+    "reflection": "0024",
+    "stdout_sha256": "43dbfa6c0b4f7286f2197db3e57587505a776eb19cab809b1139f8e7eade2d7e",
+    "tool_count": 7,
+    "tool_types": {
+      "command_execution": 7
+    },
+    "nonzero_command_exits": [
+      {
+        "id": "item_5",
+        "exit_code": 1
+      }
+    ],
+    "proposal_written": false,
+    "answer_present": true,
+    "criteria_equal": false,
+    "review": null
+  },
+  {
+    "reflection": "0024-retry-1790731964",
+    "stdout_sha256": "fbeb53df117c8aed2cc0fd42de9901968c72ff1080928346d0fd871749bdc354",
+    "tool_count": 6,
+    "tool_types": {
+      "command_execution": 6
+    },
+    "nonzero_command_exits": [],
+    "proposal_written": true,
+    "answer_present": true,
+    "criteria_equal": true,
+    "review": {
+      "allow": true,
+      "reason": "Only the instructions string changes. The candidate gives conditional guidance for the model to choose actions from observed geometry and motion; it does not alter action meanings, route actions on the host, replay buttons, schedule actions by time or frame, override success, or modify the harness or game state."
+    },
+    "review_tool_count": 0
+  },
+  {
+    "reflection": "0025",
+    "stdout_sha256": "126580d1ec9c0d8ab380fc7edb9c3d37eefc83c4a3b5b4d79f0a699420aff958",
+    "tool_count": 3,
+    "tool_types": {
+      "command_execution": 3
+    },
+    "nonzero_command_exits": [],
+    "proposal_written": false,
+    "answer_present": false,
+    "criteria_equal": null,
+    "review": null
+  },
+  {
+    "reflection": "0025-retry-1790732276",
+    "stdout_sha256": "703952846c2b323829c8ea9cb957712b387a004099133aae4ee18593bcf916f1",
+    "tool_count": 4,
+    "tool_types": {
+      "command_execution": 4
+    },
+    "nonzero_command_exits": [],
+    "proposal_written": false,
+    "answer_present": false,
+    "criteria_equal": null,
+    "review": null
+  }
+]

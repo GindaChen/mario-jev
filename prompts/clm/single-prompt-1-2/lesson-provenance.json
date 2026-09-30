@@ -1,0 +1,12 @@
+{
+  "source": "prompts/stages/1-2/winner.json",
+  "note_ids": [
+    "escape-ledge",
+    "pit-approach",
+    "pit-takeoff",
+    "plant-cycle-wait"
+  ],
+  "method": "Copy all region bounds into ordinary text; concatenate all lessons at every decision. Do not import profile routing, fact projections, candidate overrides or note timers.",
+  "adaptation": "Replace the plant note timer with an untested visible-motion waiting hypothesis; spell out sticky retreat in text.",
+  "initial_prompt_characters": 4781
+}

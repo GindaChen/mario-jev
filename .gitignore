@@ -17,3 +17,8 @@ web/public/data/campaign.json
 web/public/data/campaign-frame.jpg
 web/public/data/mario.json
 web/public/data/journal.json
+
+# Generated public CLM audit records and native replay media
+web/public/mario-clm/1-2/data/
+web/public/mario-clm/1-2/media/
+web/public/mario-clm/1-2/replay/

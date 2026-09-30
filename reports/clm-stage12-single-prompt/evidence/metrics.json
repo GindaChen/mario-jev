@@ -1,0 +1,152 @@
+{
+  "attempts_completed": 3,
+  "clears": 0,
+  "outcomes": {
+    "death": 3
+  },
+  "best": {
+    "attempt_id": 1,
+    "program_version": 0,
+    "program_sha256": "f7ec29127d6300bae68ef3ee68c4cc29a9a5e0379977195240cbb916c521ee83",
+    "outcome": "death",
+    "max_x": 198,
+    "frames": 74,
+    "decisions": 20,
+    "attempt_wall_s": 0.7448453730903566,
+    "total_wall_s": 1.0755672990344465,
+    "automatic_releases": 0,
+    "native_flag_get": false,
+    "p50_ms": 30.824499437585473,
+    "p95_ms": 35.76559014618397,
+    "selected_action_counts": {
+      "right_run": 20
+    },
+    "dominant_action": "right_run",
+    "action_types": 1,
+    "encoder_work": {
+      "count": 20,
+      "p50_ms": 30.824499437585473,
+      "p95_ms": 35.76559014618397
+    },
+    "fully_cached": {
+      "count": 0,
+      "p50_ms": null,
+      "p95_ms": null
+    }
+  },
+  "first_clear": null,
+  "native_frames": 222,
+  "decisions": 60,
+  "automatic_release_decisions": 0,
+  "attempt_wall_s": 1.0412192163057625,
+  "latency": {
+    "all": {
+      "count": 60,
+      "p50_ms": 2.3646634072065353,
+      "p95_ms": 35.11468833312392
+    },
+    "encoder_work": {
+      "count": 20,
+      "p50_ms": 30.824499437585473,
+      "p95_ms": 35.76559014618397
+    },
+    "fully_cached": {
+      "count": 40,
+      "p50_ms": 2.2667234297841787,
+      "p95_ms": 2.8117001056671143
+    }
+  },
+  "attempts": [
+    {
+      "attempt_id": 1,
+      "program_version": 0,
+      "program_sha256": "f7ec29127d6300bae68ef3ee68c4cc29a9a5e0379977195240cbb916c521ee83",
+      "outcome": "death",
+      "max_x": 198,
+      "frames": 74,
+      "decisions": 20,
+      "attempt_wall_s": 0.7448453730903566,
+      "total_wall_s": 1.0755672990344465,
+      "automatic_releases": 0,
+      "native_flag_get": false,
+      "p50_ms": 30.824499437585473,
+      "p95_ms": 35.76559014618397,
+      "selected_action_counts": {
+        "right_run": 20
+      },
+      "dominant_action": "right_run",
+      "action_types": 1,
+      "encoder_work": {
+        "count": 20,
+        "p50_ms": 30.824499437585473,
+        "p95_ms": 35.76559014618397
+      },
+      "fully_cached": {
+        "count": 0,
+        "p50_ms": null,
+        "p95_ms": null
+      }
+    },
+    {
+      "attempt_id": 2,
+      "program_version": 0,
+      "program_sha256": "f7ec29127d6300bae68ef3ee68c4cc29a9a5e0379977195240cbb916c521ee83",
+      "outcome": "death",
+      "max_x": 198,
+      "frames": 74,
+      "decisions": 20,
+      "attempt_wall_s": 0.14762370521202683,
+      "total_wall_s": 1.417444618884474,
+      "automatic_releases": 0,
+      "native_flag_get": false,
+      "p50_ms": 2.2387471981346607,
+      "p95_ms": 2.58603785187006,
+      "selected_action_counts": {
+        "right_run": 20
+      },
+      "dominant_action": "right_run",
+      "action_types": 1,
+      "encoder_work": {
+        "count": 0,
+        "p50_ms": null,
+        "p95_ms": null
+      },
+      "fully_cached": {
+        "count": 20,
+        "p50_ms": 2.2387471981346607,
+        "p95_ms": 2.58603785187006
+      }
+    },
+    {
+      "attempt_id": 3,
+      "program_version": 0,
+      "program_sha256": "f7ec29127d6300bae68ef3ee68c4cc29a9a5e0379977195240cbb916c521ee83",
+      "outcome": "death",
+      "max_x": 198,
+      "frames": 74,
+      "decisions": 20,
+      "attempt_wall_s": 0.1487501380033791,
+      "total_wall_s": 1.7585650719702244,
+      "automatic_releases": 0,
+      "native_flag_get": false,
+      "p50_ms": 2.2667234297841787,
+      "p95_ms": 2.8338409028947353,
+      "selected_action_counts": {
+        "right_run": 20
+      },
+      "dominant_action": "right_run",
+      "action_types": 1,
+      "encoder_work": {
+        "count": 0,
+        "p50_ms": null,
+        "p95_ms": null
+      },
+      "fully_cached": {
+        "count": 20,
+        "p50_ms": 2.2667234297841787,
+        "p95_ms": 2.8338409028947353
+      }
+    }
+  ],
+  "note": "One prompt per attempt, no notes or note clock, frozen candidate descriptions. S2 is disabled. Repeated identical seed/checkpoint, not a generalization estimate. Encoder work may encode a new state, candidate description, or both."
+}

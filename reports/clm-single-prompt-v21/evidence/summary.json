@@ -1,0 +1,40 @@
+{
+  "attempts_completed": 50,
+  "clears": 50,
+  "outcomes": {
+    "clear": 50
+  },
+  "native_frames": 96700,
+  "decisions": 26800,
+  "automatic_release_decisions": 2300,
+  "attempt_wall_s": 195.099485182669,
+  "latency": {
+    "all": {
+      "count": 26800,
+      "p50_ms": 2.0820514764636755,
+      "p95_ms": 2.493935637176037
+    },
+    "encoder_work": {
+      "count": 0,
+      "p50_ms": null,
+      "p95_ms": null
+    },
+    "fully_cached": {
+      "count": 26800,
+      "p50_ms": 2.0820514764636755,
+      "p95_ms": 2.493935637176037
+    }
+  },
+  "note": "One prompt per attempt, no notes or note clock, frozen candidate descriptions. Failure-only reflection is enabled. Repeated identical seed/checkpoint, not a generalization estimate. Encoder work may encode a new state, candidate description, or both.",
+  "elapsed_s": 204.70891163824126,
+  "prompt_sha256": "5caafa6b1cd7ff87ef3707b5b10de2de26a6f5af25957bc4ecf9c2eb3f53b96a",
+  "per_attempt": {
+    "frames": 1934,
+    "decisions": 536,
+    "automatic_releases": 46,
+    "selected_action_counts": {
+      "right_jump": 527,
+      "right_run_jump": 9
+    }
+  }
+}
