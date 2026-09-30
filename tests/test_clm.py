@@ -264,7 +264,10 @@ def test_single_prompt_reflection_can_only_rewrite_instructions(tmp_path):
     (control / "model-revisions.json").write_text("{}")
     source = {
         "instructions": "Reach the flag.",
-        "criteria": dict(DEFAULT_CRITERIA),
+        "criteria": {
+            **DEFAULT_CRITERIA,
+            "right": "Hold Right only; release both A and B.",
+        },
         "memory": "A useful lesson.",
     }
     source_path = tmp_path / "source.json"
@@ -328,6 +331,10 @@ def test_single_prompt_reflection_can_only_rewrite_instructions(tmp_path):
     pilot.reflect_checked(summary, [row])
     assert pilot.version == 1 and len(calls) == 2 and calls[1][1]
     assert "Only the single instructions string may change" in calls[1][0]
+    # Optimized wording is the frozen reference, not the generic descriptions.
+    assert source["criteria"] != DEFAULT_CRITERIA
+    assert "Frozen candidate descriptions: " in calls[1][0]
+    assert source["criteria"]["right"] in calls[1][0]
     saved = json.loads((pilot.root / "programs/v0001/profile.json").read_text())
     assert "memory_notes" not in saved and saved["single_prompt"]
     assert saved["criteria"] == source["criteria"]

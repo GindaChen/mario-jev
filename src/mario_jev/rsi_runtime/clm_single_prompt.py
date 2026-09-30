@@ -97,7 +97,11 @@ class SinglePromptPilot(ClmPilot):
         return (
             "Only the single instructions string may change. All candidate descriptions are frozen. "
             "There are no memory notes, retrieval, note timers, or within-attempt prompt updates. "
-            "Any useful reflection lesson must be integrated into that single prompt."
+            "Any useful reflection lesson must be integrated into that single prompt. "
+            "The host has already verified that candidate.criteria exactly equals the frozen "
+            "descriptions below. These may differ from generic button descriptions; that prior "
+            "wording is not a change by this proposal. Frozen candidate descriptions: "
+            + compact(self.fixed_criteria)
         )
 
     def review_action_constraints(self):
