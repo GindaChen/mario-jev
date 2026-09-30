@@ -88,6 +88,9 @@ within the remaining original one-hour budget; best x=822. All 2,416 decisions /
 action overrides. CLM selected only `jump` and `right_run`, despite moving-jump
 guidance. See the [full reflection result and exact prompts](reports/clm-stage12-reflection/README.md)
 and [reviewer-reference repair record](reports/clm-stage12-reflection/OPERATIONS.md).
+The [public audit notebook](https://game.gindachen.com/mario-clm/1-2/) now lets
+you inspect all attempts, exact requests, verified videos, S2 tool actions and
+prompt diffs, including rejected and incomplete proposals.
 
 ## Enable failure-only reflection
 

@@ -76,3 +76,47 @@ Publisher schema2 adds start_x, source_sha256, policy_sha256, finish_x, and allo
 Rebuild the frozen public record with `python3 build_campaign_research.py --campaign-root /path/to/runs/overnight-campaign`. This reads the immutable trajectory and profiles, validates outcome counts, source-profile hashes and replay frame totals, and produces `public/data/campaign-research.json` plus byte-identical prompt snapshots. It does not run gameplay or modify the recorded campaign. The frontend requires the research campaign ID to match the verified replay feed. Reflection prose is retrospective and excludes private reasoning; unused candidate prompts are labeled.
 
 Deployment is static-file-only: sync the two index pages, campaign.js, campaign-research.js/css, and campaign-research data directory. The existing server and publisher do not need restarting.
+
+## CLM World 1-2 audit notebook
+
+`/mario-clm/1-2/` publishes the completed 1-2 experiment as a read-only archive.
+Its three tabs keep the corrected reflection run (25 attempts), interrupted
+reviewer-repair segment (3), and earlier fixed baseline (3) separate. Every
+attempt includes native RAM-verified video and decision-by-decision requests,
+responses, chosen/executed keys, screenshots and hashes. Reflection cards show
+recorded hypotheses, predictions, cited decision links, proposed prompt diffs,
+publication verdicts, explicit tool commands/outputs, and the next attempt's
+observed result. Rejected answers and incomplete turns remain visible.
+
+Build from the locally archived experiments after replay audits and per-attempt
+videos have been exported into each run's `audit/replays/`:
+
+```sh
+python3 web/build_clm_audit.py \
+  --archive deliverables/clm-stage12-single-prompt \
+  --output web/public/mario-clm/1-2
+python3 web/test_clm_audit.py
+node --check web/public/mario-clm/1-2/app.js
+```
+
+The builder requires a passing audit covering every completed attempt, checks
+frozen source and screenshot hashes, preserves exact CLM request JSON values,
+and uses explicit public field allowlists. It fails on suspected credentials,
+new unreviewed tool types, or paths outside the archive. Tool-output host paths
+are redacted; reasoning events, agent-message transcripts, session metadata,
+authentication directories and endpoint configuration are excluded. The exact
+S2 stdin request and structured proposal are included because the user requested
+publication of experiment reflections. This is a curated artifact export, never
+an HTTP mount of an experiment directory.
+
+Generated `data/`, `media/` and `replay/` are ignored by Git. The checked-in HTML,
+JS, CSS, exporter and boundary tests reproduce the view. Query parameters
+`segment`, `attempt`, `decision` and `tab` provide shareable audit links. The
+video can drive the selected request using “Follow video”; manually selecting a
+decision seeks the replay to its source frame.
+
+Deployment is static only: stage this route outside `public/`, verify the
+payload, then move it into `public/mario-clm/1-2/`. Add a link from the existing
+1-1 page, preserving that page's evidence. Back up the old index outside the
+public tree. No game, inference, web-server or tunnel restart is needed. Never
+use a broad `rsync --delete` against the existing public site.

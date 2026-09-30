@@ -153,4 +153,10 @@ The existing `verify_inputs.py`, `summarize.py` and `audit_action_authority.py`
 were run after termination; the best video was replayed without model calls.
 The reviewer-fix code already passed 89 tests and lint; completion adds reports
 and evidence only. Raw recordings, ROMs, credentials and weights are outside Git.
-The public website was not updated. No new experiment was launched.
+At experiment completion, the public website was left unchanged. Following the
+user's later publication request, the [public audit notebook](https://game.gindachen.com/mario-clm/1-2/)
+now exposes all 25 corrected attempts plus the two separate three-attempt
+segments. It includes 31 RAM-verified videos, 2,536 exact request/response records,
+S2 proposals and tool actions, cited-decision links, prompt diffs and next-attempt
+outcomes. Private reasoning/session metadata and credentials are excluded.
+No new experiment was launched.

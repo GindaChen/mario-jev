@@ -1,0 +1,32 @@
+{
+  "published_utc": "2026-09-30T02:04:39.009230+00:00",
+  "url": "https://game.gindachen.com/mario-clm/1-2/",
+  "segments": {
+    "corrected": 25,
+    "interrupted": 3,
+    "baseline": 3
+  },
+  "verified_exported_decisions": 2536,
+  "ram_verified_replays": 31,
+  "publication_tests_passed": 5,
+  "request_response_key_values_equal_archive": true,
+  "browser_checks": [
+    "Public page and recorded reflection render successfully",
+    "Evidence link opens source decision 221 at x788",
+    "Native video plays and request follows through last decision 265",
+    "Rejected answer and accepted retry displayed separately",
+    "Final timeout retains incomplete tool history",
+    "Fixed baseline correctly reports S2 disabled",
+    "No browser console errors observed"
+  ],
+  "origin_video_range_status": 206,
+  "public_browser_verified": true,
+  "direct_python_public_probe": "Cloudflare returned 403 to urllib; public verification used the browser, plus origin HTTP range checks.",
+  "assets_sha256": {
+    "index.html": "fffee69702d09fb9b8959500a2ae5f4e655937a4ff51180524e95cde2c1a8849",
+    "app.js": "c8d53d027bbbb17f1212ce60961da3b568c5773357268947fdaddbdf33e0cfb8",
+    "style.css": "0ea48565de6ebf8bb2e07724739870eccf820bfe79b81d013d94ed5ea26df817",
+    "data/catalog.json": "d03b03f789555ebe62991b9d1592edeae2a240b1b99e5ebb9f46e078af3966c9"
+  },
+  "scope": "Static publication only; no inference, experiment restart, service restart or gameplay change."
+}
