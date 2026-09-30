@@ -1,0 +1,372 @@
+{
+  "original_start_unix": 1790728753.2030928,
+  "original_deadline_unix": 1790732353.2030928,
+  "corrected_start_unix": 1790729161.3500786,
+  "corrected_wall_limit_s": 3191,
+  "corrected_terminal_elapsed_s": 3192.356442719698,
+  "corrected_end_unix_approx": 1790732353.7065213,
+  "deadline_cleanup_overrun_s_approx": 0.5034284591674805,
+  "initial_segment_terminal_elapsed_s": 326.60002032388,
+  "repair_between_segments_s_approx": 81.54696544539183,
+  "game_attempt_wall_s": 72.71630787989125,
+  "s2_proposal_turns": 28,
+  "s2_proposal_wall_s": 2850.6522234906442,
+  "review_turns": 24,
+  "review_wall_s": 263.8926684781909,
+  "other_corrected_wall_s": 5.0952428709715605,
+  "terminal_raw_status": "infra_error",
+  "terminal_raw_event": {
+    "type": "infra_error",
+    "elapsed_s": 3192.356416875031,
+    "attempt": 25,
+    "version": 24,
+    "error": "TimeoutError('Codex turn stopped/deadline')"
+  },
+  "classification": "Aggregate deadline expired during final S2 retry; terminal infra_error and exit1 retained, no experiment restart. Cleanup extends the recorded terminal time slightly beyond the deadline.",
+  "segments": {
+    "s2": [
+      {
+        "attempt": 1,
+        "start_s": 0.466483682859689,
+        "end_s": 85.18539479281753,
+        "duration_s": 84.71891110995784,
+        "end_event": "s2_ended"
+      },
+      {
+        "attempt": 2,
+        "start_s": 96.41266728378832,
+        "end_s": 228.57518066372722,
+        "duration_s": 132.1625133799389,
+        "end_event": "s2_ended"
+      },
+      {
+        "attempt": 3,
+        "start_s": 242.2476174919866,
+        "end_s": 311.54825327172875,
+        "duration_s": 69.30063577974215,
+        "end_event": "s2_ended"
+      },
+      {
+        "attempt": 4,
+        "start_s": 326.43799516092986,
+        "end_s": 413.1549854828045,
+        "duration_s": 86.71699032187462,
+        "end_event": "s2_ended"
+      },
+      {
+        "attempt": 5,
+        "start_s": 427.07842874201015,
+        "end_s": 503.3851455687545,
+        "duration_s": 76.30671682674438,
+        "end_event": "s2_ended"
+      },
+      {
+        "attempt": 6,
+        "start_s": 515.3203172590584,
+        "end_s": 641.4646482197568,
+        "duration_s": 126.14433096069843,
+        "end_event": "s2_ended"
+      },
+      {
+        "attempt": 7,
+        "start_s": 655.063236027956,
+        "end_s": 745.5843619788066,
+        "duration_s": 90.52112595085055,
+        "end_event": "s2_ended"
+      },
+      {
+        "attempt": 8,
+        "start_s": 758.4767110128887,
+        "end_s": 820.7708532908,
+        "duration_s": 62.294142277911305,
+        "end_event": "s2_ended"
+      },
+      {
+        "attempt": 9,
+        "start_s": 834.8890936309472,
+        "end_s": 895.9828446996398,
+        "duration_s": 61.093751068692654,
+        "end_event": "s2_ended"
+      },
+      {
+        "attempt": 10,
+        "start_s": 907.7227734089829,
+        "end_s": 1060.3042204268277,
+        "duration_s": 152.58144701784477,
+        "end_event": "s2_ended"
+      },
+      {
+        "attempt": 11,
+        "start_s": 1080.220091323834,
+        "end_s": 1172.7448535300791,
+        "duration_s": 92.52476220624521,
+        "end_event": "s2_ended"
+      },
+      {
+        "attempt": 12,
+        "start_s": 1188.6324111917056,
+        "end_s": 1282.7643421026878,
+        "duration_s": 94.13193091098219,
+        "end_event": "s2_ended"
+      },
+      {
+        "attempt": 13,
+        "start_s": 1296.233719507698,
+        "end_s": 1373.1498034060933,
+        "duration_s": 76.9160838983953,
+        "end_event": "s2_ended"
+      },
+      {
+        "attempt": 14,
+        "start_s": 1382.7282770066522,
+        "end_s": 1483.4582639690489,
+        "duration_s": 100.72998696239665,
+        "end_event": "s2_ended"
+      },
+      {
+        "attempt": 15,
+        "start_s": 1500.171277062036,
+        "end_s": 1605.5066029019654,
+        "duration_s": 105.33532583992928,
+        "end_event": "s2_ended"
+      },
+      {
+        "attempt": 16,
+        "start_s": 1625.8379888068885,
+        "end_s": 1747.1936465157196,
+        "duration_s": 121.35565770883113,
+        "end_event": "s2_ended"
+      },
+      {
+        "attempt": 17,
+        "start_s": 1761.8845036178827,
+        "end_s": 1854.8344719680026,
+        "duration_s": 92.94996835011989,
+        "end_event": "s2_ended"
+      },
+      {
+        "attempt": 18,
+        "start_s": 1868.6774415848777,
+        "end_s": 1937.182384248823,
+        "duration_s": 68.50494266394526,
+        "end_event": "s2_ended"
+      },
+      {
+        "attempt": 19,
+        "start_s": 1948.9354540300556,
+        "end_s": 2065.0934671447612,
+        "duration_s": 116.15801311470568,
+        "end_event": "s2_ended"
+      },
+      {
+        "attempt": 20,
+        "start_s": 2078.3323591779917,
+        "end_s": 2193.0950993038714,
+        "duration_s": 114.76274012587965,
+        "end_event": "s2_ended"
+      },
+      {
+        "attempt": 21,
+        "start_s": 2207.8492658217438,
+        "end_s": 2389.1908456757665,
+        "duration_s": 181.3415798540227,
+        "end_event": "reflection_rejected_or_incomplete"
+      },
+      {
+        "attempt": 21,
+        "start_s": 2389.192720066756,
+        "end_s": 2457.485229134094,
+        "duration_s": 68.29250906733796,
+        "end_event": "s2_ended"
+      },
+      {
+        "attempt": 22,
+        "start_s": 2470.566056027077,
+        "end_s": 2584.9280562009662,
+        "duration_s": 114.3620001738891,
+        "end_event": "s2_ended"
+      },
+      {
+        "attempt": 23,
+        "start_s": 2598.320128885098,
+        "end_s": 2673.6365984710865,
+        "duration_s": 75.31646958598867,
+        "end_event": "s2_ended"
+      },
+      {
+        "attempt": 24,
+        "start_s": 2691.6362357679754,
+        "end_s": 2802.9953666590154,
+        "duration_s": 111.35913089103997,
+        "end_event": "s2_ended"
+      },
+      {
+        "attempt": 24,
+        "start_s": 2802.9972966350615,
+        "end_s": 2919.3585966788232,
+        "duration_s": 116.36130004376173,
+        "end_event": "s2_ended"
+      },
+      {
+        "attempt": 25,
+        "start_s": 2933.9447362408973,
+        "end_s": 3115.307149292901,
+        "duration_s": 181.36241305200383,
+        "end_event": "reflection_rejected_or_incomplete"
+      },
+      {
+        "attempt": 25,
+        "start_s": 3115.30950553203,
+        "end_s": 3192.3563498789445,
+        "duration_s": 77.04684434691444,
+        "end_event": "reflection_rejected_or_incomplete"
+      }
+    ],
+    "review": [
+      {
+        "attempt": 1,
+        "start_s": 85.18595270672813,
+        "end_s": 95.62908014608547,
+        "duration_s": 10.44312743935734
+      },
+      {
+        "attempt": 2,
+        "start_s": 228.57582690473646,
+        "end_s": 241.421470714733,
+        "duration_s": 12.845643809996545
+      },
+      {
+        "attempt": 3,
+        "start_s": 311.5489777326584,
+        "end_s": 322.7950178668834,
+        "duration_s": 11.24604013422504
+      },
+      {
+        "attempt": 4,
+        "start_s": 413.1556079480797,
+        "end_s": 423.42153852572665,
+        "duration_s": 10.265930577646941
+      },
+      {
+        "attempt": 5,
+        "start_s": 503.38581890100613,
+        "end_s": 514.4303321386687,
+        "duration_s": 11.044513237662613
+      },
+      {
+        "attempt": 6,
+        "start_s": 641.4652546057478,
+        "end_s": 654.3105913200416,
+        "duration_s": 12.845336714293808
+      },
+      {
+        "attempt": 7,
+        "start_s": 745.5850067939609,
+        "end_s": 754.8270663856529,
+        "duration_s": 9.242059591691941
+      },
+      {
+        "attempt": 8,
+        "start_s": 820.7714867289178,
+        "end_s": 831.415418012999,
+        "duration_s": 10.64393128408119
+      },
+      {
+        "attempt": 9,
+        "start_s": 895.9837017008103,
+        "end_s": 904.4254621877335,
+        "duration_s": 8.441760486923158
+      },
+      {
+        "attempt": 10,
+        "start_s": 1060.304913165979,
+        "end_s": 1076.5542072840035,
+        "duration_s": 16.24929411802441
+      },
+      {
+        "attempt": 11,
+        "start_s": 1172.7455275487155,
+        "end_s": 1184.7799958488904,
+        "duration_s": 12.034468300174922
+      },
+      {
+        "attempt": 12,
+        "start_s": 1282.7650719098747,
+        "end_s": 1292.4117458700202,
+        "duration_s": 9.646673960145563
+      },
+      {
+        "attempt": 13,
+        "start_s": 1373.1505280546844,
+        "end_s": 1381.7923084036447,
+        "duration_s": 8.64178034896031
+      },
+      {
+        "attempt": 14,
+        "start_s": 1483.4588886667043,
+        "end_s": 1496.304537175689,
+        "duration_s": 12.845648508984596
+      },
+      {
+        "attempt": 15,
+        "start_s": 1605.5072859777138,
+        "end_s": 1616.7534136497416,
+        "duration_s": 11.246127672027797
+      },
+      {
+        "attempt": 16,
+        "start_s": 1747.1943874559365,
+        "end_s": 1757.8372636069544,
+        "duration_s": 10.642876151017845
+      },
+      {
+        "attempt": 17,
+        "start_s": 1854.835284582805,
+        "end_s": 1864.4812524928711,
+        "duration_s": 9.645967910066247
+      },
+      {
+        "attempt": 18,
+        "start_s": 1937.1831703986973,
+        "end_s": 1948.0327752036974,
+        "duration_s": 10.849604805000126
+      },
+      {
+        "attempt": 19,
+        "start_s": 2065.0941343777813,
+        "end_s": 2075.7374038416892,
+        "duration_s": 10.643269463907927
+      },
+      {
+        "attempt": 20,
+        "start_s": 2193.0960085298866,
+        "end_s": 2203.3424815759063,
+        "duration_s": 10.246473046019673
+      },
+      {
+        "attempt": 21,
+        "start_s": 2457.486035085749,
+        "end_s": 2468.1281861290336,
+        "duration_s": 10.642151043284684
+      },
+      {
+        "attempt": 22,
+        "start_s": 2584.928849192802,
+        "end_s": 2594.5733398278244,
+        "duration_s": 9.644490635022521
+      },
+      {
+        "attempt": 23,
+        "start_s": 2673.637327366974,
+        "end_s": 2684.284511292819,
+        "duration_s": 10.647183925844729
+      },
+      {
+        "attempt": 24,
+        "start_s": 2919.3593755709007,
+        "end_s": 2932.6076908847317,
+        "duration_s": 13.248315313830972
+      }
+    ]
+  }
+}

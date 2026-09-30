@@ -1,0 +1,134 @@
+{
+  "runtime_commit": "b308feb",
+  "report_base_commit": "770c8a12700405944cb80fa2e710cd380c90aad5",
+  "scope": "Corrected World 1-2 reflection runtime only; earlier fixed-prompt and 1-1 claims retain their historical commit scope.",
+  "all_21_match": true,
+  "checks": [
+    {
+      "path": "history.py",
+      "expected_sha256": "5acdefba49ec3c4736d33b35854d8cc8ad6bc95acabf0ae5b9c3d0a5b65ff51b",
+      "local_matches": true,
+      "frozen_matches": true
+    },
+    {
+      "path": "jev_modular.py",
+      "expected_sha256": "b5bcae70f2145b73d05152a710dd609ce6c5d6492af0e308b4034ba282ea27c8",
+      "local_matches": true,
+      "frozen_matches": true
+    },
+    {
+      "path": "scorer.py",
+      "expected_sha256": "9d2e62c7f8c670829ea3e15fce788ecec0494d930ac3f5cd5f5f86e1eb5e5bbe",
+      "local_matches": true,
+      "frozen_matches": true
+    },
+    {
+      "path": "replay.py",
+      "expected_sha256": "dcb1d24c367f2f080f61ea79b4eadec6eb04c8deb3b8693b7157ed5648739167",
+      "local_matches": true,
+      "frozen_matches": true
+    },
+    {
+      "path": "cli.py",
+      "expected_sha256": "165122077c62e064327be39d516fdfbc93423690041470e42dc4360117b2c2ac",
+      "local_matches": true,
+      "frozen_matches": true
+    },
+    {
+      "path": "policy.py",
+      "expected_sha256": "0880d319d51f8a42d678ec971235fa900ec07c90b0b8f70d67373dfb08f0523b",
+      "local_matches": true,
+      "frozen_matches": true
+    },
+    {
+      "path": "state.py",
+      "expected_sha256": "940e9a0cd9a5e71a573f8b4bef2dff5695492258cde5e3a7e75b5cb525725a84",
+      "local_matches": true,
+      "frozen_matches": true
+    },
+    {
+      "path": "djev.py",
+      "expected_sha256": "84319aa44f6b3408efe72ed7d7e1073d146fe38b1fcaea64ecf7edae03f66b71",
+      "local_matches": true,
+      "frozen_matches": true
+    },
+    {
+      "path": "runner.py",
+      "expected_sha256": "d778583bf4ae54d62274abbdd5321fd1bd57a336cb8ca2b0c30e93ed96847333",
+      "local_matches": true,
+      "frozen_matches": true
+    },
+    {
+      "path": "full_game.py",
+      "expected_sha256": "e67599cd9200c45369bac8a5a304f353ce560b97342e6dc5c20a6571ad8baca5",
+      "local_matches": true,
+      "frozen_matches": true
+    },
+    {
+      "path": "__init__.py",
+      "expected_sha256": "d0bf0fb90cd03d0b151a5a258f77643b864ad05d0baaabf53f923fd3a3f953c7",
+      "local_matches": true,
+      "frozen_matches": true
+    },
+    {
+      "path": "reflection.py",
+      "expected_sha256": "f68ecb860142ad0d0085b18d5af1f67535cfcae0e36f4a758693a8fbe1623a63",
+      "local_matches": true,
+      "frozen_matches": true
+    },
+    {
+      "path": "clm.py",
+      "expected_sha256": "39ef68dce67bd68d073e6712ceab3cdd457807b454318e5ba3550137304db4ff",
+      "local_matches": true,
+      "frozen_matches": true
+    },
+    {
+      "path": "laya.py",
+      "expected_sha256": "186877f704fa91d3f122694b1059111bb604ffa9d6e3bc1f22059cfae79010eb",
+      "local_matches": true,
+      "frozen_matches": true
+    },
+    {
+      "path": "checkpoint.py",
+      "expected_sha256": "5286594c48ba7896475c19b4506da2f634a783f3db83cc2b3e6dd2208ee4c5f2",
+      "local_matches": true,
+      "frozen_matches": true
+    },
+    {
+      "path": "modular.py",
+      "expected_sha256": "25e0e9af7b6052916150c5bd1fb20e853b7acc8b1c31b86405691a5da260419a",
+      "local_matches": true,
+      "frozen_matches": true
+    },
+    {
+      "path": "rsi_runtime/clm_fixed.py",
+      "expected_sha256": "0410540a0de80d124097e8e5682c6f1d8b7303795700ce44b6bd87813a6c8a6d",
+      "local_matches": true,
+      "frozen_matches": true
+    },
+    {
+      "path": "rsi_runtime/clm_single_prompt.py",
+      "expected_sha256": "97015bf7c9ba31b80ef520105198cc32f166bb2d1f00eb1f14a6f1e6c7e4c3ea",
+      "local_matches": true,
+      "frozen_matches": true
+    },
+    {
+      "path": "rsi_runtime/audit_clm.py",
+      "expected_sha256": "3ee96d03d6025ed2dcaf3b401e3c2be91fa6b34fd22f0c6deb877f9660a26139",
+      "local_matches": true,
+      "frozen_matches": true
+    },
+    {
+      "path": "rsi_runtime/clm_pilot.py",
+      "expected_sha256": "cee3b7204f782723673b15e724cd36781914cf63fa6c7778b29e643ec1aae4c9",
+      "local_matches": true,
+      "frozen_matches": true
+    },
+    {
+      "path": "rsi_runtime/clm_support.py",
+      "expected_sha256": "4fd232f6a3314cf6236f316b1631009ddf4480ffd654ee13a1a2d1392a981478",
+      "local_matches": true,
+      "frozen_matches": true
+    }
+  ]
+}

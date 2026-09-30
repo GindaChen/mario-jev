@@ -82,8 +82,12 @@ The old timed plant-wait note is adapted to an untested visible-motion hypothesi
 because there is no note clock. This first transfer failed **0/3 clears**, dying
 at x=198 after selecting `right_run` on all 20 decisions each time. No S2 ran.
 See the [1-2 result and action-authority audit](reports/clm-stage12-single-prompt/README.md).
-The subsequent reflection run and reviewer-reference repair are tracked in
-[the 1-2 reflection operations record](reports/clm-stage12-reflection/OPERATIONS.md).
+The subsequent reflection run published 24 revisions but finished **0/25 clears**
+within the remaining original one-hour budget; best x=822. All 2,416 decisions /
+8,997 native frames passed replay, with 171 declared A releases and no other
+action overrides. CLM selected only `jump` and `right_run`, despite moving-jump
+guidance. See the [full reflection result and exact prompts](reports/clm-stage12-reflection/README.md)
+and [reviewer-reference repair record](reports/clm-stage12-reflection/OPERATIONS.md).
 
 ## Enable failure-only reflection
 

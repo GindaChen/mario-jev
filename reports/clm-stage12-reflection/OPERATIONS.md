@@ -1,7 +1,9 @@
 # World 1-2 with prompt-only reflection
 
-This experiment is in progress; this file records its launch and one infrastructure
-repair, not a completed result. It starts from the exact prompt used by the
+This experiment has ended at its original aggregate deadline. See the
+[final report](README.md): the corrected segment completed 25 attempts with no
+clear, best x=822, and passed full replay and integrity audits. This file preserves
+the launch and infrastructure repair record. It starts from the exact prompt used by the
 [failed fixed-prompt pilot](../clm-stage12-single-prompt/README.md). S2 may revise
 only the instructions between failed attempts. The eight candidate descriptions,
 observation code and gameplay controller remain fixed. Coordinate hints are
@@ -12,10 +14,10 @@ allowed as prompt text; host-side note activation and forced actions are not.
 All remote paths below are beneath
 `/raid/juc049/clm-mario/stage12-single-prompt/` on B200.
 
-| Segment | State at launch handoff | Bounds |
+| Segment | Final state | Bounds |
 | --- | --- | --- |
 | `experiments/reflection50` | Stopped for reviewer repair after 3 failed attempts | Originally 50 attempts / 3,600 seconds |
-| `experiments/reflection-reviewfix` | Active, fresh start from the same initial prompt | 47 attempts / 3,191 remaining seconds |
+| `experiments/reflection-reviewfix` | Ended during reflection at original deadline after 25 attempts | 47 attempts / 3,191 remaining seconds at restart |
 
 The second segment does not reset the aggregate budget. The authoritative original
 deadline is `reflection50/manifest.json`'s `created_unix + wall_limit_s`.
@@ -24,7 +26,7 @@ S2 uses `gpt-6-sol` with medium reasoning, with 180 seconds for a proposal and
 between failed attempts. A clear retains its prompt for subsequent attempts.
 Poor gameplay is handled by S2, not by an operator writing a solution.
 
-The active systemd user unit is `clm-stage12-reflection-reviewfix.service`.
+The now-stopped systemd user unit is `clm-stage12-reflection-reviewfix.service`.
 Read its status plus `experiments/reflection-reviewfix/observations/status.json`
 and `events.jsonl`. Exact S2 requests, commands, replies and reviewer verdicts are
 under `reflections/`; published prompts and provenance are under `programs/`.
@@ -53,14 +55,15 @@ Do not silently combine the two segments into one homogeneous experiment.
 
 ## Completion checks
 
-The in-chat follow-up checks this bounded run every five minutes. At completion,
-use the run's `frozen/` directory as `PYTHONPATH` for
+During execution, the in-chat follow-up checked this bounded run every five
+minutes. The completion checks below have been performed; the monitoring
+automation is retired after reporting. For reproducing the audit, use the run's `frozen/` directory as `PYTHONPATH` for
 `python -m mario_jev.rsi_runtime.audit_clm`. The control root also contains
 `verify_inputs.py`, `summarize.py`, `audit_action_authority.py` and
 `export_native_video.py`. Verify every completed attempt, immutable per-attempt
 prompts, frozen candidates, model-selected versus executed keys and S2 tool use.
-Export the first clear or best failed replay, report the outcome and pause the
-follow-up. Do not extend the budget or publish the website automatically.
+The best failed replay (attempt 16) is exported and RAM-verified; the outcome
+is in the final report. Do not extend the budget or publish the website automatically.
 
 Raw run copies belong in ignored `deliverables/clm-stage12-single-prompt/`.
 Commit only compact, credential-free evidence and final prompts/results.
